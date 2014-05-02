@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script type="text/javascript">
+var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
+var msg;
+db.transaction(function (tx) {
+ 
+  tx.executeSql('CREATE TABLE IF NOT EXISTS Contact (id INTEGER PRIMARY KEY, nombre)');
+  //tx.executeSql('INSERT INTO Contactos(id, nombre) VALUES (1, "Luis")');
+  msg = '<p>Log message created and row inserted.</p>';
+  document.querySelector('#status').innerHTML =  msg;
+});
+
+db.transaction(function (tx) {
+
+  tx.executeSql('SELECT * FROM LOGS', [], function (tx, results) {
+   var len = results.rows.length, i;
+   msg = "<p>Found rows: " + len + "</p>";
+   document.querySelector('#status').innerHTML +=  msg;
+
+   for (i = 0; i < len; i++){
+     msg = "<p><b>" + results.rows.item(i).log + "</b></p>";
+     document.querySelector('#status').innerHTML +=  msg;
+   }
+ }, null);
+});
+function Agregar () {
+	var campo=document.getElementById('name');
+
+	db.transaction(function (tx) {
+
+	tx.executeSql('INSERT INTO Contact(nombre) VALUES ("'+campo.value+'")');
+	campo.value="";
+	});
+	//campo.value="";
+}
+function mostrar () {
+	db.transaction(function (tx) {
+
+  tx.executeSql('SELECT nombre FROM Contact', [], function (tx, results) {
+   var len = results.rows.length, i;
+
+   for (i = 0; i < len; i++){
+     msg = "<p><b>" + results.rows.item(i).nombre + "</b></p>";
+     document.querySelector('#muesta').innerHTML +=  msg;
+   }
+ }, null);
+});
+}
+</script>
+</head>
+<body>
+<div id="status" name="status">Status Message</div>
+<input type="text" id="name">
+<input type="submit" onclick="Agregar()">
+<input type="submit" onclick="mostrar()">
+<h4>Mostrara el contenido</h4>
+<div id="muesta">
+	
+</div>
+</body>
+</html>
