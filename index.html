@@ -1,63 +1,40 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-<head>
-<script type="text/javascript">
-var db = openDatabase('mydb', '1.0', 'Test DB', 2 * 1024 * 1024);
-var msg;
-db.transaction(function (tx) {
- 
-  tx.executeSql('CREATE TABLE IF NOT EXISTS Contact (id INTEGER PRIMARY KEY, nombre)');
-  //tx.executeSql('INSERT INTO Contactos(id, nombre) VALUES (1, "Luis")');
-  msg = '<p>Log message created and row inserted.</p>';
-  document.querySelector('#status').innerHTML =  msg;
-});
-
-db.transaction(function (tx) {
-
-  tx.executeSql('SELECT * FROM LOGS', [], function (tx, results) {
-   var len = results.rows.length, i;
-   msg = "<p>Found rows: " + len + "</p>";
-   document.querySelector('#status').innerHTML +=  msg;
-
-   for (i = 0; i < len; i++){
-     msg = "<p><b>" + results.rows.item(i).log + "</b></p>";
-     document.querySelector('#status').innerHTML +=  msg;
+  <head>
+    <title>Contact Example</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
+  <script src="jquery.js"></script>
+  <script src="jquery.mobile.js"></script>
+  <style>
+  a{
+    display: block;
+    background: #cccccc;
+    height: 40px;
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    line-height: 40px;
+    font-family: helvetica;
+    font-size: 20px;
+  }
+  </style>
+  <script>
+   function changePage () {
+     window.location.assign("page2.html");
    }
- }, null);
-});
-function Agregar () {
-	var campo=document.getElementById('name');
+  $(function () {
+     
+     $('#botonsito').bind('tap', changePage);
 
-	db.transaction(function (tx) {
+  });
 
-	tx.executeSql('INSERT INTO Contact(nombre) VALUES ("'+campo.value+'")');
-	campo.value="";
-	});
-	//campo.value="";
-}
-function mostrar () {
-	db.transaction(function (tx) {
+  </script>
+  <script>
+  
 
-  tx.executeSql('SELECT nombre FROM Contact', [], function (tx, results) {
-   var len = results.rows.length, i;
-
-   for (i = 0; i < len; i++){
-     msg = "<p><b>" + results.rows.item(i).nombre + "</b></p>";
-     document.querySelector('#muesta').innerHTML +=  msg;
-   }
- }, null);
-});
-}
-</script>
-</head>
-<body>
-<div id="status" name="status">Status Message</div>
-<input type="text" id="name">
-<input type="submit" onclick="Agregar()">
-<input type="submit" onclick="mostrar()">
-<h4>Mostrara el contenido</h4>
-<div id="muesta">
-	
-</div>
-</body>
+  </script>
+  </head>
+  <body>
+     <a href="#" id="botonsito">click about</a>
+  </body>
 </html>
