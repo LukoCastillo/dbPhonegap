@@ -4,98 +4,53 @@
 	<title>Page Title</title> 
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+	<link rel="stylesheet" href="jquery.mobile-1.4.2.css"/>
 	<script src="js/jquery.js"></script>
-	<script src="js/jquery.mobile.js"></script>
+	<script src="js/jquery.mobile-1.4.2.js"></script>
 
-	<style>
-	body{
-		text-align: center;
-	}
-	#bg {
-  position: fixed; 
-  top: -50%; 
-  left: -50%; 
-  width: 200%; 
-  height: 200%;
-  z-index: -1;
-}
-#bg img {
-  position: absolute; 
-  top: 0; 
-  left: 0; 
-  right: 0; 
-  bottom: 0; 
-  margin: auto; 
-  min-width: 50%;
-  min-height: 50%;
-}
-#logo{
-	text-align: center;
-}
-/**/
-button.launch {
-background-color: #f51712;
-border: none;
-height:  50px;
-padding: 5px 15px;
-color: #ffffff;
-font-size: 16px;
-font-weight: 300;
-margin-top: 10px;
-margin-right: 10px;
-width: 70%;
-border-radius: 50px;
-margin-bottom: 20px;
-/* Shadow*/
--moz-box-shadow:     1px 10px 0px #434144;
-  -webkit-box-shadow:  1px 10px 0px #434144;
-  box-shadow:         	1px 10px 0px #434144;
-}
+</head> 
 
-button.launch:hover {
-cursor: pointer;
-background-color: #FABD44;
-}
+<body> 
 
+<!-- Start of first page -->
+<div data-role="page" id="foo">
 
+	<div data-role="header">
+		<h1>Foo</h1>
+	</div><!-- /header -->
 
+	<div data-role="content">	
+		<p>Esta es la pagina No. 1</p>		
+		<p>View internal page called <a id="perro" data-role="button">Go page 2</a></p>	
+	</div><!-- /content -->
 
-button:active{
-outline: none;
-border: none;
-}
-
-button:focus{outline:0;}
-
-*{
-	  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  user-select: none; 
-}
-
-	</style>
-</head>
-<body>
-<div id="bg">
-  <img src="img/bg.png" alt="">
-</div>
-<div id="logo">
-<img src="img/logo.png">
-</div>
-
-
-<button class="launch">Play</button> 
-<button class="launch">Competite</button> 
-<button class="launch">Score</button> 
-<button class="launch">About</button> 
-
-
+	<div data-role="footer">
+		<h4>Page Footer</h4>
+	</div><!-- /footer -->
 	<script>
-	$(".launch").bind('tap',function() {
+	$("#perro").bind('tap',function() {
 		alert('jj');
 	});
 	</script>
+</div><!-- /page -->
+
+
+<!-- Start of second page -->
+<div data-role="page" id="bar">
+
+	<div data-role="header">
+		<h1>Bar</h1>
+	</div><!-- /header -->
+
+	<div data-role="content">	
+		<p>Esta es la pagina No 2</p>		
+		<p><a href="#foo" data-role="button">Back to foo</a></p>	
+	</div><!-- /content -->
+
+	<div data-role="footer">
+		<h4>Page Footer</h4>
+	</div><!-- /footer -->
+</div><!-- /page -->
 </body>
 </html>
