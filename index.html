@@ -9,28 +9,86 @@
 	<script src="js/jquery.js"></script>
 	<script src="js/jquery.mobile-1.4.2.js"></script>
 
+	<style>
+	#bg {
+  position: fixed; 
+  top: -50%; 
+  left: -50%; 
+  width: 200%; 
+  height: 200%;
+  z-index: -1;
+}
+#bg img {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  margin: auto; 
+  min-width: 50%;
+  min-height: 50%;
+}
+#logo{
+	text-align: center;
+}
+	
+.btn-menu{
+	background: #f51712;
+	/* Shadow*/
+-moz-box-shadow:     1px 10px 0px #434144;
+  -webkit-box-shadow:  1px 10px 0px #434144;
+  box-shadow:         	1px 10px 0px #434144;
+  width: 62%;
+
+  border-radius: 50%;
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
+/*
+.btn-menu:active{
+  -moz-box-shadow:     1px 5px 0px #434144;
+  -webkit-box-shadow:  1px 5px 0px #434144;
+  box-shadow:         	1px 5px 0px #434144;
+  top: 3px;
+}*/
+	</style>
+
+
+
+
+
 </head> 
 
 <body> 
 
 <!-- Start of first page -->
-<div data-role="page" id="foo">
-
-	<div data-role="header">
-		<h1>Foo</h1>
-	</div><!-- /header -->
-
+<div data-role="page" id="foo" id="menu">
+	<div id="bg">
+  		<img src="img/bg.png" alt="">
+	</div>
+	<div id="logo">
+<img src="img/logo.png">
+</div>
 	<div data-role="content">	
-		<p>Esta es la pagina No. 1</p>		
-		<p>View internal page called <a id="perro" data-role="button">Go page 2</a></p>	
+		 <a  data-role="button" class="btn-menu">Play</a></p>	
+		 <a   data-role="button" class="btn-menu">Competite</a></p>	
+		 <a  data-role="button" class="btn-menu">Score</a></p>	
+		 <a   data-role="button" class="btn-menu">About</a></p>	
 	</div><!-- /content -->
 
-	<div data-role="footer">
-		<h4>Page Footer</h4>
-	</div><!-- /footer -->
+	
 	<script>
-	$("#perro").bind('tap',function() {
-		alert('jj');
+	$(".btn-menu").bind('tap',function() {
+		//alert('jj');
+		$(this).css('box-shadow', '1px 5px 0px #434144');
+		$(this).css('top', '3px');
+		setTimeout(function(){
+			//alert('j');
+			$(".btn-menu").css('box-shadow', '1px 10px 0px #434144');
+			$(".btn-menu").css('top', '0px');
+		}, 100);
+		
+
 	});
 	</script>
 </div><!-- /page -->
