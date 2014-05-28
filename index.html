@@ -37,11 +37,8 @@
 	-webkit-box-shadow: 1px 10px 0px #434144;
 	box-shadow: 1px 10px 0px #434144;
 
-	/*background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
-	background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
-	*/
 	background-color:#f51813;
+	/* borders*/
 	-webkit-border-top-left-radius:50px;
 	-moz-border-radius-topleft:50px;
 	border-top-left-radius:50px;
@@ -54,11 +51,16 @@
 	-webkit-border-bottom-left-radius:50px;
 	-moz-border-radius-bottomleft:50px;
 	border-bottom-left-radius:50px;
-	text-indent:0;
+
+	/*otros estilos */
+	
 	border:1px solid #f51813;
 	display:inline-block;
+
 	color:white;
+
 	font-family:arial;
+
 	font-size:15px;
 	font-weight:bold;
 	font-style:normal;
@@ -67,7 +69,7 @@
 	width:70%;
 	text-decoration:none;
 	text-align:center;
-	text-shadow:1px 1px 0px #ffffff;
+	text-shadow:1px 1px 0px #f51813;
 	margin-bottom: 20px;
 }
 .classname:active {
@@ -78,6 +80,71 @@
 	text-align: center;
 }
 
+button.launch {
+background-color: #F9A300;
+border: none;
+height: 40px;
+padding: 5px 15px;
+color: #ffffff;
+font-size: 16px;
+font-weight: 300;
+margin-top: 10px;
+margin-right: 10px;
+}
+
+button.launch:hover {
+cursor: pointer;
+background-color: #FABD44;
+}
+
+button.launch {
+background-color: #F9A300;
+border: none;
+height: 40px;
+padding: 5px 15px;
+color: #ffffff;
+font-size: 16px;
+font-weight: 300;
+margin-top: 10px;
+margin-right: 10px;
+}
+
+button.launch:hover {
+cursor: pointer;
+background-color: #FABD44;
+}
+
+button.change {
+background-color: #F88F00;
+border: none;
+height: 40px;
+padding: 5px 15px;
+color: #ffffff;
+font-size: 16px;
+font-weight: 300;
+margin-top: 10px;
+margin-right: 10px;
+}
+
+button.change:hover {
+cursor: pointer;
+background-color: #F89900;
+}
+
+button:active {
+outline: none;
+border: none;
+}
+
+button:focus {outline:0;}
+
+*{
+	  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none; 
+}
 
 	</style>
 </head>
@@ -88,10 +155,13 @@
 <div id="logo">
 <img src="img/logo.png">
 </div>
-<a class="classname">Play</a>
+<div class="classname">Play</div>
 <a class="classname">Competi</a>
 <a class="classname">Score</a>
 <a class="classname">Help</a>
+
+<button class="launch">Launch with these ads</button> 
+<button class="change">Change</button>
 
 	<script>
 	$(".classname").click(function() {
