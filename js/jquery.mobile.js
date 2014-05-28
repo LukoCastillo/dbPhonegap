@@ -1,2 +1,1951 @@
-/*! jQuery Mobile vGit Build: SHA1: 27e3c18acfebab2d47ee7ed37bd50fc4942c8838 <> Date: Fri Mar 22 08:50:04 2013 -0600 jquerymobile.com | jquery.org/license !*/
-(function(e,t,n){typeof define=="function"&&define.amd?define(["jquery"],function(r){return n(r,e,t),r.mobile}):n(e.jQuery,e,t)})(this,document,function(e,t,n,r){(function(e,t,r){var i={};e.mobile=e.extend({},{version:"1.2.1",ns:"",subPageUrlKey:"ui-page",activePageClass:"ui-page-active",activeBtnClass:"ui-btn-active",focusClass:"ui-focus",ajaxEnabled:!0,hashListeningEnabled:!0,linkBindingEnabled:!0,defaultPageTransition:"fade",maxTransitionWidth:!1,minScrollBack:250,touchOverflowEnabled:!1,defaultDialogTransition:"pop",pageLoadErrorMessage:"Error Loading Page",pageLoadErrorMessageTheme:"e",phonegapNavigationEnabled:!1,autoInitializePage:!0,pushStateEnabled:!0,ignoreContentEnabled:!1,orientationChangeEnabled:!0,buttonMarkup:{hoverDelay:200},keyCode:{ALT:18,BACKSPACE:8,CAPS_LOCK:20,COMMA:188,COMMAND:91,COMMAND_LEFT:91,COMMAND_RIGHT:93,CONTROL:17,DELETE:46,DOWN:40,END:35,ENTER:13,ESCAPE:27,HOME:36,INSERT:45,LEFT:37,MENU:93,NUMPAD_ADD:107,NUMPAD_DECIMAL:110,NUMPAD_DIVIDE:111,NUMPAD_ENTER:108,NUMPAD_MULTIPLY:106,NUMPAD_SUBTRACT:109,PAGE_DOWN:34,PAGE_UP:33,PERIOD:190,RIGHT:39,SHIFT:16,SPACE:32,TAB:9,UP:38,WINDOWS:91},behaviors:{},silentScroll:function(r){e.type(r)!=="number"&&(r=e.mobile.defaultHomeScroll),e.event.special.scrollstart.enabled=!1,setTimeout(function(){t.scrollTo(0,r),e(n).trigger("silentscroll",{x:0,y:r})},20),setTimeout(function(){e.event.special.scrollstart.enabled=!0},150)},nsNormalizeDict:i,nsNormalize:function(t){if(!t)return;return i[t]||(i[t]=e.camelCase(e.mobile.ns+t))},getInheritedTheme:function(e,t){var n=e[0],r="",i=/ui-(bar|body|overlay)-([a-z])\b/,s,o;while(n){s=n.className||"";if(s&&(o=i.exec(s))&&(r=o[2]))break;n=n.parentNode}return r||t||"a"},closestPageData:function(e){return e.closest(':jqmData(role="page"), :jqmData(role="dialog")').data("page")},enhanceable:function(e){return this.haveParents(e,"enhance")},hijackable:function(e){return this.haveParents(e,"ajax")},haveParents:function(t,n){if(!e.mobile.ignoreContentEnabled)return t;var r=t.length,i=e(),s,o,u;for(var a=0;a<r;a++){o=t.eq(a),u=!1,s=t[a];while(s){var f=s.getAttribute?s.getAttribute("data-"+e.mobile.ns+n):"";if(f==="false"){u=!0;break}s=s.parentNode}u||(i=i.add(o))}return i},getScreenHeight:function(){return t.innerHeight||e(t).height()}},e.mobile),e.fn.jqmData=function(t,n){var i;return typeof t!="undefined"&&(t&&(t=e.mobile.nsNormalize(t)),arguments.length<2||n===r?i=this.data(t):i=this.data(t,n)),i},e.jqmData=function(t,n,r){var i;return typeof n!="undefined"&&(i=e.data(t,n?e.mobile.nsNormalize(n):n,r)),i},e.fn.jqmRemoveData=function(t){return this.removeData(e.mobile.nsNormalize(t))},e.jqmRemoveData=function(t,n){return e.removeData(t,e.mobile.nsNormalize(n))},e.fn.removeWithDependents=function(){e.removeWithDependents(this)},e.removeWithDependents=function(t){var n=e(t);(n.jqmData("dependents")||e()).remove(),n.remove()},e.fn.addDependents=function(t){e.addDependents(e(this),t)},e.addDependents=function(t,n){var r=e(t).jqmData("dependents")||e();e(t).jqmData("dependents",e.merge(r,n))},e.fn.getEncodedText=function(){return e("<div/>").text(e(this).text()).html()},e.fn.jqmEnhanceable=function(){return e.mobile.enhanceable(this)},e.fn.jqmHijackable=function(){return e.mobile.hijackable(this)};var s=e.find,o=/:jqmData\(([^)]*)\)/g;e.find=function(t,n,r,i){return t=t.replace(o,"[data-"+(e.mobile.ns||"")+"$1]"),s.call(this,t,n,r,i)},e.extend(e.find,s),e.find.matches=function(t,n){return e.find(t,null,null,n)},e.find.matchesSelector=function(t,n){return e.find(n,null,null,[t]).length>0}})(e,this),function(e,t){var n=0,r=Array.prototype.slice,i=e.cleanData;e.cleanData=function(t){for(var n=0,r;(r=t[n])!=null;n++)try{e(r).triggerHandler("remove")}catch(s){}i(t)},e.widget=function(t,n,r){var i,s,o,u,a=t.split(".")[0];t=t.split(".")[1],i=a+"-"+t,r||(r=n,n=e.Widget),e.expr[":"][i]=function(t){return!!e.data(t,i)},e[a]=e[a]||{},s=e[a][t],o=e[a][t]=function(e,t){if(!this._createWidget)return new o(e,t);arguments.length&&this._createWidget(e,t)},e.extend(o,s,{version:r.version,_proto:e.extend({},r),_childConstructors:[]}),u=new n,u.options=e.widget.extend({},u.options),e.each(r,function(t,i){e.isFunction(i)&&(r[t]=function(){var e=function(){return n.prototype[t].apply(this,arguments)},r=function(e){return n.prototype[t].apply(this,e)};return function(){var t=this._super,n=this._superApply,s;return this._super=e,this._superApply=r,s=i.apply(this,arguments),this._super=t,this._superApply=n,s}}())}),o.prototype=e.widget.extend(u,{widgetEventPrefix:t},r,{constructor:o,namespace:a,widgetName:t,widgetBaseClass:i,widgetFullName:i}),s?(e.each(s._childConstructors,function(t,n){var r=n.prototype;e.widget(r.namespace+"."+r.widgetName,o,n._proto)}),delete s._childConstructors):n._childConstructors.push(o),e.widget.bridge(t,o)},e.widget.extend=function(n){var i=r.call(arguments,1),s=0,o=i.length,u,a;for(;s<o;s++)for(u in i[s])a=i[s][u],i[s].hasOwnProperty(u)&&a!==t&&(n[u]=e.isPlainObject(a)?e.widget.extend({},n[u],a):a);return n},e.widget.bridge=function(n,i){var s=i.prototype.widgetFullName;e.fn[n]=function(o){var u=typeof o=="string",a=r.call(arguments,1),f=this;return o=!u&&a.length?e.widget.extend.apply(null,[o].concat(a)):o,u?this.each(function(){var r,i=e.data(this,s);if(!i)return e.error("cannot call methods on "+n+" prior to initialization; "+"attempted to call method '"+o+"'");if(!e.isFunction(i[o])||o.charAt(0)==="_")return e.error("no such method '"+o+"' for "+n+" widget instance");r=i[o].apply(i,a);if(r!==i&&r!==t)return f=r&&r.jquery?f.pushStack(r.get()):r,!1}):this.each(function(){var t=e.data(this,s);t?t.option(o||{})._init():new i(o,this)}),f}},e.Widget=function(e,t){},e.Widget._childConstructors=[],e.Widget.prototype={widgetName:"widget",widgetEventPrefix:"",defaultElement:"<div>",options:{disabled:!1,create:null},_createWidget:function(t,r){r=e(r||this.defaultElement||this)[0],this.element=e(r),this.uuid=n++,this.eventNamespace="."+this.widgetName+this.uuid,this.options=e.widget.extend({},this.options,this._getCreateOptions(),t),this.bindings=e(),this.hoverable=e(),this.focusable=e(),r!==this&&(e.data(r,this.widgetName,this),e.data(r,this.widgetFullName,this),this._on({remove:"destroy"}),this.document=e(r.style?r.ownerDocument:r.document||r),this.window=e(this.document[0].defaultView||this.document[0].parentWindow)),this._create(),this._trigger("create",null,this._getCreateEventData()),this._init()},_getCreateOptions:e.noop,_getCreateEventData:e.noop,_create:e.noop,_init:e.noop,destroy:function(){this._destroy(),this.element.unbind(this.eventNamespace).removeData(this.widgetName).removeData(this.widgetFullName).removeData(e.camelCase(this.widgetFullName)),this.widget().unbind(this.eventNamespace).removeAttr("aria-disabled").removeClass(this.widgetFullName+"-disabled "+"ui-state-disabled"),this.bindings.unbind(this.eventNamespace),this.hoverable.removeClass("ui-state-hover"),this.focusable.removeClass("ui-state-focus")},_destroy:e.noop,widget:function(){return this.element},option:function(n,r){var i=n,s,o,u;if(arguments.length===0)return e.widget.extend({},this.options);if(typeof n=="string"){i={},s=n.split("."),n=s.shift();if(s.length){o=i[n]=e.widget.extend({},this.options[n]);for(u=0;u<s.length-1;u++)o[s[u]]=o[s[u]]||{},o=o[s[u]];n=s.pop();if(r===t)return o[n]===t?null:o[n];o[n]=r}else{if(r===t)return this.options[n]===t?null:this.options[n];i[n]=r}}return this._setOptions(i),this},_setOptions:function(e){var t;for(t in e)this._setOption(t,e[t]);return this},_setOption:function(e,t){return this.options[e]=t,e==="disabled"&&(this.widget().toggleClass(this.widgetFullName+"-disabled ui-state-disabled",!!t).attr("aria-disabled",t),this.hoverable.removeClass("ui-state-hover"),this.focusable.removeClass("ui-state-focus")),this},enable:function(){return this._setOption("disabled",!1)},disable:function(){return this._setOption("disabled",!0)},_on:function(t,n){n?(t=e(t),this.bindings=this.bindings.add(t)):(n=t,t=this.element);var r=this;e.each(n,function(n,i){function s(){if(r.options.disabled===!0||e(this).hasClass("ui-state-disabled"))return;return(typeof i=="string"?r[i]:i).apply(r,arguments)}typeof i!="string"&&(s.guid=i.guid=i.guid||s.guid||e.guid++);var o=n.match(/^(\w+)\s*(.*)$/),u=o[1]+r.eventNamespace,a=o[2];a?r.widget().delegate(a,u,s):t.bind(u,s)})},_off:function(e,t){t=(t||"").split(" ").join(this.eventNamespace+" ")+this.eventNamespace,e.unbind(t).undelegate(t)},_delay:function(e,t){function n(){return(typeof e=="string"?r[e]:e).apply(r,arguments)}var r=this;return setTimeout(n,t||0)},_hoverable:function(t){this.hoverable=this.hoverable.add(t),this._on(t,{mouseenter:function(t){e(t.currentTarget).addClass("ui-state-hover")},mouseleave:function(t){e(t.currentTarget).removeClass("ui-state-hover")}})},_focusable:function(t){this.focusable=this.focusable.add(t),this._on(t,{focusin:function(t){e(t.currentTarget).addClass("ui-state-focus")},focusout:function(t){e(t.currentTarget).removeClass("ui-state-focus")}})},_trigger:function(t,n,r){var i,s,o=this.options[t];r=r||{},n=e.Event(n),n.type=(t===this.widgetEventPrefix?t:this.widgetEventPrefix+t).toLowerCase(),n.target=this.element[0],s=n.originalEvent;if(s)for(i in s)i in n||(n[i]=s[i]);return this.element.trigger(n,r),!(e.isFunction(o)&&o.apply(this.element[0],[n].concat(r))===!1||n.isDefaultPrevented())}},e.each({show:"fadeIn",hide:"fadeOut"},function(t,n){e.Widget.prototype["_"+t]=function(r,i,s){typeof i=="string"&&(i={effect:i});var o,u=i?i===!0||typeof i=="number"?n:i.effect||n:t;i=i||{},typeof i=="number"&&(i={duration:i}),o=!e.isEmptyObject(i),i.complete=s,i.delay&&r.delay(i.delay),o&&e.effects&&(e.effects.effect[u]||e.uiBackCompat!==!1&&e.effects[u])?r[t](i):u!==t&&r[u]?r[u](i.duration,i.easing,s):r.queue(function(n){e(this)[t](),s&&s.call(r[0]),n()})}}),e.uiBackCompat!==!1&&(e.Widget.prototype._getCreateOptions=function(){return e.metadata&&e.metadata.get(this.element[0])[this.widgetName]})}(e),function(e,t){e.widget("mobile.widget",{_createWidget:function(){e.Widget.prototype._createWidget.apply(this,arguments),this._trigger("init")},_getCreateOptions:function(){var n=this.element,r={};return e.each(this.options,function(e){var i=n.jqmData(e.replace(/[A-Z]/g,function(e){return"-"+e.toLowerCase()}));i!==t&&(r[e]=i)}),r},enhanceWithin:function(t,n){this.enhance(e(this.options.initSelector,e(t)),n)},enhance:function(t,n){var r,i,s=e(t),o=this;s=e.mobile.enhanceable(s),n&&s.length&&(r=e.mobile.closestPageData(s),i=r&&r.keepNativeSelector()||"",s=s.not(i)),s[this.widgetName]()},raise:function(e){throw"Widget ["+this.widgetName+"]: "+e}})}(e),function(e,t){e.extend(e.mobile,{loadingMessageTextVisible:r,loadingMessageTheme:r,loadingMessage:r,showPageLoadingMsg:function(t,n,r){e.mobile.loading("show",t,n,r)},hidePageLoadingMsg:function(){e.mobile.loading("hide")},loading:function(){this.loaderWidget.loader.apply(this.loaderWidget,arguments)}});var n="ui-loader",i=e("html"),s=e(t);e.widget("mobile.loader",{options:{theme:"a",textVisible:!1,html:"",text:"loading"},defaultHtml:"<div class='"+n+"'>"+"<span class='ui-icon ui-icon-loading'></span>"+"<h1></h1>"+"</div>",fakeFixLoader:function(){var t=e("."+e.mobile.activeBtnClass).first();this.element.css({top:e.support.scrollTop&&s.scrollTop()+s.height()/2||t.length&&t.offset().top||100})},checkLoaderPosition:function(){var t=this.element.offset(),n=s.scrollTop(),r=e.mobile.getScreenHeight();if(t.top<n||t.top-n>r)this.element.addClass("ui-loader-fakefix"),this.fakeFixLoader(),s.unbind("scroll",this.checkLoaderPosition).bind("scroll",e.proxy(this.fakeFixLoader,this))},resetHtml:function(){this.element.html(e(this.defaultHtml).html())},show:function(t,o,u){var a,f,l,c;this.resetHtml(),e.type(t)==="object"?(c=e.extend({},this.options,t),t=c.theme||e.mobile.loadingMessageTheme):(c=this.options,t=t||e.mobile.loadingMessageTheme||c.theme),f=o||e.mobile.loadingMessage||c.text,i.addClass("ui-loading");if(e.mobile.loadingMessage!==!1||c.html)e.mobile.loadingMessageTextVisible!==r?a=e.mobile.loadingMessageTextVisible:a=c.textVisible,this.element.attr("class",n+" ui-corner-all ui-body-"+t+" ui-loader-"+(a||o||t.text?"verbose":"default")+(c.textonly||u?" ui-loader-textonly":"")),c.html?this.element.html(c.html):this.element.find("h1").text(f),this.element.appendTo(e.mobile.pageContainer),this.checkLoaderPosition(),s.bind("scroll",e.proxy(this.checkLoaderPosition,this))},hide:function(){i.removeClass("ui-loading"),e.mobile.loadingMessage&&this.element.removeClass("ui-loader-fakefix"),e(t).unbind("scroll",this.fakeFixLoader),e(t).unbind("scroll",this.checkLoaderPosition)}}),s.bind("pagecontainercreate",function(){e.mobile.loaderWidget=e.mobile.loaderWidget||e(e.mobile.loader.prototype.defaultHtml).loader()})}(e,this),function(e,t,n,r){function x(e){while(e&&typeof e.originalEvent!="undefined")e=e.originalEvent;return e}function T(t,n){var i=t.type,s,o,a,l,c,h,p,d,v;t=e.Event(t),t.type=n,s=t.originalEvent,o=e.event.props,i.search(/^(mouse|click)/)>-1&&(o=f);if(s)for(p=o.length,l;p;)l=o[--p],t[l]=s[l];i.search(/mouse(down|up)|click/)>-1&&!t.which&&(t.which=1);if(i.search(/^touch/)!==-1){a=x(s),i=a.touches,c=a.changedTouches,h=i&&i.length?i[0]:c&&c.length?c[0]:r;if(h)for(d=0,v=u.length;d<v;d++)l=u[d],t[l]=h[l]}return t}function N(t){var n={},r,s;while(t){r=e.data(t,i);for(s in r)r[s]&&(n[s]=n.hasVirtualBinding=!0);t=t.parentNode}return n}function C(t,n){var r;while(t){r=e.data(t,i);if(r&&(!n||r[n]))return t;t=t.parentNode}return null}function k(){g=!1}function L(){g=!0}function A(){E=0,v.length=0,m=!1,L()}function O(){k()}function M(){_(),c=setTimeout(function(){c=0,A()},e.vmouse.resetTimerDuration)}function _(){c&&(clearTimeout(c),c=0)}function D(t,n,r){var i;if(r&&r[t]||!r&&C(n.target,t))i=T(n,t),e(n.target).trigger(i);return i}function P(t){var n=e.data(t.target,s);if(!m&&(!E||E!==n)){var r=D("v"+t.type,t);r&&(r.isDefaultPrevented()&&t.preventDefault(),r.isPropagationStopped()&&t.stopPropagation(),r.isImmediatePropagationStopped()&&t.stopImmediatePropagation())}}function H(t){var n=x(t).touches,r,i;if(n&&n.length===1){r=t.target,i=N(r);if(i.hasVirtualBinding){E=w++,e.data(r,s,E),_(),O(),d=!1;var o=x(t).touches[0];h=o.pageX,p=o.pageY,D("vmouseover",t,i),D("vmousedown",t,i)}}}function B(e){if(g)return;d||D("vmousecancel",e,N(e.target)),d=!0,M()}function j(t){if(g)return;var n=x(t).touches[0],r=d,i=e.vmouse.moveDistanceThreshold,s=N(t.target);d=d||Math.abs(n.pageX-h)>i||Math.abs(n.pageY-p)>i,d&&!r&&D("vmousecancel",t,s),D("vmousemove",t,s),M()}function F(e){if(g)return;L();var t=N(e.target),n;D("vmouseup",e,t);if(!d){var r=D("vclick",e,t);r&&r.isDefaultPrevented()&&(n=x(e).changedTouches[0],v.push({touchID:E,x:n.clientX,y:n.clientY}),m=!0)}D("vmouseout",e,t),d=!1,M()}function I(t){var n=e.data(t,i),r;if(n)for(r in n)if(n[r])return!0;return!1}function q(){}function R(t){var n=t.substr(1);return{setup:function(r,s){I(this)||e.data(this,i,{});var o=e.data(this,i);o[t]=!0,l[t]=(l[t]||0)+1,l[t]===1&&b.bind(n,P),e(this).bind(n,q),y&&(l.touchstart=(l.touchstart||0)+1,l.touchstart===1&&b.bind("touchstart",H).bind("touchend",F).bind("touchmove",j).bind("scroll",B))},teardown:function(r,s){--l[t],l[t]||b.unbind(n,P),y&&(--l.touchstart,l.touchstart||b.unbind("touchstart",H).unbind("touchmove",j).unbind("touchend",F).unbind("scroll",B));var o=e(this),u=e.data(this,i);u&&(u[t]=!1),o.unbind(n,q),I(this)||o.removeData(i)}}}var i="virtualMouseBindings",s="virtualTouchID",o="vmouseover vmousedown vmousemove vmouseup vclick vmouseout vmousecancel".split(" "),u="clientX clientY pageX pageY screenX screenY".split(" "),a=e.event.mouseHooks?e.event.mouseHooks.props:[],f=e.event.props.concat(a),l={},c=0,h=0,p=0,d=!1,v=[],m=!1,g=!1,y="addEventListener"in n,b=e(n),w=1,E=0,S;e.vmouse={moveDistanceThreshold:10,clickDistanceThreshold:10,resetTimerDuration:1500};for(var U=0;U<o.length;U++)e.event.special[o[U]]=R(o[U]);y&&n.addEventListener("click",function(t){var n=v.length,r=t.target,i,o,u,a,f,l;if(n){i=t.clientX,o=t.clientY,S=e.vmouse.clickDistanceThreshold,u=r;while(u){for(a=0;a<n;a++){f=v[a],l=0;if(u===r&&Math.abs(f.x-i)<S&&Math.abs(f.y-o)<S||e.data(u,s)===f.touchID){t.preventDefault(),t.stopPropagation();return}}u=u.parentNode}}},!0)}(e,t,n),function(e,t){var r={touch:"ontouchend"in n};e.mobile=e.mobile||{},e.mobile.support=e.mobile.support||{},e.extend(e.support,r),e.extend(e.mobile.support,r)}(e),function(e,t,r){function f(t,n,r){var i=r.type;r.type=n,e.event.handle.call(t,r),r.type=i}e.each("touchstart touchmove touchend tap taphold swipe swipeleft swiperight scrollstart scrollstop".split(" "),function(t,n){e.fn[n]=function(e){return e?this.bind(n,e):this.trigger(n)},e.attrFn&&(e.attrFn[n]=!0)});var i=e.mobile.support.touch,s="touchmove scroll",o=i?"touchstart":"mousedown",u=i?"touchend":"mouseup",a=i?"touchmove":"mousemove";e.event.special.scrollstart={enabled:!0,setup:function(){function o(e,n){r=n,f(t,r?"scrollstart":"scrollstop",e)}var t=this,n=e(t),r,i;n.bind(s,function(t){if(!e.event.special.scrollstart.enabled)return;r||o(t,!0),clearTimeout(i),i=setTimeout(function(){o(t,!1)},50)})}},e.event.special.tap={tapholdThreshold:750,setup:function(){var t=this,r=e(t);r.bind("vmousedown",function(i){function a(){clearTimeout(u)}function l(){a(),r.unbind("vclick",c).unbind("vmouseup",a),e(n).unbind("vmousecancel",l)}function c(e){l(),s===e.target&&f(t,"tap",e)}if(i.which&&i.which!==1)return!1;var s=i.target,o=i.originalEvent,u;r.bind("vmouseup",a).bind("vclick",c),e(n).bind("vmousecancel",l),u=setTimeout(function(){f(t,"taphold",e.Event("taphold",{target:s}))},e.event.special.tap.tapholdThreshold)})}},e.event.special.swipe={scrollSupressionThreshold:30,durationThreshold:1e3,horizontalDistanceThreshold:30,verticalDistanceThreshold:75,setup:function(){var t=this,n=e(t);n.bind(o,function(t){function f(t){if(!s)return;var n=t.originalEvent.touches?t.originalEvent.touches[0]:t;o={time:(new Date).getTime(),coords:[n.pageX,n.pageY]},Math.abs(s.coords[0]-o.coords[0])>e.event.special.swipe.scrollSupressionThreshold&&t.preventDefault()}var i=t.originalEvent.touches?t.originalEvent.touches[0]:t,s={time:(new Date).getTime(),coords:[i.pageX,i.pageY],origin:e(t.target)},o;n.bind(a,f).one(u,function(t){n.unbind(a,f),s&&o&&o.time-s.time<e.event.special.swipe.durationThreshold&&Math.abs(s.coords[0]-o.coords[0])>e.event.special.swipe.horizontalDistanceThreshold&&Math.abs(s.coords[1]-o.coords[1])<e.event.special.swipe.verticalDistanceThreshold&&s.origin.trigger("swipe").trigger(s.coords[0]>o.coords[0]?"swipeleft":"swiperight"),s=o=r})})}},e.each({scrollstop:"scrollstart",taphold:"tap",swipeleft:"swipe",swiperight:"swipe"},function(t,n){e.event.special[t]={setup:function(){e(this).bind(n,e.noop)}}})}(e,this),function(e,n){e.extend(e.support,{orientation:"orientation"in t&&"onorientationchange"in t})}(e),function(e){e.event.special.throttledresize={setup:function(){e(this).bind("resize",n)},teardown:function(){e(this).unbind("resize",n)}};var t=250,n=function(){s=(new Date).getTime(),o=s-r,o>=t?(r=s,e(this).trigger("throttledresize")):(i&&clearTimeout(i),i=setTimeout(n,t-o))},r=0,i,s,o}(e),function(e,t){function d(){var e=o();e!==u&&(u=e,r.trigger(i))}var r=e(t),i="orientationchange",s,o,u,a,f,l={0:!0,180:!0};if(e.support.orientation){var c=t.innerWidth||e(t).width(),h=t.innerHeight||e(t).height(),p=50;a=c>h&&c-h>p,f=l[t.orientation];if(a&&f||!a&&!f)l={"-90":!0,90:!0}}e.event.special.orientationchange=e.extend({},e.event.special.orientationchange,{setup:function(){if(e.support.orientation&&!e.event.special.orientationchange.disabled)return!1;u=o(),r.bind("throttledresize",d)},teardown:function(){if(e.support.orientation&&!e.event.special.orientationchange.disabled)return!1;r.unbind("throttledresize",d)},add:function(e){var t=e.handler;e.handler=function(e){return e.orientation=o(),t.apply(this,arguments)}}}),e.event.special.orientationchange.orientation=o=function(){var r=!0,i=n.documentElement;return e.support.orientation?r=l[t.orientation]:r=i&&i.clientWidth/i.clientHeight<1.1,r?"portrait":"landscape"},e.fn[i]=function(e){return e?this.bind(i,e):this.trigger(i)},e.attrFn&&(e.attrFn[i]=!0)}(e,this),function(e,r){var i=e(t),s=e("html");e.mobile.media=function(){var t={},r=e("<div id='jquery-mediatest'></div>"),i=e("<body>").append(r);return function(e){if(!(e in t)){var o=n.createElement("style"),u="@media "+e+" { #jquery-mediatest { position:absolute; } }";o.type="text/css",o.styleSheet?o.styleSheet.cssText=u:o.appendChild(n.createTextNode(u)),s.prepend(i).prepend(o),t[e]=r.css("position")==="absolute",i.add(o).remove()}return t[e]}}()}(e),function(e,r){function i(e){var t=e.charAt(0).toUpperCase()+e.substr(1),n=(e+" "+u.join(t+" ")+t).split(" ");for(var i in n)if(o[n[i]]!==r)return!0}function h(e,t,r){var i=n.createElement("div"),s=function(e){return e.charAt(0).toUpperCase()+e.substr(1)},o=function(e){return"-"+e.charAt(0).toLowerCase()+e.substr(1)+"-"},a=function(n){var r=o(n)+e+": "+t+";",u=s(n),a=u+s(e);i.setAttribute("style",r),!i.style[a]||(l=!0)},f=r?[r]:u,l;for(var c=0;c<f.length;c++)a(f[c]);return!!l}function p(){var t="transform-3d";return h("perspective","10px","moz")||e.mobile.media("(-"+u.join("-"+t+"),(-")+"-"+t+"),("+t+")")}function d(){var t=location.protocol+"//"+location.host+location.pathname+"ui-dir/",n=e("head base"),r=null,i="",o,u;return n.length?i=n.attr("href"):n=r=e("<base>",{href:t}).appendTo("head"),o=e("<a href='testurl' />").prependTo(s),u=o[0].href,n[0].href=i||location.pathname,r&&r.remove(),u.indexOf(t)===0}function v(){var e=n.createElement("x"),r=n.documentElement,i=t.getComputedStyle,s;return"pointerEvents"in e.style?(e.style.pointerEvents="auto",e.style.pointerEvents="x",r.appendChild(e),s=i&&i(e,"").pointerEvents==="auto",r.removeChild(e),!!s):!1}function m(){var e=n.createElement("div");return typeof e.getBoundingClientRect!="undefined"}var s=e("<body>").prependTo("html"),o=s[0].style,u=["Webkit","Moz","O"],a="palmGetResource"in t,f=t.opera,l=t.operamini&&{}.toString.call(t.operamini)==="[object OperaMini]",c=t.blackberry&&!i("-webkit-transform");e.extend(e.mobile,{browser:{}}),e.mobile.browser.ie=function(){var e=3,t=n.createElement("div"),r=t.all||[];do t.innerHTML="<!--[if gt IE "+ ++e+"]><br><![endif]-->";while(r[0]);return e>4?e:!e}(),e.extend(e.support,{cssTransitions:"WebKitTransitionEvent"in t||h("transition","height 100ms linear")&&!f,pushState:"pushState"in history&&"replaceState"in history,mediaquery:e.mobile.media("only all"),cssPseudoElement:!!i("content"),touchOverflow:!!i("overflowScrolling"),cssTransform3d:p(),boxShadow:!!i("boxShadow")&&!c,scrollTop:("pageXOffset"in t||"scrollTop"in n.documentElement||"scrollTop"in s[0])&&!a&&!l,dynamicBaseTag:d(),cssPointerEvents:v(),boundingRect:m()}),s.remove();var g=function(){var e=t.navigator.userAgent;return e.indexOf("Nokia")>-1&&(e.indexOf("Symbian/3")>-1||e.indexOf("Series60/5")>-1)&&e.indexOf("AppleWebKit")>-1&&e.match(/(BrowserNG|NokiaBrowser)\/7\.[0-3]/)}();e.mobile.gradeA=function(){return(e.support.mediaquery||e.mobile.browser.ie&&e.mobile.browser.ie>=7)&&(e.support.boundingRect||e.fn.jquery.match(/1\.[0-7+]\.[0-9+]?/)!==null)},e.mobile.ajaxBlacklist=t.blackberry&&!t.WebKitPoint||l||g,g&&e(function(){e("head link[rel='stylesheet']").attr("rel","alternate stylesheet").attr("rel","stylesheet")}),e.support.boxShadow||e("html").addClass("ui-mobile-nosupport-boxshadow")}(e),function(e,t){e.widget("mobile.page",e.mobile.widget,{options:{theme:"c",domCache:!1,keepNativeDefault:":jqmData(role='none'), :jqmData(role='nojs')"},_create:function(){var e=this;if(e._trigger("beforecreate")===!1)return!1;e.element.attr("tabindex","0").addClass("ui-page ui-body-"+e.options.theme).bind("pagebeforehide",function(){e.removeContainerBackground()}).bind("pagebeforeshow",function(){e.setContainerBackground()})},removeContainerBackground:function(){e.mobile.pageContainer.removeClass("ui-overlay-"+e.mobile.getInheritedTheme(this.element.parent()))},setContainerBackground:function(t){this.options.theme&&e.mobile.pageContainer.addClass("ui-overlay-"+(t||this.options.theme))},keepNativeSelector:function(){var t=this.options,n=t.keepNative&&e.trim(t.keepNative);return n&&t.keepNative!==t.keepNativeDefault?[t.keepNative,t.keepNativeDefault].join(", "):t.keepNativeDefault}})}(e),function(e,t,r){function l(e){return e=e||location.href,"#"+e.replace(/^[^#]*#?(.*)$/,"$1")}var i="hashchange",s=n,o,u=e.event.special,a=s.documentMode,f="on"+i in t&&(a===r||a>7);e.fn[i]=function(e){return e?this.bind(i,e):this.trigger(i)},e.fn[i].delay=50,u[i]=e.extend(u[i],{setup:function(){if(f)return!1;e(o.start)},teardown:function(){if(f)return!1;e(o.stop)}}),o=function(){function p(){var n=l(),r=h(u);n!==u?(c(u=n,r),e(t).trigger(i)):r!==u&&(location.href=location.href.replace(/#.*/,"")+r),o=setTimeout(p,e.fn[i].delay)}var n={},o,u=l(),a=function(e){return e},c=a,h=a;return n.start=function(){o||p()},n.stop=function(){o&&clearTimeout(o),o=r},e.browser.msie&&!f&&function(){var t,r;n.start=function(){t||(r=e.fn[i].src,r=r&&r+l(),t=e('<iframe tabindex="-1" title="empty"/>').hide().one("load",function(){r||c(l()),p()}).attr("src",r||"javascript:0").insertAfter("body")[0].contentWindow,s.onpropertychange=function(){try{event.propertyName==="title"&&(t.document.title=s.title)}catch(e){}})},n.stop=a,h=function(){return l(t.location.href)},c=function(n,r){var o=t.document,u=e.fn[i].domain;n!==r&&(o.title=s.title,o.open(),u&&o.write('<script>document.domain="'+u+'"</script>'),o.close(),t.location.hash=n)}}(),n}()}(e,this),function(e,t,n){var r=function(r){return r===n&&(r=!0),function(n,i,s,o){var u=new e.Deferred,a=i?" reverse":"",f=e.mobile.urlHistory.getActive(),l=f.lastScroll||e.mobile.defaultHomeScroll,c=e.mobile.getScreenHeight(),h=e.mobile.maxTransitionWidth!==!1&&e(t).width()>e.mobile.maxTransitionWidth,p=!e.support.cssTransitions||h||!n||n==="none"||Math.max(e(t).scrollTop(),l)>e.mobile.getMaxScrollForTransition(),d=" ui-page-pre-in",v=function(){e.mobile.pageContainer.toggleClass("ui-mobile-viewport-transitioning viewport-"+n)},m=function(){e.event.special.scrollstart.enabled=!1,t.scrollTo(0,l),setTimeout(function(){e.event.special.scrollstart.enabled=!0},150)},g=function(){o.removeClass(e.mobile.activePageClass+" out in reverse "+n).height("")},y=function(){r?o.animationComplete(b):b(),o.height(c+e(t).scrollTop()).addClass(n+" out"+a)},b=function(){o&&r&&g(),w()},w=function(){s.css("z-index",-10),s.addClass(e.mobile.activePageClass+d),e.mobile.focusPage(s),s.height(c+l),m(),s.css("z-index",""),p||s.animationComplete(E),s.removeClass(d).addClass(n+" in"+a),p&&E()},E=function(){r||o&&g(),s.removeClass("out in reverse "+n).height(""),v(),e(t).scrollTop()!==l&&m(),u.resolve(n,i,s,o,!0)};return v(),o&&!p?y():b(),u.promise()}},i=r(),s=r(!1),o=function(){return e.mobile.getScreenHeight()*3};e.mobile.defaultTransitionHandler=i,e.mobile.transitionHandlers={"default":e.mobile.defaultTransitionHandler,sequential:i,simultaneous:s},e.mobile.transitionFallbacks={},e.mobile._maybeDegradeTransition=function(t){return t&&!e.support.cssTransform3d&&e.mobile.transitionFallbacks[t]&&(t=e.mobile.transitionFallbacks[t]),t},e.mobile.getMaxScrollForTransition=e.mobile.getMaxScrollForTransition||o}(e,this),function(e,r){function w(t){!!a&&(!a.closest("."+e.mobile.activePageClass).length||t)&&a.removeClass(e.mobile.activeBtnClass),a=null}function E(){h=!1,c.length>0&&e.mobile.changePage.apply(null,c.pop())}function N(t,n,r,i){n&&n.data("page")._trigger("beforehide",null,{nextPage:t}),t.data("page")._trigger("beforeshow",null,{prevPage:n||e("")}),e.mobile.hidePageLoadingMsg(),r=e.mobile._maybeDegradeTransition(r);var s=e.mobile.transitionHandlers[r||"default"]||e.mobile.defaultTransitionHandler,o=s(r,i,t,n);return o.done(function(){n&&n.data("page")._trigger("hide",null,{nextPage:t}),t.data("page")._trigger("show",null,{prevPage:n||e("")})}),o}function C(){var t=e("."+e.mobile.activePageClass),n=parseFloat(t.css("padding-top")),r=parseFloat(t.css("padding-bottom")),i=parseFloat(t.css("border-top-width")),s=parseFloat(t.css("border-bottom-width"));t.css("min-height",y()-n-r-i-s)}function k(t,n){n&&t.attr("data-"+e.mobile.ns+"role",n),t.page()}function L(e){while(e){if(typeof e.nodeName=="string"&&e.nodeName.toLowerCase()==="a")break;e=e.parentNode}return e}function A(t){var n=e(t).closest(".ui-page").jqmData("url"),r=m.hrefNoHash;if(!n||!u.isPath(n))n=r;return u.makeUrlAbsolute(n,r)}var i=e(t),s=e("html"),o=e("head"),u={urlParseRE:/^(((([^:\/#\?]+:)?(?:(\/\/)((?:(([^:@\/#\?]+)(?:\:([^:@\/#\?]+))?)@)?(([^:\/#\?\]\[]+|\[[^\/\]@#?]+\])(?:\:([0-9]+))?))?)?)?((\/?(?:[^\/\?#]+\/+)*)([^\?#]*)))?(\?[^#]+)?)(#.*)?/,getLocation:function(e){var t=e?this.parseUrl(e):location,n=this.parseUrl(e||location.href).hash;return n=n==="#"?"":n,t.protocol+"//"+t.host+t.pathname+t.search+n},parseLocation:function(){return this.parseUrl(this.getLocation())},parseUrl:function(t){if(e.type(t)==="object")return t;var n=u.urlParseRE.exec(t||"")||[];return{href:n[0]||"",hrefNoHash:n[1]||"",hrefNoSearch:n[2]||"",domain:n[3]||"",protocol:n[4]||"",doubleSlash:n[5]||"",authority:n[6]||"",username:n[8]||"",password:n[9]||"",host:n[10]||"",hostname:n[11]||"",port:n[12]||"",pathname:n[13]||"",directory:n[14]||"",filename:n[15]||"",search:n[16]||"",hash:n[17]||""}},makePathAbsolute:function(e,t){if(e&&e.charAt(0)==="/")return e;e=e||"",t=t?t.replace(/^\/|(\/[^\/]*|[^\/]+)$/g,""):"";var n=t?t.split("/"):[],r=e.split("/");for(var i=0;i<r.length;i++){var s=r[i];switch(s){case".":break;case"..":n.length&&n.pop();break;default:n.push(s)}}return"/"+n.join("/")},isSameDomain:function(e,t){return u.parseUrl(e).domain===u.parseUrl(t).domain},isRelativeUrl:function(e){return u.parseUrl(e).protocol===""},isAbsoluteUrl:function(e){return u.parseUrl(e).protocol!==""},makeUrlAbsolute:function(e,t){if(!u.isRelativeUrl(e))return e;t===r&&(t=m);var n=u.parseUrl(e),i=u.parseUrl(t),s=n.protocol||i.protocol,o=n.protocol?n.doubleSlash:n.doubleSlash||i.doubleSlash,a=n.authority||i.authority,f=n.pathname!=="",l=u.makePathAbsolute(n.pathname||i.filename,i.pathname),c=n.search||!f&&i.search||"",h=n.hash;return s+o+a+l+c+h},addSearchParams:function(t,n){var r=u.parseUrl(t),i=typeof n=="object"?e.param(n):n,s=r.search||"?";return r.hrefNoSearch+s+(s.charAt(s.length-1)!=="?"?"&":"")+i+(r.hash||"")},convertUrlToDataUrl:function(e){var n=u.parseUrl(e);return u.isEmbeddedPage(n)?n.hash.split(p)[0].replace(/^#/,""):u.isSameDomain(n,m)?n.hrefNoHash.replace(m.domain,"").split(p)[0]:t.decodeURIComponent(e)},get:function(e){return e===r&&(e=u.parseLocation().hash),u.stripHash(e).replace(/[^\/]*\.[^\/*]+$/,"")},getFilePath:function(t){var n="&"+e.mobile.subPageUrlKey;return t&&t.split(n)[0].split(p)[0]},set:function(e){location.hash=e},isPath:function(e){return/\//.test(e)},clean:function(e){return e.replace(m.domain,"")},stripHash:function(e){return e.replace(/^#/,"")},cleanHash:function(e){return u.stripHash(e.replace(/\?.*$/,"").replace(p,""))},isHashValid:function(e){return/^#[^#]+$/.test(e)},isExternal:function(e){var t=u.parseUrl(e);return t.protocol&&t.domain!==v.domain?!0:!1},hasProtocol:function(e){return/^(:?\w+:)/.test(e)},isFirstPageUrl:function(t){var n=u.parseUrl(u.makeUrlAbsolute(t,m)),i=n.hrefNoHash===v.hrefNoHash||g&&n.hrefNoHash===m.hrefNoHash,s=e.mobile.firstPage,o=s&&s[0]?s[0].id:r;return i&&(!n.hash||n.hash==="#"||o&&n.hash.replace(/^#/,"")===o)},isEmbeddedPage:function(e){var t=u.parseUrl(e);return t.protocol!==""?t.hash&&(t.hrefNoHash===v.hrefNoHash||g&&t.hrefNoHash===m.hrefNoHash):/^#/.test(t.href)},isPermittedCrossDomainRequest:function(t,n){return e.mobile.allowCrossDomainPages&&t.protocol==="file:"&&n.search(/^https?:/)!==-1}},a=null,f={stack:[],activeIndex:0,getActive:function(){return f.stack[f.activeIndex]},getPrev:function(){return f.stack[f.activeIndex-1]},getNext:function(){return f.stack[f.activeIndex+1]},addNew:function(e,t,n,r,i){f.getNext()&&f.clearForward(),f.stack.push({url:e,transition:t,title:n,pageUrl:r,role:i}),f.activeIndex=f.stack.length-1},clearForward:function(){f.stack=f.stack.slice(0,f.activeIndex+1)},directHashChange:function(t){var n,i,s,o=this.getActive();e.each(f.stack,function(e,r){decodeURIComponent(t.currentUrl)===decodeURIComponent(r.url)&&(n=e<f.activeIndex,i=!n,s=e)}),this.activeIndex=s!==r?s:this.activeIndex,n?(t.either||t.isBack)(!0):i&&(t.either||t.isForward)(!1)},ignoreNextHashChange:!1},l="[tabindex],a,button:visible,select:visible,input",c=[],h=!1,p="&ui-state=dialog",d=o.children("base"),v=u.parseLocation(),m=d.length?u.parseUrl(u.makeUrlAbsolute(d.attr("href"),v.href)):v,g=v.hrefNoHash!==m.hrefNoHash,y=e.mobile.getScreenHeight,b=e.support.dynamicBaseTag?{element:d.length?d:e("<base>",{href:m.hrefNoHash}).prependTo(o),set:function(e){b.element.attr("href",u.makeUrlAbsolute(e,m))},reset:function(){b.element.attr("href",m.hrefNoHash)}}:r;e.mobile.back=function(){var e=t.navigator;this.phonegapNavigationEnabled&&e&&e.app&&e.app.backHistory?e.app.backHistory():t.history.back()},e.mobile.focusPage=function(e){var t=e.find("[autofocus]"),n=e.find(".ui-title:eq(0)");if(t.length){t.focus();return}n.length?n.focus():e.focus()};var S=!0,x,T;x=function(){if(!S)return;var t=e.mobile.urlHistory.getActive();if(t){var n=i.scrollTop();t.lastScroll=n<e.mobile.minScrollBack?e.mobile.defaultHomeScroll:n}},T=function(){setTimeout(x,100)},i.bind(e.support.pushState?"popstate":"hashchange",function(){S=!1}),i.one(e.support.pushState?"popstate":"hashchange",function(){S=!0}),i.one("pagecontainercreate",function(){e.mobile.pageContainer.bind("pagechange",function(){S=!0,i.unbind("scrollstop",T),i.bind("scrollstop",T)})}),i.bind("scrollstop",T),e.mobile._maybeDegradeTransition=e.mobile._maybeDegradeTransition||function(e){return e},e.fn.animationComplete=function(t){return e.support.cssTransitions?e(this).one("webkitAnimationEnd animationend",t):(setTimeout(t,0),e(this))},e.mobile.path=u,e.mobile.base=b,e.mobile.urlHistory=f,e.mobile.dialogHashKey=p,e.mobile.allowCrossDomainPages=!1,e.mobile.getDocumentUrl=function(t){return t?e.extend({},v):v.href},e.mobile.getDocumentBase=function(t){return t?e.extend({},m):m.href},e.mobile._bindPageRemove=function(){var t=e(this);!t.data("page").options.domCache&&t.is(":jqmData(external-page='true')")&&t.bind("pagehide.remove",function(){var t=e(this),n=new e.Event("pageremove");t.trigger(n),n.isDefaultPrevented()||t.removeWithDependents()})},e.mobile.loadPage=function(t,n){var i=e.Deferred(),s=e.extend({},e.mobile.loadPage.defaults,n),o=null,a=null,f=function(){var t=e.mobile.activePage&&A(e.mobile.activePage);return t||m.hrefNoHash},l=u.makeUrlAbsolute(t,f());s.data&&s.type==="get"&&(l=u.addSearchParams(l,s.data),s.data=r),s.data&&s.type==="post"&&(s.reloadPage=!0);var c=u.getFilePath(l),h=u.convertUrlToDataUrl(l);s.pageContainer=s.pageContainer||e.mobile.pageContainer,o=s.pageContainer.children("[data-"+e.mobile.ns+"url='"+h+"']"),o.length===0&&h&&!u.isPath(h)&&(o=s.pageContainer.children("#"+h).attr("data-"+e.mobile.ns+"url",h).jqmData("url",h));if(o.length===0)if(e.mobile.firstPage&&u.isFirstPageUrl(c))e.mobile.firstPage.parent().length&&(o=e(e.mobile.firstPage));else if(u.isEmbeddedPage(c))return i.reject(l,n),i.promise();if(o.length){if(!s.reloadPage)return k(o,s.role),i.resolve(l,n,o),b&&!n.prefetch&&b.set(t),i.promise();a=o}var p=s.pageContainer,d=new e.Event("pagebeforeload"),g={url:t,absUrl:l,dataUrl:h,deferred:i,options:s};p.trigger(d,g);if(d.isDefaultPrevented())return i.promise();if(s.showLoadMsg)var y=setTimeout(function(){e.mobile.showPageLoadingMsg()},s.loadMsgDelay),w=function(){clearTimeout(y),e.mobile.hidePageLoadingMsg()};return b&&typeof n.prefetch=="undefined"&&b.reset(),!e.mobile.allowCrossDomainPages&&!u.isSameDomain(v,l)?i.reject(l,n):e.ajax({url:c,type:s.type,data:s.data,dataType:"html",success:function(r,f,p){var d=e("<div></div>"),v=r.match(/<title[^>]*>([^<]*)/)&&RegExp.$1,m=new RegExp("(<[^>]+\\bdata-"+e.mobile.ns+"role=[\"']?page[\"']?[^>]*>)"),y=new RegExp("\\bdata-"+e.mobile.ns+"url=[\"']?([^\"'>]*)[\"']?");m.test(r)&&RegExp.$1&&y.test(RegExp.$1)&&RegExp.$1&&(t=c=u.getFilePath(e("<div>"+RegExp.$1+"</div>").text())),b&&typeof n.prefetch=="undefined"&&b.set(c),d.get(0).innerHTML=r,o=d.find(":jqmData(role='page'), :jqmData(role='dialog')").first(),o.length||(o=e("<div data-"+e.mobile.ns+"role='page'>"+r.split(/<\/?body[^>]*>/gmi)[1]+"</div>")),v&&!o.jqmData("title")&&(~v.indexOf("&")&&(v=e("<div>"+v+"</div>").text()),o.jqmData("title",v));if(!e.support.dynamicBaseTag){var E=u.get(c);o.find("[src], link[href], a[rel='external'], :jqmData(ajax='false'), a[target]").each(function(){var t=e(this).is("[href]")?"href":e(this).is("[src]")?"src":"action",n=e(this).attr(t);n=n.replace(location.protocol+"//"+location.host+location.pathname,""),/^(\w+:|#|\/)/.test(n)||e(this).attr(t,E+n)})}o.attr("data-"+e.mobile.ns+"url",u.convertUrlToDataUrl(c)).attr("data-"+e.mobile.ns+"external-page",!0).appendTo(s.pageContainer),o.one("pagecreate",e.mobile._bindPageRemove),k(o,s.role),l.indexOf("&"+e.mobile.subPageUrlKey)>-1&&(o=s.pageContainer.children("[data-"+e.mobile.ns+"url='"+h+"']")),s.showLoadMsg&&w(),g.xhr=p,g.textStatus=f,g.page=o,s.pageContainer.trigger("pageload",g),i.resolve(l,n,o,a)},error:function(t,r,o){b&&b.set(u.get()),g.xhr=t,g.textStatus=r,g.errorThrown=o;var a=new e.Event("pageloadfailed");s.pageContainer.trigger(a,g);if(a.isDefaultPrevented())return;s.showLoadMsg&&(w(),e.mobile.showPageLoadingMsg(e.mobile.pageLoadErrorMessageTheme,e.mobile.pageLoadErrorMessage,!0),setTimeout(e.mobile.hidePageLoadingMsg,1500)),i.reject(l,n)}}),i.promise()},e.mobile.loadPage.defaults={type:"get",data:r,reloadPage:!1,role:r,showLoadMsg:!1,pageContainer:r,loadMsgDelay:50},e.mobile.changePage=function(t,i){if(h){c.unshift(arguments);return}var s=e.extend({},e.mobile.changePage.defaults,i);s.pageContainer=s.pageContainer||e.mobile.pageContainer,s.fromPage=s.fromPage||e.mobile.activePage;var o=s.pageContainer,a=new e.Event("pagebeforechange"),l={toPage:t,options:s};o.trigger(a,l);if(a.isDefaultPrevented())return;t=l.toPage,h=!0;if(typeof t=="string"){e.mobile.loadPage(t,s).done(function(t,n,r,i){h=!1,n.duplicateCachedPage=i,e.mobile.changePage(r,n)}).fail(function(e,t){w(!0),E(),s.pageContainer.trigger("pagechangefailed",l)});return}t[0]===e.mobile.firstPage[0]&&!s.dataUrl&&(s.dataUrl=v.hrefNoHash);var d=s.fromPage,m=s.dataUrl&&u.convertUrlToDataUrl(s.dataUrl)||t.jqmData("url"),g=m,y=u.getFilePath(m),b=f.getActive(),S=f.activeIndex===0,x=0,T=n.title,C=s.role==="dialog"||t.jqmData("role")==="dialog";if(d&&d[0]===t[0]&&!s.allowSamePageTransition){h=!1,o.trigger("pagechange",l),s.fromHashChange&&f.directHashChange({currentUrl:m,isBack:function(){},isForward:function(){}});return}k(t,s.role),s.fromHashChange&&f.directHashChange({currentUrl:m,isBack:function(){x=-1},isForward:function(){x=1}});try{n.activeElement&&n.activeElement.nodeName.toLowerCase()!=="body"?e(n.activeElement).blur():e("input:focus, textarea:focus, select:focus").blur()}catch(L){}var A=!1;C&&b&&(b.url&&b.url.indexOf(p)>-1&&!e.mobile.activePage.is(".ui-dialog")&&(s.changeHash=!1,A=!0),m=(b.url||"")+(A?"":p),f.activeIndex===0&&m===f.initialDst&&(m+=p)),s.changeHash!==!1&&m&&(f.ignoreNextHashChange=!0,u.set(m));var O=b?t.jqmData("title")||t.children(":jqmData(role='header')").find(".ui-title").getEncodedText():T;!!O&&T===n.title&&(T=O),t.jqmData("title")||t.jqmData("title",T),s.transition=s.transition||(x&&!S?b.transition:r)||(C?e.mobile.defaultDialogTransition:e.mobile.defaultPageTransition),x||(A&&(f.activeIndex=Math.max(0,f.activeIndex-1)),f.addNew(m,s.transition,T,g,s.role)),n.title=f.getActive().title,e.mobile.activePage=t,s.reverse=s.reverse||x<0,N(t,d,s.transition,s.reverse).done(function(n,r,i,u,a){w(),s.duplicateCachedPage&&s.duplicateCachedPage.remove(),a||e.mobile.focusPage(t),E(),o.trigger("pagechange",l)})},e.mobile.changePage.defaults={transition:r,reverse:!1,changeHash:!0,fromHashChange:!1,role:r,duplicateCachedPage:r,pageContainer:r,showLoadMsg:!0,dataUrl:r,fromPage:r,allowSamePageTransition:!1},e.mobile.navreadyDeferred=e.Deferred(),e.mobile._registerInternalEvents=function(){e(n).delegate("form","submit",function(t){var n=e(this);if(!e.mobile.ajaxEnabled||n.is(":jqmData(ajax='false')")||!n.jqmHijackable().length)return;var r=n.attr("method"),i=n.attr("target"),s=n.attr("action");s||(s=A(n),s===m.hrefNoHash&&(s=v.hrefNoSearch)),s=u.makeUrlAbsolute(s,A(n));if(u.isExternal(s)&&!u.isPermittedCrossDomainRequest(v,s)||i)return;e.mobile.changePage(s,{type:r&&r.length&&r.toLowerCase()||"get",data:n.serialize(),transition:n.jqmData("transition"),reverse:n.jqmData("direction")==="reverse",reloadPage:!0}),t.preventDefault()}),e(n).bind("vclick",function(t){if(t.which>1||!e.mobile.linkBindingEnabled)return;var n=L(t.target);if(!e(n).jqmHijackable().length)return;n&&u.parseUrl(n.getAttribute("href")||"#").hash!=="#"&&(w(!0),a=e(n).closest(".ui-btn").not(".ui-disabled"),a.addClass(e.mobile.activeBtnClass))}),e(n).bind("click",function(n){if(!e.mobile.linkBindingEnabled)return;var i=L(n.target),s=e(i),o;if(!i||n.which>1||!s.jqmHijackable().length)return;o=function(){t.setTimeout(function(){w(!0)},200)};if(s.is(":jqmData(rel='back')"))return e.mobile.back(),!1;var a=A(s),f=u.makeUrlAbsolute(s.attr("href")||"#",a);if(!e.mobile.ajaxEnabled&&!u.isEmbeddedPage(f)){o();return}if(f.search("#")!==-1){f=f.replace(/[^#]*#/,"");if(!f){n.preventDefault();return}u.isPath(f)?f=u.makeUrlAbsolute(f,a):f=u.makeUrlAbsolute("#"+f,v.hrefNoHash)}var l=s.is("[rel='external']")||s.is(":jqmData(ajax='false')")||s.is("[target]"),c=l||u.isExternal(f)&&!u.isPermittedCrossDomainRequest(v,f);if(c){o();return}var h=s.jqmData("transition"),p=s.jqmData("direction")==="reverse"||s.jqmData("back"),d=s.attr("data-"+e.mobile.ns+"rel")||r;e.mobile.changePage(f,{transition:h,reverse:p,role:d,link:s}),n.preventDefault()}),e(n).delegate(".ui-page","pageshow.prefetch",function(){var t=[];e(this).find("a:jqmData(prefetch)").each(function(){var n=e(this),r=n.attr("href");r&&e.inArray(r,t)===-1&&(t.push(r),e.mobile.loadPage(r,{role:n.attr("data-"+e.mobile.ns+"rel"),prefetch:!0}))})}),e.mobile._handleHashChange=function(n){var i=u.stripHash(n),s=e.mobile.urlHistory.stack.length===0?"none":r,o=new e.Event("navigate"),a={transition:s,changeHash:!1,fromHashChange:!0};0===f.stack.length&&(f.initialDst=i),e.mobile.pageContainer.trigger(o);if(o.isDefaultPrevented())return;if(!e.mobile.hashListeningEnabled||f.ignoreNextHashChange){f.ignoreNextHashChange=!1;return}if(f.stack.length>1&&i.indexOf(p)>-1&&f.initialDst!==i){if(!e.mobile.activePage.is(".ui-dialog")){f.directHashChange({currentUrl:i,isBack:function(){e.mobile.back()},isForward:function(){t.history.forward()}});return}f.directHashChange({currentUrl:i,either:function(t){var n=e.mobile.urlHistory.getActive();i=n.pageUrl,e.extend(a,{role:n.role,transition:n.transition,reverse:t})}})}i?(i=typeof i=="string"&&!u.isPath(i)?u.makeUrlAbsolute("#"+i,m):i,i===u.makeUrlAbsolute("#"+f.initialDst,m)&&f.stack.length&&f.stack[0].url!==f.initialDst.replace(p,"")&&(i=e.mobile.firstPage),e.mobile.changePage(i,a)):e.mobile.changePage(e.mobile.firstPage,a)},i.bind("hashchange",function(t,n){e.mobile._handleHashChange(u.parseLocation().hash)}),e(n).bind("pageshow",C),e(t).bind("throttledresize",C)},e.mobile.navreadyDeferred.done(function(){e.mobile._registerInternalEvents()})}(e),function(e,t){var i={},s=i,o=e(t),u=e.mobile.path.parseLocation(),a=e.Deferred(),f=e.Deferred();e(n).ready(e.proxy(f,"resolve")),e(n).one("mobileinit",e.proxy(a,"resolve")),e.extend(i,{initialFilePath:function(){return u.pathname+u.search}(),hashChangeTimeout:200,hashChangeEnableTimer:r,initialHref:u.hrefNoHash,state:function(){return{hash:e.mobile.path.parseLocation().hash||"#"+s.initialFilePath,title:n.title,initialHref:s.initialHref}},resetUIKeys:function(t){var n=e.mobile.dialogHashKey,r="&"+e.mobile.subPageUrlKey,i=t.indexOf(n);return i>-1?t=t.slice(0,i)+"#"+t.slice(i):t.indexOf(r)>-1&&(t=t.split(r).join("#"+r)),t},nextHashChangePrevented:function(t){e.mobile.urlHistory.ignoreNextHashChange=t,s.onHashChangeDisabled=t},onHashChange:function(t){if(s.onHashChangeDisabled)return;var r,i,o=e.mobile.path.parseLocation().hash,u=e.mobile.path.isPath(o),a=u?e.mobile.path.getLocation():e.mobile.getDocumentUrl();o=u?o.replace("#",""):o,i=s.state(),r=e.mobile.path.makeUrlAbsolute(o,a),u&&(r=s.resetUIKeys(r)),history.replaceState(i,n.title,r)},onPopState:function(t){var n=t.originalEvent.state,r,i,o;n&&(clearTimeout(s.hashChangeEnableTimer),s.nextHashChangePrevented(!1),e.mobile._handleHashChange(n.hash),s.nextHashChangePrevented(!0),s.hashChangeEnableTimer=setTimeout(function(){s.nextHashChangePrevented(!1)},s.hashChangeTimeout))},init:function(){o.bind("hashchange",s.onHashChange),o.bind("popstate",s.onPopState),location.hash===""&&history.replaceState(s.state(),n.title,e.mobile.path.getLocation())}}),e.when(f,a,e.mobile.navreadyDeferred).done(function(){e.mobile.pushStateEnabled&&e.support.pushState&&i.init()})}(e,this),function(e,t,n){e.mobile.transitionFallbacks.flip="fade"}(e,this),function(e,t,n){e.mobile.transitionFallbacks.flow="fade"}(e,this),function(e,t,n){e.mobile.transitionFallbacks.pop="fade"}(e,this),function(e,t,n){e.mobile.transitionHandlers.slide=e.mobile.transitionHandlers.simultaneous,e.mobile.transitionFallbacks.slide="fade"}(e,this),function(e,t,n){e.mobile.transitionFallbacks.slidedown="fade"}(e,this),function(e,t,n){e.mobile.transitionFallbacks.slidefade="fade"}(e,this),function(e,t,n){e.mobile.transitionFallbacks.slideup="fade"}(e,this),function(e,t,n){e.mobile.transitionFallbacks.turn="fade"}(e,this),function(e,t){e.mobile.page.prototype.options.degradeInputs={color:!1,date:!1,datetime:!1,"datetime-local":!1,email:!1,month:!1,number:!1,range:"number",search:"text",tel:!1,time:!1,url:!1,week:!1},e(n).bind("pagecreate create",function(t){var n=e.mobile.closestPageData(e(t.target)),r;if(!n)return;r=n.options,e(t.target).find("input").not(n.keepNativeSelector()).each(function(){var t=e(this),n=this.getAttribute("type"),i=r.degradeInputs[n]||"text";if(r.degradeInputs[n]){var s=e("<div>").html(t.clone()).html(),o=s.indexOf(" type=")>-1,u=o?/\s+type=["']?\w+['"]?/:/\/?>/,a=' type="'+i+'" data-'+e.mobile.ns+'type="'+n+'"'+(o?"":">");t.replaceWith(s.replace(u,a))}})})}(e),function(e,t,r){e.widget("mobile.dialog",e.mobile.widget,{options:{closeBtnText:"Close",overlayTheme:"a",initSelector:":jqmData(role='dialog')"},_create:function(){var t=this,n=this.element,r=e("<a href='#' data-"+e.mobile.ns+"icon='delete' data-"+e.mobile.ns+"iconpos='notext'>"+this.options.closeBtnText+"</a>"),i=e("<div/>",{role:"dialog","class":"ui-dialog-contain ui-corner-all ui-overlay-shadow"});n.addClass("ui-dialog ui-overlay-"+this.options.overlayTheme),n.wrapInner(i).children().find(":jqmData(role='header')").first().prepend(r).end().end().children(":first-child").addClass("ui-corner-top").end().children(":last-child").addClass("ui-corner-bottom"),r.bind("click",function(){t.close()}),n.bind("vclick submit",function(t){var n=e(t.target).closest(t.type==="vclick"?"a":"form"),r;n.length&&!n.jqmData("transition")&&(r=e.mobile.urlHistory.getActive()||{},n.attr("data-"+e.mobile.ns+"transition",r.transition||e.mobile.defaultDialogTransition).attr("data-"+e.mobile.ns+"direction","reverse"))}).bind("pagehide",function(t,n){e(this).find("."+e.mobile.activeBtnClass).not(".ui-slider-bg").removeClass(e.mobile.activeBtnClass)}).bind("pagebeforeshow",function(){t._isCloseable=!0,t.options.overlayTheme&&t.element.page("removeContainerBackground").page("setContainerBackground",t.options.overlayTheme)})},close:function(){var t;this._isCloseable&&(this._isCloseable=!1,e.mobile.hashListeningEnabled?e.mobile.back():(t=e.mobile.urlHistory.getPrev().url,e.mobile.path.isPath(t)||(t=e.mobile.path.makeUrlAbsolute("#"+t)),e.mobile.changePage(t,{changeHash:!1,fromHashChange:!0})))}}),e(n).delegate(e.mobile.dialog.prototype.options.initSelector,"pagecreate",function(){e.mobile.dialog.prototype.enhance(this)})}(e,this),function(e,t){e.mobile.page.prototype.options.backBtnText="Back",e.mobile.page.prototype.options.addBackBtn=!1,e.mobile.page.prototype.options.backBtnTheme=null,e.mobile.page.prototype.options.headerTheme="a",e.mobile.page.prototype.options.footerTheme="a",e.mobile.page.prototype.options.contentTheme=null,e(n).bind("pagecreate",function(t){var n=e(t.target),r=n.data("page").options,i=n.jqmData("role"),s=r.theme;e(":jqmData(role='header'), :jqmData(role='footer'), :jqmData(role='content')",n).jqmEnhanceable().each(function(){var t=e(this),u=t.jqmData("role"),a=t.jqmData("theme"),f=a||r.contentTheme||i==="dialog"&&s,l,c,h,p;t.addClass("ui-"+u);if(u==="header"||u==="footer"){var d=a||(u==="header"?r.headerTheme:r.footerTheme)||s;t.addClass("ui-bar-"+d).attr("role",u==="header"?"banner":"contentinfo"),u==="header"&&(l=t.children("a, button"),c=l.hasClass("ui-btn-left"),h=l.hasClass("ui-btn-right"),c=c||l.eq(0).not(".ui-btn-right").addClass("ui-btn-left").length,h=h||l.eq(1).addClass("ui-btn-right").length),r.addBackBtn&&u==="header"&&e(".ui-page").length>1&&n.jqmData("url")!==e.mobile.path.stripHash(location.hash)&&!c&&(p=e("<a href='javascript:void(0);' class='ui-btn-left' data-"+e.mobile.ns+"rel='back' data-"+e.mobile.ns+"icon='arrow-l'>"+r.backBtnText+"</a>").attr("data-"+e.mobile.ns+"theme",r.backBtnTheme||d).prependTo(t)),t.children("h1, h2, h3, h4, h5, h6").addClass("ui-title").attr({role:"heading","aria-level":"1"})}else u==="content"&&(f&&t.addClass("ui-body-"+f),t.attr("role","main"))})})}(e),function(e,t){e.fn.fieldcontain=function(e){return this.addClass("ui-field-contain ui-body ui-br").contents().filter(function(){return this.nodeType===3&&!/\S/.test(this.nodeValue)}).remove()},e(n).bind("pagecreate create",function(t){e(":jqmData(role='fieldcontain')",t.target).jqmEnhanceable().fieldcontain()})}(e),function(e,t){e.fn.grid=function(t){return this.each(function(){var n=e(this),r=e.extend({grid:null},t),i=n.children(),s={solo:1,a:2,b:3,c:4,d:5},o=r.grid,u;if(!o)if(i.length<=5)for(var a in s)s[a]===i.length&&(o=a);else o="a",n.addClass("ui-grid-duo");u=s[o],n.addClass("ui-grid-"+o),i.filter(":nth-child("+u+"n+1)").addClass("ui-block-a"),u>1&&i.filter(":nth-child("+u+"n+2)").addClass("ui-block-b"),u>2&&i.filter(":nth-child("+u+"n+3)").addClass("ui-block-c"),u>3&&i.filter(":nth-child("+u+"n+4)").addClass("ui-block-d"),u>4&&i.filter(":nth-child("+u+"n+5)").addClass("ui-block-e")})}}(e),function(e,t){e(n).bind("pagecreate create",function(t){e(":jqmData(role='nojs')",t.target).addClass("ui-nojs")})}(e),function(e,t){e.mobile.behaviors.formReset={_handleFormReset:function(){this._on(this.element.closest("form"),{reset:function(){this._delay("_reset")}})}}}(e),function(e,t){function r(e){var t;while(e){t=typeof e.className=="string"&&e.className+" ";if(t&&t.indexOf("ui-btn ")>-1&&t.indexOf("ui-disabled ")<0)break;e=e.parentNode}return e}e.fn.buttonMarkup=function(r){var s=this,o=function(t,n){f.setAttribute("data-"+e.mobile.ns+t,n),a.jqmData(t,n)};r=r&&e.type(r)==="object"?r:{};for(var u=0;u<s.length;u++){var a=s.eq(u),f=a[0],l=e.extend({},e.fn.buttonMarkup.defaults,{icon:r.icon!==t?r.icon:a.jqmData("icon"),iconpos:r.iconpos!==t?r.iconpos:a.jqmData("iconpos"),theme:r.theme!==t?r.theme:a.jqmData("theme")||e.mobile.getInheritedTheme(a,"c"),inline:r.inline!==t?r.inline:a.jqmData("inline"),shadow:r.shadow!==t?r.shadow:a.jqmData("shadow"),corners:r.corners!==t?r.corners:a.jqmData("corners"),iconshadow:r.iconshadow!==t?r.iconshadow:a.jqmData("iconshadow"),mini:r.mini!==t?r.mini:a.jqmData("mini")},r),c="ui-btn-inner",h="ui-btn-text",p,d,v,m,g,y;e.each(l,o),a.jqmData("rel")==="popup"&&a.attr("href")&&(f.setAttribute("aria-haspopup",!0),f.setAttribute("aria-owns",f.getAttribute("href"))),y=e.data(f.tagName==="INPUT"||f.tagName==="BUTTON"?f.parentNode:f,"buttonElements"),y?(f=y.outer,a=e(f),v=y.inner,m=y.text,e(y.icon).remove(),y.icon=null):(v=n.createElement(l.wrapperEls),m=n.createElement(l.wrapperEls)),g=l.icon?n.createElement("span"):null,i&&!y&&i(),l.theme||(l.theme=e.mobile.getInheritedTheme(a,"c")),p="ui-btn ui-btn-up-"+l.theme,p+=l.shadow?" ui-shadow":"",p+=l.corners?" ui-btn-corner-all":"",l.mini!==t&&(p+=l.mini===!0?" ui-mini":" ui-fullsize"),l.inline!==t&&(p+=l.inline===!0?" ui-btn-inline":" ui-btn-block"),l.icon&&(l.icon="ui-icon-"+l.icon,l.iconpos=l.iconpos||"left",d="ui-icon "+l.icon,l.iconshadow&&(d+=" ui-icon-shadow")),l.iconpos&&(p+=" ui-btn-icon-"+l.iconpos,l.iconpos==="notext"&&!a.attr("title")&&a.attr("title",a.getEncodedText())),c+=l.corners?" ui-btn-corner-all":"",l.iconpos&&l.iconpos==="notext"&&!a.attr("title")&&a.attr("title",a.getEncodedText()),y&&a.removeClass(y.bcls||""),a.removeClass("ui-link").addClass(p),v.className=c,m.className=h,y||v.appendChild(m);if(g){g.className=d;if(!y||!y.icon)g.innerHTML="&#160;",v.appendChild(g)}while(f.firstChild&&!y)m.appendChild(f.firstChild);y||f.appendChild(v),y={bcls:p,outer:f,inner:v,text:m,icon:g},e.data(f,"buttonElements",y),e.data(v,"buttonElements",y),e.data(m,"buttonElements",y),g&&e.data(g,"buttonElements",y)}return this},e.fn.buttonMarkup.defaults={corners:!0,shadow:!0,iconshadow:!0,wrapperEls:"span"};var i=function(){var t=e.mobile.buttonMarkup.hoverDelay,s,o;e(n).bind({"vmousedown vmousecancel vmouseup vmouseover vmouseout focus blur scrollstart":function(n){var i,u=e(r(n.target)),a=n.originalEvent&&/^touch/.test(n.originalEvent.type),f=n.type;if(u.length){i=u.attr("data-"+e.mobile.ns+"theme");if(f==="vmousedown")a?s=setTimeout(function(){u.removeClass("ui-btn-up-"+i).addClass("ui-btn-down-"+i)},t):u.removeClass("ui-btn-up-"+i).addClass("ui-btn-down-"+i);else if(f==="vmousecancel"||f==="vmouseup")u.removeClass("ui-btn-down-"+i).addClass("ui-btn-up-"+i);else if(f==="vmouseover"||f==="focus")a?o=setTimeout(function(){u.removeClass("ui-btn-up-"+i).addClass("ui-btn-hover-"+i)},t):u.removeClass("ui-btn-up-"+i).addClass("ui-btn-hover-"+i);else if(f==="vmouseout"||f==="blur"||f==="scrollstart")u.removeClass("ui-btn-hover-"+i+" ui-btn-down-"+i).addClass("ui-btn-up-"+i),s&&clearTimeout(s),o&&clearTimeout(o)}},"focusin focus":function(t){e(r(t.target)).addClass(e.mobile.focusClass)},"focusout blur":function(t){e(r(t.target)).removeClass(e.mobile.focusClass)}}),i=null};e(n).bind("pagecreate create",function(t){e(":jqmData(role='button'), .ui-bar > a, .ui-header > a, .ui-footer > a, .ui-bar > :jqmData(role='controlgroup') > a",t.target).jqmEnhanceable().not("button, input, .ui-btn, :jqmData(role='none'), :jqmData(role='nojs')").buttonMarkup()})}(e),function(e,t){e.widget("mobile.collapsible",e.mobile.widget,{options:{expandCueText:" click to expand contents",collapseCueText:" click to collapse contents",collapsed:!0,heading:"h1,h2,h3,h4,h5,h6,legend",theme:null,contentTheme:null,inset:!0,mini:!1,initSelector:":jqmData(role='collapsible')"},_create:function(){var n=this.element,r=this.options,i=n.addClass("ui-collapsible"),s=n.children(r.heading).first(),o=n.jqmData("collapsed-icon")||r.collapsedIcon,u=n.jqmData("expanded-icon")||r.expandedIcon,a=i.wrapInner("<div class='ui-collapsible-content'></div>").children(".ui-collapsible-content"),f=n.closest(":jqmData(role='collapsible-set')").addClass("ui-collapsible-set");s.is("legend")&&(s=e("<div role='heading'>"+s.html()+"</div>").insertBefore(s),s.next().remove()),f.length?(r.theme||(r.theme=f.jqmData("theme")||e.mobile.getInheritedTheme(f,"c")),r.contentTheme||(r.contentTheme=f.jqmData("content-theme")),r.collapsedIcon||(r.collapsedIcon=f.jqmData("collapsed-icon")),r.expandedIcon||(r.expandedIcon=f.jqmData("expanded-icon")),r.iconpos||(r.iconpos=f.jqmData("iconpos")),f.jqmData("inset")!==t?r.inset=f.jqmData("inset"):r.inset=!0,r.mini||(r.mini=f.jqmData("mini"))):r.theme||(r.theme=e.mobile.getInheritedTheme(n,"c")),!r.inset||i.addClass("ui-collapsible-inset"),a.addClass(r.contentTheme?"ui-body-"+r.contentTheme:""),o=n.jqmData("collapsed-icon")||r.collapsedIcon||"plus",u=n.jqmData("expanded-icon")||r.expandedIcon||"minus",s.insertBefore(a).addClass("ui-collapsible-heading").append("<span class='ui-collapsible-heading-status'></span>").wrapInner("<a href='#' class='ui-collapsible-heading-toggle'></a>").find("a").first().buttonMarkup({shadow:!1,corners:!1,iconpos:n.jqmData("iconpos")||r.iconpos||"left",icon:o,mini:r.mini,theme:r.theme}),!r.inset||s.find("a").first().add(".ui-btn-inner",n).addClass("ui-corner-top ui-corner-bottom"),i.bind("expand collapse",function(t){if(!t.isDefaultPrevented()){var n=e(this),l=t.type==="collapse",c=r.contentTheme;t.preventDefault(),s.toggleClass("ui-collapsible-heading-collapsed",l).find(".ui-collapsible-heading-status").text(l?r.expandCueText:r.collapseCueText).end().find(".ui-icon").toggleClass("ui-icon-"+u,!l).toggleClass("ui-icon-"+o,l||u===o).end().find("a").first().removeClass(e.mobile.activeBtnClass),n.toggleClass("ui-collapsible-collapsed",l),a.toggleClass("ui-collapsible-content-collapsed",l).attr("aria-hidden",l),c&&!!r.inset&&(!f.length||i.jqmData("collapsible-last"))&&(s.find("a").first().add(s.find(".ui-btn-inner")).toggleClass("ui-corner-bottom",l),a.toggleClass("ui-corner-bottom",!l)),a.trigger("updatelayout")}}).trigger(r.collapsed?"collapse":"expand"),s.bind("tap",function(t){s.find("a").first().addClass(e.mobile.activeBtnClass)}).bind("click",function(e){var t=s.is(".ui-collapsible-heading-collapsed")?"expand":"collapse";i.trigger(t),e.preventDefault(),e.stopPropagation()})}}),e(n).bind("pagecreate create",function(t){e.mobile.collapsible.prototype.enhanceWithin(t.target)})}(e),function(e,t){e.widget("mobile.collapsibleset",e.mobile.widget,{options:{initSelector:":jqmData(role='collapsible-set')"},_create:function(){var n=this.element.addClass("ui-collapsible-set"),r=this.options;r.theme||(r.theme=e.mobile.getInheritedTheme(n,"c")),r.contentTheme||(r.contentTheme=n.jqmData("content-theme")),n.jqmData("inset")!==t&&(r.inset=n.jqmData("inset")),r.inset=r.inset!==t?r.inset:!0,n.jqmData("collapsiblebound")||n.jqmData("collapsiblebound",!0).bind("expand collapse",function(t){var n=t.type==="collapse",i=e(t.target).closest(".ui-collapsible"),s=i.data("collapsible");i.jqmData("collapsible-last")&&!!r.inset&&(i.find(".ui-collapsible-heading").first().find("a").first().toggleClass("ui-corner-bottom",n).find(".ui-btn-inner").toggleClass("ui-corner-bottom",n),i.find(".ui-collapsible-content").toggleClass("ui-corner-bottom",!n))}).bind("expand",function(t){var n=e(t.target).closest(".ui-collapsible");n.parent().is(":jqmData(role='collapsible-set')")&&n.siblings(".ui-collapsible").trigger("collapse")})},_init:function(){var e=this.element,t=e.children(":jqmData(role='collapsible')"),n=t.filter(":jqmData(collapsed='false')");this.refresh(),n.trigger("expand")},refresh:function(){var t=this.element,n=this.options,r=t.children(":jqmData(role='collapsible')");e.mobile.collapsible.prototype.enhance(r.not(".ui-collapsible")),!n.inset||(r.each(function(){e(this).jqmRemoveData("collapsible-last").find(".ui-collapsible-heading").find("a").first().removeClass("ui-corner-top ui-corner-bottom").find(".ui-btn-inner").removeClass("ui-corner-top ui-corner-bottom")}),r.first().find("a").first().addClass("ui-corner-top").find(".ui-btn-inner").addClass("ui-corner-top"),r.last().jqmData("collapsible-last",!0).find("a").first().addClass("ui-corner-bottom").find(".ui-btn-inner").addClass("ui-corner-bottom"))}}),e(n).bind("pagecreate create",function(t){e.mobile.collapsibleset.prototype.enhanceWithin(t.target)})}(e),function(e,t){e.widget("mobile.navbar",e.mobile.widget,{options:{iconpos:"top",grid:null,initSelector:":jqmData(role='navbar')"},_create:function(){var n=this.element,r=n.find("a"),i=r.filter(":jqmData(icon)").length?this.options.iconpos:t;n.addClass("ui-navbar ui-mini").attr("role","navigation").find("ul").jqmEnhanceable().grid({grid:this.options.grid}),r.buttonMarkup({corners:!1,shadow:!1,inline:!0,iconpos:i}),n.delegate("a","vclick",function(t){e(t.target).hasClass("ui-disabled")||(r.removeClass(e.mobile.activeBtnClass),e(this).addClass(e.mobile.activeBtnClass))}),n.closest(".ui-page").bind("pagebeforeshow",function(){r.filter(".ui-state-persist").addClass(e.mobile.activeBtnClass)})}}),e(n).bind("pagecreate create",function(t){e.mobile.navbar.prototype.enhanceWithin(t.target)})}(e),function(e,t){var r={};e.widget("mobile.listview",e.mobile.widget,{options:{theme:null,countTheme:"c",headerTheme:"b",dividerTheme:"b",icon:"arrow-r",splitIcon:"arrow-r",splitTheme:"b",inset:!1,initSelector:":jqmData(role='listview')"},_create:function(){var e=this,t="";t+=e.options.inset?" ui-listview-inset ui-corner-all ui-shadow ":"",e.element.addClass(function(e,n){return n+" ui-listview "+t}),e.refresh(!0)},_removeCorners:function(e,t){var n="ui-corner-top ui-corner-tr ui-corner-tl",r="ui-corner-bottom ui-corner-br ui-corner-bl";e=e.add(e.find(".ui-btn-inner, .ui-li-link-alt, .ui-li-thumb")),t==="top"?e.removeClass(n):t==="bottom"?e.removeClass(r):e.removeClass(n+" "+r)},_refreshCorners:function(e){var t,n,r,i;t=this.element.children("li"),n=e||t.filter(":visible").length===0?t.not(".ui-screen-hidden"):t.filter(":visible"),t.filter(".ui-li-last").removeClass("ui-li-last"),this.options.inset?(this._removeCorners(t),r=n.first().addClass("ui-corner-top"),r.add(r.find(".ui-btn-inner").not(".ui-li-link-alt span:first-child")).addClass("ui-corner-top").end().find(".ui-li-link-alt, .ui-li-link-alt span:first-child").addClass("ui-corner-tr").end().find(".ui-li-thumb").not(".ui-li-icon").addClass("ui-corner-tl"),i=n.last().addClass("ui-corner-bottom ui-li-last"),i.add(i.find(".ui-btn-inner")).find(".ui-li-link-alt").addClass("ui-corner-br").end().find(".ui-li-thumb").not(".ui-li-icon").addClass("ui-corner-bl")):n.last().addClass("ui-li-last"),e||this.element.trigger("updatelayout")},_findFirstElementByTagName:function(e,t,n,r){var i={};i[n]=i[r]=!0;while(e){if(i[e.nodeName])return e;e=e[t]}return null},_getChildrenByTagName:function(t,n,r){var i=[],s={};s[n]=s[r]=!0,t=t.firstChild;while(t)s[t.nodeName]&&i.push(t),t=t.nextSibling;return e(i)},_addThumbClasses:function(t){var n,r,i=t.length;for(n=0;n<i;n++)r=e(this._findFirstElementByTagName(t[n].firstChild,"nextSibling","img","IMG")),r.length&&(r.addClass("ui-li-thumb"),e(this._findFirstElementByTagName(r[0].parentNode,"parentNode","li","LI")).addClass(r.is(".ui-li-icon")?"ui-li-has-icon":"ui-li-has-thumb"))},refresh:function(t){this.parentPage=this.element.closest(".ui-page"),this._createSubPages();var r=this.options,i=this.element,s=this,o=i.jqmData("dividertheme")||r.dividerTheme,u=i.jqmData("splittheme"),a=i.jqmData("spliticon"),f=i.jqmData("icon"),l=this._getChildrenByTagName(i[0],"li","LI"),c=!!e.nodeName(i[0],"ol"),h=!e.support.cssPseudoElement,p=i.attr("start"),d={},v,m,g,y,b,w,E,S,x,T,N,C,k,L;c&&h&&i.find(".ui-li-dec").remove(),c&&(p||p===0?h?E=parseFloat(p):(S=parseFloat(p)-1,i.css("counter-reset","listnumbering "+S)):h&&(E=1)),r.theme||(r.theme=e.mobile.getInheritedTheme(this.element,"c"));for(var A=0,O=l.length;A<O;A++){v=l.eq(A),m="ui-li";if(t||!v.hasClass("ui-li")){g=v.jqmData("theme")||r.theme,y=this._getChildrenByTagName(v[0],"a","A");var M=v.jqmData("role")==="list-divider";y.length&&!M?(N=v.jqmData("icon"),v.buttonMarkup({wrapperEls:"div",shadow:!1,corners:!1,iconpos:"right",icon:y.length>1||N===!1?!1:N||f||r.icon,theme:g}),N!==!1&&y.length===1&&v.addClass("ui-li-has-arrow"),y.first().removeClass("ui-link").addClass("ui-link-inherit"),y.length>1&&(m+=" ui-li-has-alt",b=y.last(),w=u||b.jqmData("theme")||r.splitTheme,L=b.jqmData("icon"),b.appendTo(v).attr("title",b.getEncodedText()).addClass("ui-li-link-alt").empty().buttonMarkup({shadow:!1,corners:!1,theme:g,icon:!1,iconpos:"notext"}).find(".ui-btn-inner").append(e(n.createElement("span")).buttonMarkup({shadow:!0,corners:!0,theme:w,iconpos:"notext",icon:L||N||a||r.splitIcon})))):M?(m+=" ui-li-divider ui-bar-"+o,v.attr("role","heading"),c&&(p||p===0?h?E=parseFloat(p):(x=parseFloat(p)-1,v.css("counter-reset","listnumbering "+x)):h&&(E=1))):m+=" ui-li-static ui-btn-up-"+g}c&&h&&m.indexOf("ui-li-divider")<0&&(T=m.indexOf("ui-li-static")>0?v:v.find(".ui-link-inherit"),T.addClass("ui-li-jsnumbering").prepend("<span class='ui-li-dec'>"+E++ +". </span>")),d[m]||(d[m]=[]),d[m].push(v[0])}for(m in d)e(d[m]).addClass(m).children(".ui-btn-inner").addClass(m);i.find("h1, h2, h3, h4, h5, h6").addClass("ui-li-heading").end().find("p, dl").addClass("ui-li-desc").end().find(".ui-li-aside").each(function(){var t=e(this);t.prependTo(t.parent())}).end().find(".ui-li-count").each(function(){e(this).closest("li").addClass("ui-li-has-count")}).addClass("ui-btn-up-"+(i.jqmData("counttheme")||this.options.countTheme)+" ui-btn-corner-all"),this._addThumbClasses(l),this._addThumbClasses(i.find(".ui-link-inherit")),this._refreshCorners(t),this._trigger("afterrefresh")},_idStringEscape:function(e){return e.replace(/[^a-zA-Z0-9]/g,"-")},_createSubPages:function(){var t=this.element,n=t.closest(".ui-page"),i=n.jqmData("url"),s=i||n[0][e.expando],o=t.attr("id"),u=this.options,a="data-"+e.mobile.ns,f=this,l=n.find(":jqmData(role='footer')").jqmData("id"),c;typeof r[s]=="undefined"&&(r[s]=-1),o=o||++r[s],e(t.find("li>ul, li>ol").toArray().reverse()).each(function(n){var r=this,s=e(this),f=s.attr("id")||o+"-"+n,h=s.parent(),p=e(s.prevAll().toArray().reverse()),d=p.length?p:e("<span>"+e.trim(h.contents()[0].nodeValue)+"</span>"),v=d.first().getEncodedText(),m=(i||"")+"&"+e.mobile.subPageUrlKey+"="+f,g=s.jqmData("theme")||u.theme,y=s.jqmData("counttheme")||t.jqmData("counttheme")||u.countTheme,b,w;c=!0,b=s.detach().wrap("<div "+a+"role='page' "+a+"url='"+m+"' "+a+"theme='"+g+"' "+a+"count-theme='"+y+"'><div "+a+"role='content'></div></div>").parent().before("<div "+a+"role='header' "+a+"theme='"+u.headerTheme+"'><div class='ui-title'>"+v+"</div></div>").after(l?e("<div "+a+"role='footer' "+a+"id='"+l+"'>"):"").parent().appendTo(e.mobile.pageContainer),b.page(),w=h.find("a:first"),w.length||(w=e("<a/>").html(d||v).prependTo(h.empty())),w.attr("href","#"+m)}).listview();if(c&&n.is(":jqmData(external-page='true')")&&n.data("page").options.domCache===!1){var h=function(t,r){var s=r.nextPage,o,u=new e.Event("pageremove");r.nextPage&&(o=s.jqmData("url"),o.indexOf(i+"&"+e.mobile.subPageUrlKey)!==0&&(f.childPages().remove(),n.trigger(u),u.isDefaultPrevented()||n.removeWithDependents()))};n.unbind("pagehide.remove").bind("pagehide.remove",h)}},childPages:function(){var t=this.parentPage.jqmData("url");return e(":jqmData(url^='"+t+"&"+e.mobile.subPageUrlKey+"')")}}),e(n).bind("pagecreate create",function(t){e.mobile.listview.prototype.enhanceWithin(t.target)})}(e),function(e,t){e.mobile.listview.prototype.options.autodividers=!1,e.mobile.listview.prototype.options.autodividersSelector=function(t){var n=e.trim(t.text())||null;return n?(n=n.slice(0,1).toUpperCase(),n):null},e(n).delegate("ul,ol","listviewcreate",function(){var t=e(this),r=t.data("listview");if(!r||!r.options.autodividers)return;var i=function(){t.find("li:jqmData(role='list-divider')").remove();var i=t.find("li"),s=null,o,u;for(var a=0;a<i.length;a++){o=i[a],u=r.options.autodividersSelector(e(o));if(u&&s!==u){var f=n.createElement("li");f.appendChild(n.createTextNode(u)),f.setAttribute("data-"+e.mobile.ns+"role","list-divider"),o.parentNode.insertBefore(f,o)}s=u}},s=function(){t.unbind("listviewafterrefresh",s),i(),r.refresh(),t.bind("listviewafterrefresh",s)};s()})}(e),function(e,t){e.widget("mobile.checkboxradio",e.mobile.widget,{options:{theme:null,mini:!1,initSelector:"input[type='checkbox'],input[type='radio']"},_create:function(){var r=this,i=this.element,s=this.options,o=function(e,t){return e.jqmData(t)||e.closest("form, fieldset").jqmData(t)},u=e(i).closest("label"),a=u.length?u:e(i).closest("form, fieldset, :jqmData(role='page'), :jqmData(role='dialog')").find("label").filter("[for='"+i[0].id+"']").first(),f=i[0].type,l=o(i,"mini")||s.mini,c=f+"-on",h=f+"-off",p=i.parents(":jqmData(type='horizontal')").length?t:h,d=o(i,"iconpos"),v=p?"":" "+e.mobile.activeBtnClass,m="ui-"+c+v,g="ui-"+h,y="ui-icon-"+c,b="ui-icon-"+h;if(f!=="checkbox"&&f!=="radio")return;e.extend(this,{label:a,inputtype:f,checkedClass:m,uncheckedClass:g,checkedicon:y,uncheckedicon:b}),s.theme||(s.theme=e.mobile.getInheritedTheme(this.element,"c")),a.buttonMarkup({theme:s.theme,icon:p,shadow:!1,mini:l,iconpos:d});var w=n.createElement("div");w.className="ui-"+f,i.add(a).wrapAll(w),a.bind({vmouseover:function(t){e(this).parent().is(".ui-disabled")&&t.stopPropagation()},vclick:function(e){if(i.is(":disabled")){e.preventDefault();return}return r._cacheVals(),i.prop("checked",f==="radio"&&!0||!i.prop("checked")),i.triggerHandler("click"),r._getInputSet().not(i).prop("checked",!1),r._updateAll(),!1}}),i.bind({vmousedown:function(){r._cacheVals()},vclick:function(){var t=e(this);t.is(":checked")?(t.prop("checked",!0),r._getInputSet().not(t).prop("checked",!1)):t.prop("checked",!1),r._updateAll()},focus:function(){a.addClass(e.mobile.focusClass)},blur:function(){a.removeClass(e.mobile.focusClass)}}),this._handleFormReset&&this._handleFormReset(),this.refresh()},_cacheVals:function(){this._getInputSet().each(function(){e(this).jqmData("cacheVal",this.checked)})},_getInputSet:function(){return this.inputtype==="checkbox"?this.element:this.element.closest("form, fieldset, :jqmData(role='page'), :jqmData(role='dialog')").find("input[name='"+this.element[0].name+"'][type='"+this.inputtype+"']")},_updateAll:function(){var t=this;this._getInputSet().each(function(){var n=e(this);(this.checked||t.inputtype==="checkbox")&&n.trigger("change")}).checkboxradio("refresh")},_reset:function(){this.refresh()},refresh:function(){var e=this.element[0],t=this.label,n=t.find(".ui-icon");e.checked?(t.addClass(this.checkedClass).removeClass(this.uncheckedClass),n.addClass(this.checkedicon).removeClass(this.uncheckedicon)):(t.removeClass(this.checkedClass).addClass(this.uncheckedClass),n.removeClass(this.checkedicon).addClass(this.uncheckedicon)),e.disabled?this.disable():this.enable()},disable:function(){this.element.prop("disabled",!0).parent().addClass("ui-disabled")},enable:function(){this.element.prop("disabled",!1).parent().removeClass("ui-disabled")}}),e.widget("mobile.checkboxradio",e.mobile.checkboxradio,e.mobile.behaviors.formReset),e(n).bind("pagecreate create",function(t){e.mobile.checkboxradio.prototype.enhanceWithin(t.target,!0)})}(e),function(e,t){e.widget("mobile.button",e.mobile.widget,{options:{theme:null,icon:null,iconpos:null,corners:!0,shadow:!0,iconshadow:!0,initSelector:"button, [type='button'], [type='submit'], [type='reset']"},_create:function(){var r=this.element,i,s=this.options,o,u,a=s.inline||r.jqmData("inline"),f=s.mini||r.jqmData("mini"),l="",c;if(r[0].tagName==="A"){r.hasClass("ui-btn")||r.buttonMarkup();return}this.options.theme||(this.options.theme=e.mobile.getInheritedTheme(this.element,"c")),!~r[0].className.indexOf("ui-btn-left")||(l="ui-btn-left"),!~r[0].className.indexOf("ui-btn-right")||(l="ui-btn-right");if(r.attr("type")==="submit"||r.attr("type")==="reset")l?l+=" ui-submit":l="ui-submit";e("label[for='"+r.attr("id")+"']").addClass("ui-submit"),this.button=e("<div></div>")[r.html()?"html":"text"](r.html()||r.val()).insertBefore(r).buttonMarkup({theme:s.theme,icon:s.icon,iconpos:s.iconpos,inline:a,corners:s.corners,shadow:s.shadow,iconshadow:s.iconshadow,mini:f}).addClass(l).append(r.addClass("ui-btn-hidden")),i=this.button,o=r.attr("type"),u=r.attr("name"),o!=="button"&&o!=="reset"&&u&&r.bind("vclick",function(){c===t&&(c=e("<input>",{type:"hidden",name:r.attr("name"),value:r.attr("value")}).insertBefore(r),e(n).one("submit",function(){c.remove(),c=t}))}),r.bind({focus:function(){i.addClass(e.mobile.focusClass)},blur:function(){i.removeClass(e.mobile.focusClass)}}),this.refresh()},enable:function(){return this.element.attr("disabled",!1),this.button.removeClass("ui-disabled").attr("aria-disabled",!1),this._setOption("disabled",!1)},disable:function(){return this.element.attr("disabled",!0),this.button.addClass("ui-disabled").attr("aria-disabled",!0),this._setOption("disabled",!0)},refresh:function(){var t=this.element;t.prop("disabled")?this.disable():this.enable(),e(this.button.data("buttonElements").text)[t.html()?"html":"text"](t.html()||t.val())}}),e(n).bind("pagecreate create",function(t){e.mobile.button.prototype.enhanceWithin(t.target,!0)})}(e),function(e,t){e.fn.controlgroup=function(t){function n(e,t){e.removeClass("ui-btn-corner-all ui-corner-top ui-corner-bottom ui-corner-left ui-corner-right ui-controlgroup-last ui-shadow").eq(0).addClass(t[0]).end().last().addClass(t[1]).addClass("ui-controlgroup-last")}return this.each(function(){var r=e(this),i=e.extend({direction:r.jqmData("type")||"vertical",shadow:!1,excludeInvisible:!0,mini:r.jqmData("mini")},t),s=r.children("legend"),o=r.children(".ui-controlgroup-label"),u=r.children(".ui-controlgroup-controls"),a=i.direction==="horizontal"?["ui-corner-left","ui-corner-right"]:["ui-corner-top","ui-corner-bottom"],f=r.find("input").first().attr("type");u.length&&u.contents().unwrap(),r.wrapInner("<div class='ui-controlgroup-controls'></div>"),s.length?(e("<div role='heading' class='ui-controlgroup-label'>"+s.html()+"</div>").insertBefore(r.children(0)),s.remove()):o.length&&r.prepend(o),r.addClass("ui-corner-all ui-controlgroup ui-controlgroup-"+i.direction),n(r.find(".ui-btn"+(i.excludeInvisible?":visible":"")).not(".ui-slider-handle"),a),n(r.find(".ui-btn-inner"),a),i.shadow&&r.addClass("ui-shadow"),i.mini&&r.addClass("ui-mini")})}}(e),function(e,t){e(n).bind("pagecreate create",function(t){e(t.target).find("a").jqmEnhanceable().not(".ui-btn, .ui-link-inherit, :jqmData(role='none'), :jqmData(role='nojs')").addClass("ui-link")})}(e),function(e,r){function i(e,t,n,r){var i=r;return e<t?i=n+(e-t)/2:i=Math.min(Math.max(n,r-t/2),n+e-t),i}function s(){var n=e(t);return{x:n.scrollLeft(),y:n.scrollTop(),cx:t.innerWidth||n.width(),cy:t.innerHeight||n.height()}}e.widget("mobile.popup",e.mobile.widget,{options:{theme:null,overlayTheme:null,shadow:!0,corners:!0,transition:"none",positionTo:"origin",tolerance:null,initSelector:":jqmData(role='popup')",closeLinkSelector:"a:jqmData(rel='back')",closeLinkEvents:"click.popup",navigateEvents:"navigate.popup",closeEvents:"navigate.popup pagebeforechange.popup",history:!e.mobile.browser.ie},_eatEventAndClose:function(e){return e.preventDefault(),e.stopImmediatePropagation(),this.close(),!1},_resizeScreen:function(){var e=this._ui.container.outerHeight(!0);this._ui.screen.removeAttr("style"),e>this._ui.screen.height()&&this._ui.screen.height(e)},_handleWindowKeyUp:function(t){if(this._isOpen&&t.keyCode===e.mobile.keyCode.ESCAPE)return this._eatEventAndClose(t)},_expectResizeEvent:function(){var t=s();if(this._resizeData){if(t.x===this._resizeData.winCoords.x&&t.y===this._resizeData.winCoords.y&&t.cx===this._resizeData.winCoords.cx&&t.cy===this._resizeData.winCoords.cy)return!1;clearTimeout(this._resizeData.timeoutId)}return this._resizeData={timeoutId:setTimeout(e.proxy(this,"_resizeTimeout"),200),winCoords:t},!0},_resizeTimeout:function(){this._isOpen?this._expectResizeEvent()||(this._ui.container.hasClass("ui-popup-hidden")&&(this._trigger("beforeposition"),this._ui.container.removeClass("ui-popup-hidden").offset(this._placementCoords(this._desiredCoords(r,r,"window")))),this._resizeScreen(),this._resizeData=null,this._orientationchangeInProgress=!1):(this._resizeData=null,this._orientationchangeInProgress=!1)},_handleWindowResize:function(e){this._isOpen&&(this._expectResizeEvent()||this._orientationchangeInProgress)&&!this._ui.container.hasClass("ui-popup-hidden")&&this._ui.container.addClass("ui-popup-hidden").removeAttr("style")},_handleWindowOrientationchange:function(e){!this._orientationchangeInProgress&&this._isOpen&&(this._expectResizeEvent(),this._orientationchangeInProgress=!0)},_create:function(){var n={screen:e("<div class='ui-screen-hidden ui-popup-screen'></div>"),placeholder:e("<div style='display: none;'><!-- placeholder --></div>"),container:e("<div class='ui-popup-container ui-popup-hidden'></div>")},i=this.element.closest(".ui-page"),s=this.element.attr("id"),o=this;this.options.history=this.options.history&&e.mobile.ajaxEnabled&&e.mobile.hashListeningEnabled,i.length===0&&(i=e("body")),this.options.container=this.options.container||e.mobile.pageContainer,i.append(n.screen),n.container.insertAfter(n.screen),n.placeholder.insertAfter(this.element),s&&(n.screen.attr("id",s+"-screen"),n.container.attr("id",s+"-popup"),n.placeholder.html("<!-- placeholder for "+s+" -->")),n.container.append(this.element),this.element.addClass("ui-popup"),e.extend(this,{_scrollTop:0,_page:i,_ui:n,_fallbackTransition:"",_currentTransition:!1,_prereqs:null,_isOpen:!1,_tolerance:null,_resizeData:null,_orientationchangeInProgress:!1,_globalHandlers:[{src:e(t),handler:{orientationchange:e.proxy(this,"_handleWindowOrientationchange"),resize:e.proxy(this,"_handleWindowResize"),keyup:e.proxy(this,"_handleWindowKeyUp")}}]}),e.each(this.options,function(e,t){o.options[e]=r,o._setOption(e,t,!0)}),n.screen.bind("vclick",e.proxy(this,"_eatEventAndClose")),e.each(this._globalHandlers,function(e,t){t.src.bind(t.handler)})},_applyTheme:function(e,t,n){var r=(e.attr("class")||"").split(" "),i=!0,s=null,o,u=String(t);while(r.length>0){s=r.pop(),o=(new RegExp("^ui-"+n+"-([a-z])$")).exec(s);if(o&&o.length>1){s=o[1];break}s=null}t!==s&&(e.removeClass("ui-"+n+"-"+s),t!==null&&t!=="none"&&e.addClass("ui-"+n+"-"+u))},_setTheme:function(e){this._applyTheme(this.element,e,"body")},_setOverlayTheme:function(e){this._applyTheme(this._ui.screen,e,"overlay"),this._isOpen&&this._ui.screen.addClass("in")},_setShadow:function(e){this.element.toggleClass("ui-overlay-shadow",e)},_setCorners:function(e){this.element.toggleClass("ui-corner-all",e)},_applyTransition:function(t){this._ui.container.removeClass(this._fallbackTransition),t&&t!=="none"&&(this._fallbackTransition=e.mobile._maybeDegradeTransition(t),this._fallbackTransition==="none"&&(this._fallbackTransition=""),this._ui.container.addClass(this._fallbackTransition))},_setTransition:function(e){this._currentTransition||this._applyTransition(e)},_setTolerance:function(t){var n={t:30,r:15,b:30,l:15};if(t){var r=String(t).split(",");e.each(r,function(e,t){r[e]=parseInt(t,10)});switch(r.length){case 1:isNaN(r[0])||(n.t=n.r=n.b=n.l=r[0]);break;case 2:isNaN(r[0])||(n.t=n.b=r[0]),isNaN(r[1])||(n.l=n.r=r[1]);break;case 4:isNaN(r[0])||(n.t=r[0]),isNaN(r[1])||(n.r=r[1]),isNaN(r[2])||(n.b=r[2]),isNaN(r[3])||(n.l=r[3]);break;default:}}this._tolerance=n},_setOption:function(t,n){var i,s="_set"+t.charAt(0).toUpperCase()+t.slice(1);this[s]!==r&&this[s](n),i=["initSelector","closeLinkSelector","closeLinkEvents","navigateEvents","closeEvents","history","container"],e.mobile.widget.prototype._setOption.apply(this,arguments),e.inArray(t,i)===-1&&this.element.attr("data-"+(e.mobile.ns||"")+t.replace(/([A-Z])/,"-$1").toLowerCase(),n)},_placementCoords:function(e){var t=s(),r={x:this._tolerance.l,y:t.y+this._tolerance.t,cx:t.cx-this._tolerance.l-this._tolerance.r,cy:t.cy-this._tolerance.t-this._tolerance.b},o,u;this._ui.container.css("max-width",r.cx),o={cx:this._ui.container.outerWidth(!0),cy:this._ui.container.outerHeight(!0)},u={x:i(r.cx,o.cx,r.x,e.x),y:i(r.cy,o.cy,r.y,e.y)},u.y=Math.max(0,u.y);var a=n.documentElement,f=n.body,l=Math.max(a.clientHeight,f.scrollHeight,f.offsetHeight,a.scrollHeight,a.offsetHeight);return u.y-=Math.min(u.y,Math.max(0,u.y+o.cy-l)),{left:u.x,top:u.y}},_createPrereqs:function(t,n,r){var i=this,s;s={screen:e.Deferred(),container:e.Deferred()},s.screen.then(function(){s===i._prereqs&&t()}),s.container.then(function(){s===i._prereqs&&n()}),e.when(s.screen,s.container).done(function(){s===i._prereqs&&(i._prereqs=null,r())}),i._prereqs=s},_animate:function(t){this._ui.screen.removeClass(t.classToRemove).addClass(t.screenClassToAdd),t.prereqs.screen.resolve();if(t.transition&&t.transition!=="none"){t.applyTransition&&this._applyTransition(t.transition);if(this._fallbackTransition){this._ui.container.animationComplete(e.proxy(t.prereqs.container,"resolve")).addClass(t.containerClassToAdd).removeClass(t.classToRemove);return}}this._ui.container.removeClass(t.classToRemove),t.prereqs.container.resolve()},_desiredCoords:function(t,n,r){var i=null,o,u=s();if(r&&r!=="origin")if(r==="window")t=u.cx/2+u.x,n=u.cy/2+u.y;else{try{i=e(r)}catch(a){i=null}i&&(i.filter(":visible"),i.length===0&&(i=null))}i&&(o=i.offset(),t=o.left+i.outerWidth()/2,n=o.top+i.outerHeight()/2);if(e.type(t)!=="number"||isNaN(t))t=u.cx/2+u.x;if(e.type(n)!=="number"||isNaN(n))n=u.cy/2+u.y;return{x:t,y:n}},_openPrereqsComplete:function(){var e=this;e._ui.container.addClass("ui-popup-active"),e._isOpen=!0,e._resizeScreen(),setTimeout(function(){e._ui.container.attr("tabindex","0").focus(),e._expectResizeEvent(),e._trigger("afteropen")})},_open:function(n){var r,i,s=function(){var e=t,n=navigator.userAgent,r=n.match(/AppleWebKit\/([0-9\.]+)/),i=!!r&&r[1],s=n.match(/Android (\d+(?:\.\d+))/),o=!!s&&s[1],u=n.indexOf("Chrome")>-1;return s!==null&&o==="4.0"&&i&&i>534.13&&!u?!0:!1}();n=n||{},i=n.transition||this.options.transition,this._trigger("beforeposition"),r=this._placementCoords(this._desiredCoords(n.x,n.y,n.positionTo||this.options.positionTo||"origin")),this._createPrereqs(e.noop,e.noop,e.proxy(this,"_openPrereqsComplete")),i?(this._currentTransition=i,this._applyTransition(i)):i=this.options.transition,this.options.theme||this._setTheme(this._page.jqmData("theme")||e.mobile.getInheritedTheme(this._page,"c")),this._ui.screen.removeClass("ui-screen-hidden"),this._ui.container.removeClass("ui-popup-hidden").offset(r),this.options.overlayTheme&&s&&this.element.closest(".ui-page").addClass("ui-popup-open"),this._animate({additionalCondition:!0,transition:i,classToRemove:"",screenClassToAdd:"in",containerClassToAdd:"in",applyTransition:!1,prereqs:this._prereqs})},_closePrereqScreen:function(){this._ui.screen.removeClass("out").addClass("ui-screen-hidden")},_closePrereqContainer:function(){this._ui.container.removeClass("reverse out").addClass("ui-popup-hidden").removeAttr("style")},_closePrereqsDone:function(){var t=this,n=t.options;t._ui.container.removeAttr("tabindex"),n.container.unbind(n.closeEvents),t.element.undelegate(n.closeLinkSelector,n.closeLinkEvents),e.mobile.popup.active=r,t._trigger("afterclose")},_close:function(t){this._ui.container.removeClass("ui-popup-active"),this._page.removeClass("ui-popup-open"),this._isOpen=!1,this._createPrereqs(e.proxy(this,"_closePrereqScreen"),e.proxy(this,"_closePrereqContainer"),e.proxy(this,"_closePrereqsDone")),this._animate({additionalCondition:this._ui.screen.hasClass("in"),transition:t?"none":this._currentTransition||this.options.transition,classToRemove:"in",screenClassToAdd:"out",containerClassToAdd:"reverse out",applyTransition:!0,prereqs:this._prereqs})},_unenhance:function(){var t=this;t._setTheme("none"),t.element.detach().insertAfter(t._ui.placeholder).removeClass("ui-popup ui-overlay-shadow ui-corner-all"),t._ui.screen.remove(),t._ui.container.remove(),t._ui.placeholder.remove(),e.each(t._globalHandlers,function(t,n){e.each(n.handler,function(e,t){n.src.unbind(e,t)})})},_destroy:function(){e.mobile.popup.active===this?(this.element.one("popupafterclose",e.proxy(this,"_unenhance")),this.close()):this._unenhance()},_closePopup:function(n,r){var i,s;t.scrollTo(0,this._scrollTop);if(n.type==="pagebeforechange"&&r){typeof r.toPage=="string"?i=r.toPage:i=r.toPage.jqmData("url"),i=e.mobile.path.parseUrl(i),s=i.pathname+i.search+i.hash,this._myUrl!==s?(this.options.container.unbind(this.options.closeEvents),this._close(!0)):(this.close(),n.preventDefault());return}this._close()},_bindContainerClose:function(){var t=this;t.options.container.one(t.options.closeEvents,e.proxy(t,"_closePopup"))},open:function(n){var i=this,s=this.options,o,u,a,f,l,c;if(e.mobile.popup.active)return;e.mobile.popup.active=this,this._scrollTop=e(t).scrollTop();if(!s.history){i._open(n),i._bindContainerClose(),i.element.delegate(s.closeLinkSelector,s.closeLinkEvents,function(e){return i._close(),!1});return}u=e.mobile.dialogHashKey,a=e.mobile.activePage,f=a.is(".ui-dialog"),this._myUrl=o=e.mobile.urlHistory.getActive().url,l=o.indexOf(u)>-1&&!f,c=e.mobile.urlHistory;if(l){i._open(n),i._bindContainerClose();return}o+=u,c.activeIndex===0&&o===c.initialDst&&(o+=u),s.container.one(s.navigateEvents,function(e){e.preventDefault(),i._open(n),i._bindContainerClose()}),c.ignoreNextHashChange=f,c.addNew(o,r,r,r,"dialog"),e.mobile.path.set(o)},close:function(){if(!e.mobile.popup.active)return;this._scrollTop=e(t).scrollTop(),this.options.history?e.mobile.back():this._close()}}),e.mobile.popup.handleLink=function(t){var n=t.closest(":jqmData(role='page')"),r=n.length===0?e("body"):n,i=e(e.mobile.path.parseUrl(t.attr("href")).hash,r[0]),s;i.data("popup")&&(s=t.offset(),i.popup("open",{x:s.left+t.outerWidth()/2,y:s.top+t.outerHeight()/2,transition:t.jqmData("transition"),positionTo:t.jqmData("position-to"),link:t})),setTimeout(function(){var n=t.parent().parent();n.hasClass("ui-li")&&(t=n.parent()),t.removeClass(e.mobile.activeBtnClass)},300)},e(n).bind("pagebeforechange",function(t,n){n.options.role==="popup"&&(e.mobile.popup.handleLink(n.options.link),t.preventDefault())}),e(n).bind("pagecreate create",function(t){e.mobile.popup.prototype.enhanceWithin(t.target,!0)})}(e),function(e){var t=e("meta[name=viewport]"),n=t.attr("content"),r=n+",maximum-scale=1, user-scalable=no",i=n+",maximum-scale=10, user-scalable=yes",s=/(user-scalable[\s]*=[\s]*no)|(maximum-scale[\s]*=[\s]*1)[$,\s]/.test(n);e.mobile.zoom=e.extend({},{enabled:!s,locked:!1,disable:function(n){!s&&!e.mobile.zoom.locked&&(t.attr("content",r),e.mobile.zoom.enabled=!1,e.mobile.zoom.locked=n||!1)},enable:function(n){!s&&(!e.mobile.zoom.locked||n===!0)&&(t.attr("content",i),e.mobile.zoom.enabled=!0,e.mobile.zoom.locked=!1)},restore:function(){s||(t.attr("content",n),e.mobile.zoom.enabled=!0)}})}(e),function(e,r){e.widget("mobile.textinput",e.mobile.widget,{options:{theme:null,mini:!1,preventFocusZoom:/iPhone|iPad|iPod/.test(navigator.platform)&&navigator.userAgent.indexOf("AppleWebKit")>-1,initSelector:"input[type='text'], input[type='search'], :jqmData(type='search'), input[type='number'], :jqmData(type='number'), input[type='password'], input[type='email'], input[type='url'], input[type='tel'], textarea, input[type='time'], input[type='date'], input[type='month'], input[type='week'], input[type='datetime'], input[type='datetime-local'], input[type='color'], input:not([type])",clearSearchButtonText:"clear text",disabled:!1},_create:function(){function c(){setTimeout(function(){l.toggleClass("ui-input-clear-hidden",!i.val())},0)}var r=this,i=this.element,s=this.options,o=s.theme||e.mobile.getInheritedTheme(this.element,"c"),u=" ui-body-"+o,a=s.mini?" ui-mini":"",f,l;e("label[for='"+i.attr("id")+"']").addClass("ui-input-text"),f=i.addClass("ui-input-text ui-body-"+o),typeof i[0].autocorrect!="undefined"&&!e.support.touchOverflow&&(i[0].setAttribute("autocorrect","off"),i[0].setAttribute("autocomplete","off")),i.is("[type='search'],:jqmData(type='search')")?(f=i.wrap("<div class='ui-input-search ui-shadow-inset ui-btn-corner-all ui-btn-shadow ui-icon-searchfield"+u+a+"'></div>").parent(),l=e("<a href='#' class='ui-input-clear' title='"+s.clearSearchButtonText+"'>"+s.clearSearchButtonText+"</a>").bind("click",function(e){i.val("").focus().trigger("change"),l.addClass("ui-input-clear-hidden"),e.preventDefault()}).appendTo(f).buttonMarkup({icon:"delete",iconpos:"notext",corners:!0,shadow:!0,mini:s.mini}),c(),i.bind("paste cut keyup focus change blur",c)):i.addClass("ui-corner-all ui-shadow-inset"+u+a),i.focus(function(){f.addClass(e.mobile.focusClass)}).blur(function(){f.removeClass(e.mobile.focusClass)}).bind("focus",function(){s.preventFocusZoom&&e.mobile.zoom.disable(!0)}).bind("blur",function(){s.preventFocusZoom&&e.mobile.zoom.enable(!0)});if(i.is("textarea")){var h=15,p=100,d;this._keyup=function(){var e=i[0].scrollHeight,t=i[0].clientHeight;t<e&&i.height(e+h)},i.keyup(function(){clearTimeout(d),d=setTimeout(r._keyup,p)}),this._on(e(n),{pagechange:"_keyup"}),e.trim(i.val())&&this._on(e(t),{load:"_keyup"})}i.attr("disabled")&&this.disable()},disable:function(){var e;return this.element.attr("disabled",!0).is("[type='search'], :jqmData(type='search')")?e=this.element.parent():e=this.element,e.addClass("ui-disabled"),this._setOption("disabled",!0)},enable:function(){var e;return this.element.attr("disabled",!1).is("[type='search'], :jqmData(type='search')")?e=this.element.parent():e=this.element,e.removeClass("ui-disabled"),this._setOption("disabled",!1)}}),e(n).bind("pagecreate create",function(t){e.mobile.textinput.prototype.enhanceWithin(t.target,!0)})}(e),function(e,t){e.mobile.listview.prototype.options.filter=!1,e.mobile.listview.prototype.options.filterPlaceholder="Filter items...",e.mobile.listview.prototype.options.filterTheme="c";var r=function(e,t,n){return e.toString().toLowerCase().indexOf(t)===-1};e.mobile.listview.prototype.options.filterCallback=r,e(n).delegate("ul, ol","listviewcreate",function(){var t=e(this),n=t.data("listview");if(!n.options.filter)return;var i=e("<form>",{"class":"ui-listview-filter ui-bar-"+n.options.filterTheme,role:"search"}).submit(function(e){e.preventDefault(),s.blur()}),s=e("<input>",{placeholder:n.options.filterPlaceholder}).attr("data-"+e.mobile.ns+"type","search").jqmData("lastval","").bind("keyup change",function(){var i=e(this),s=this.value.toLowerCase(),o=null,u=i.jqmData("lastval")+"",a=!1,f="",l,c=n.options.filterCallback!==r;n._trigger("beforefilter","beforefilter",{input:this}),i.jqmData("lastval",s),c||s.length<u.length||s.indexOf(u)!==0?o=t.children():o=t.children(":not(.ui-screen-hidden)");if(s){for(var h=o.length-1;h>=0;h--)l=e(o[h]),f=l.jqmData("filtertext")||l.text(),l.is("li:jqmData(role=list-divider)")?(l.toggleClass("ui-filter-hidequeue",!a),a=!1):n.options.filterCallback(f,s,l)?l.toggleClass("ui-filter-hidequeue",!0):a=!0;o.filter(":not(.ui-filter-hidequeue)").toggleClass("ui-screen-hidden",!1),o.filter(".ui-filter-hidequeue").toggleClass("ui-screen-hidden",!0).toggleClass("ui-filter-hidequeue",!1)}else o.toggleClass("ui-screen-hidden",!1);n._refreshCorners()}).appendTo(i).textinput();n.options.inset&&i.addClass("ui-listview-filter-inset"),i.bind("submit",function(){return!1}).insertBefore(t)})}(e),function(e,r){e.widget("mobile.slider",e.mobile.widget,{options:{theme:null,trackTheme:null,disabled:!1,initSelector:"input[type='range'], :jqmData(type='range'), :jqmData(role='slider')",mini:!1},_create:function(){var i=this,s=this.element,o=e.mobile.getInheritedTheme(s,"c"),u=this.options.theme||o,a=this.options.trackTheme||o,f=s[0].nodeName.toLowerCase(),l=f==="select"?"ui-slider-switch":"",c=s.attr("id"),h=e("[for='"+c+"']"),p=h.attr("id")||c+"-label",d=h.attr("id",p),v=function(){return f==="input"?parseFloat(s.val()):s[0].selectedIndex},m=f==="input"?parseFloat(s.attr("min")):0,g=f==="input"?parseFloat(s.attr("max")):s.find("option").length-1,y=t.parseFloat(s.attr("step")||1),b=this.options.inline||s.jqmData("inline")===!0?" ui-slider-inline":"",w=this.options.mini||s.jqmData("mini")?" ui-slider-mini":"",E=n.createElement("a"),S=e(E),x=n.createElement("div"),T=e(x),N=s.jqmData("highlight")&&f!=="select"?function(){var t=n.createElement("div");return t.className="ui-slider-bg "+e.mobile.activeBtnClass+" ui-btn-corner-all",e(t).prependTo(T)}():!1,C;this._type=f,E.setAttribute("href","#"),x.setAttribute("role","application"),x.className=["ui-slider ",l," ui-btn-down-",a," ui-btn-corner-all",b,w].join(""),E.className="ui-slider-handle",x.appendChild(E),S.buttonMarkup({corners:!0,theme:u,shadow:!0}).attr({role:"slider","aria-valuemin":m,"aria-valuemax":g,"aria-valuenow":v(),"aria-valuetext":v(),title:v(),"aria-labelledby":p}),e.extend(this,{slider:T,handle:S,valuebg:N,dragging:!1,beforeStart:null,userModified:!1,mouseMoved:!1});if(f==="select"){var k=n.createElement("div");k.className="ui-slider-inneroffset";for(var L=0,A=x.childNodes.length;L<A;L++)k.appendChild(x.childNodes[L]);x.appendChild(k),S.addClass("ui-slider-handle-snapping"),C=s.find("option");for(var O=0,M=C.length;O<M;O++){var _=O?"a":"b",D=O?" "+e.mobile.activeBtnClass:" ui-btn-down-"+a,P=n.createElement("div"),H=n.createElement("span");H.className=["ui-slider-label ui-slider-label-",_,D," ui-btn-corner-all"].join(""),H.setAttribute("role","img"),H.appendChild(n.createTextNode(C[O].innerHTML)),e(H).prependTo(T)}i._labels=e(".ui-slider-label",T)}d.addClass("ui-slider"),s.addClass(f==="input"?"ui-slider-input":"ui-slider-switch").change(function(){i.mouseMoved||i.refresh(v(),!0)}).keyup(function(){i.refresh(v(),!0,!0)}).blur(function(){i.refresh(v(),!0)}),this._preventDocumentDrag=function(e){if(i.dragging&&!i.options.disabled)return i.mouseMoved=!0,f==="select"&&S.removeClass("ui-slider-handle-snapping"),i.refresh(e),i.userModified=i.beforeStart!==s[0].selectedIndex,!1},this._on(e(n),{vmousemove:this._preventDocumentDrag}),s.bind("vmouseup",e.proxy(i._checkedRefresh,i)),T.bind("vmousedown",function(e){return i.options.disabled?!1:(i.dragging=!0,i.userModified=!1,i.mouseMoved=!1,f==="select"&&(i.beforeStart=s[0].selectedIndex),i.refresh(e),i._trigger("start"),!1)}).bind("vclick",!1),this._sliderMouseUp=function(){if(i.dragging)return i.dragging=!1,f==="select"&&(S.addClass("ui-slider-handle-snapping"),i.mouseMoved?i.userModified?i.refresh(i.beforeStart===0?1:0):i.refresh(i.beforeStart):i.refresh(i.beforeStart===0?1:0)),i.mouseMoved=!1,i._trigger("stop"),!1},this._on(T.add(n),{vmouseup:this._sliderMouseUp}),T.insertAfter(s),f==="select"&&this.handle.bind({focus:function(){T.addClass(e.mobile.focusClass)},blur:function(){T.removeClass(e.mobile.focusClass)}}),this.handle.bind({vmousedown:function(){e(this).focus()},vclick:!1,keydown:function(t){var n=v();if(i.options.disabled)return;switch(t.keyCode){case e.mobile.keyCode.HOME:case e.mobile.keyCode.END:case e.mobile.keyCode.PAGE_UP:case e.mobile.keyCode.PAGE_DOWN:case e.mobile.keyCode.UP:case e.mobile.keyCode.RIGHT:case e.mobile.keyCode.DOWN:case e.mobile.keyCode.LEFT:t.preventDefault(),i._keySliding||(i._keySliding=!0,e(this).addClass("ui-state-active"))}switch(t.keyCode){case e.mobile.keyCode.HOME:i.refresh(m);break;case e.mobile.keyCode.END:i.refresh(g);break;case e.mobile.keyCode.PAGE_UP:case e.mobile.keyCode.UP:case e.mobile.keyCode.RIGHT:i.refresh(n+y);break;case e.mobile.keyCode.PAGE_DOWN:case e.mobile.keyCode.DOWN:case e.mobile.keyCode.LEFT:i.refresh(n-y)}},keyup:function(t){i._keySliding&&(i._keySliding=!1,e(this).removeClass("ui-state-active"))}}),this._handleFormReset&&this._handleFormReset(),this.refresh(r,r,!0)},_checkedRefresh:function(){this.value!=this._value()&&this.refresh(this._value())},_value:function(){return this._type==="input"?parseFloat(this.element.val()):this.element[0].selectedIndex},_reset:function(){this.refresh(r,!1,!0)},refresh:function(t,n,r){(this.options.disabled||this.element.attr("disabled"))&&this.disable(),this.value=this._value();var i=this.element,s,o=i[0].nodeName.toLowerCase(),u=o==="input"?parseFloat(i.attr("min")):0,a=o==="input"?parseFloat(i.attr("max")):i.find("option").length-1,f=o==="input"&&parseFloat(i.attr("step"))>0?parseFloat(i.attr("step")):1;if(typeof t=="object"){var l=t,c=8;if(!this.dragging||l.pageX<this.slider.offset().left-c||l.pageX>this.slider.offset().left+this.slider.width()+c)return;s=Math.round((l.pageX-this.slider.offset().left)/this.slider.width()*100)}else t==null&&(t=o==="input"?parseFloat(i.val()||0):i[0].selectedIndex),s=(parseFloat(t)-u)/(a-u)*100;if(isNaN(s))return;s<0&&(s=0),s>100&&(s=100);var h=s/100*(a-u)+u,p=(h-u)%f,d=h-p;Math.abs(p)*2>=f&&(d+=p>0?f:-f),h=parseFloat(d.toFixed(5)),h<u&&(h=u),h>a&&(h=a),this.handle.css("left",s+"%"),this.handle.attr({"aria-valuenow":o==="input"?h:i.find("option").eq(h).attr("value"),"aria-valuetext":o==="input"?h:i.find("option").eq(h).getEncodedText(),title:o==="input"?h:i.find("option").eq(h).getEncodedText()}),this.valuebg&&this.valuebg.css("width",s+"%");if(this._labels){var v=this.handle.width()/this.slider.width()*100,m=s&&v+(100-v)*s/100,g=s===100?0:Math.min(v+100-m,100);this._labels.each(function(){var t=e(this).is(".ui-slider-label-a");e(this).width((t?m:g)+"%")})}if(!r){var y=!1;o==="input"?(y=i.val()!==h,i.val(h)):(y=i[0].selectedIndex!==h,i[0].selectedIndex=h),!n&&y&&i.trigger("change")}},enable:function(){return this.element.attr("disabled",!1),this.slider.removeClass("ui-disabled").attr("aria-disabled",!1),this._setOption("disabled",!1)},disable:function(){return this.element.attr("disabled",!0),this.slider.addClass("ui-disabled").attr("aria-disabled",!0),this._setOption("disabled",!0)}}),e.widget("mobile.slider",e.mobile.slider,e.mobile.behaviors.formReset),e.widget("mobile.slider",e.mobile.slider,{widgetEventPrefix:"slide"}),e(n).bind("pagecreate create",function(t){e.mobile.slider.prototype.enhanceWithin(t.target,!0)})}(e),function(e,r){e.widget("mobile.selectmenu",e.mobile.widget,{options:{theme:null,disabled:!1,icon:"arrow-d",iconpos:"right",inline:!1,corners:!0,shadow:!0,iconshadow:!0,overlayTheme:"a",hidePlaceholderMenuItems:!0,closeText:"Close",nativeMenu:!0,preventFocusZoom:/iPhone|iPad|iPod/.test(navigator.platform)&&navigator.userAgent.indexOf("AppleWebKit")>-1,initSelector:"select:not( :jqmData(role='slider') )",mini:!1},_button:function(){return e("<div/>")},_setDisabled:function(e){return this.element.attr("disabled",e),this.button.attr("aria-disabled",e),this._setOption("disabled",e)},_focusButton:function(){var e=this;setTimeout(function(){e.button.focus()},40)},_selectOptions:function(){return this.select.find("option")},_preExtension:function(){var t="";!~this.element[0].className.indexOf("ui-btn-left")||(t=" ui-btn-left"),!~this.element[0].className.indexOf("ui-btn-right")||(t=" ui-btn-right"),this.select=this.element.wrap("<div class='ui-select"+t+"'>"),this.selectID=this.select.attr("id"),this.label=e("label[for='"+this.selectID+"']").addClass("ui-select"),this.isMultiple=this.select[0].multiple,this.options.theme||(this.options.theme=e.mobile.getInheritedTheme(this.select,"c"))},_destroy:function(){var e=this.element.parents(".ui-select");e.length>0&&(this.element.insertAfter(e),e.remove())},_create:function(){this._preExtension(),this._trigger("beforeCreate"),this.button=this._button();var n=this,r=this.options,i=r.inline||this.select.jqmData("inline"),s=r.mini||this.select.jqmData("mini"),o=r.icon?r.iconpos||this.select.jqmData("iconpos"):!1,u=this.select[0].selectedIndex===-1?0:this.select[0].selectedIndex,a=this.button.insertBefore(this.select).buttonMarkup({theme:r.theme,icon:r.icon,iconpos:o,inline:i,corners:r.corners,shadow:r.shadow,iconshadow:r.iconshadow,mini:s});this.setButtonText(),r.nativeMenu&&t.opera&&t.opera.version&&a.addClass("ui-select-nativeonly"),this.isMultiple&&(this.buttonCount=e("<span>").addClass("ui-li-count ui-btn-up-c ui-btn-corner-all").hide().appendTo(a.addClass("ui-li-has-count"))),(r.disabled||this.element.attr("disabled"))&&this.disable(),this.select.change(function(){n.refresh()}),this._handleFormReset&&this._handleFormReset(),this.build()},build:function(){var t=this;this.select.appendTo(t.button).bind("vmousedown",function(){t.button.addClass(e.mobile.activeBtnClass)}).bind("focus",function(){t.button.addClass(e.mobile.focusClass)}).bind("blur",function(){t.button.removeClass(e.mobile.focusClass)}).bind("focus vmouseover",function(){t.button.trigger("vmouseover")}).bind("vmousemove",function(){t.button.removeClass(e.mobile.activeBtnClass)}).bind("change blur vmouseout",function(){t.button.trigger("vmouseout").removeClass(e.mobile.activeBtnClass)}).bind("change blur",function(){t.button.removeClass("ui-btn-down-"+t.options.theme)}),t.button.bind("vmousedown",function(){t.options.preventFocusZoom&&e.mobile.zoom.disable(!0)}),t.label.bind("click focus",function(){t.options.preventFocusZoom&&e.mobile.zoom.disable(!0)}),t.select.bind("focus",function(){t.options.preventFocusZoom&&e.mobile.zoom.disable(!0)}),t.button.bind("mouseup",function(){t.options.preventFocusZoom&&setTimeout(function(){e.mobile.zoom.enable(!0)},0)}),t.select.bind("blur",function(){t.options.preventFocusZoom&&e.mobile.zoom.enable(!0)})},selected:function(){return this._selectOptions().filter(":selected")},selectedIndices:function(){var e=this;return this.selected().map(function(){return e._selectOptions().index(this)}).get()},setButtonText:function(){var t=this,r=this.selected(),i=this.placeholder,s=e(n.createElement("span"));this.button.find(".ui-btn-text").html(function(){return r.length?i=r.map(function(){return e(this).text()}).get().join(", "):i=t.placeholder,s.text(i).addClass(t.select.attr("class")).addClass(r.attr("class"))})},setButtonCount:function(){var e=this.selected();this.isMultiple&&this.buttonCount[e.length>1?"show":"hide"]().text(e.length)},_reset:function(){this.refresh()},refresh:function(){this.setButtonText(),this.setButtonCount()},open:e.noop,close:e.noop,disable:function(){this._setDisabled(!0),this.button.addClass("ui-disabled")},enable:function(){this._setDisabled(!1),this.button.removeClass("ui-disabled")}}),e.widget("mobile.selectmenu",e.mobile.selectmenu,e.mobile.behaviors.formReset),e(n).bind("pagecreate create",function(t){e.mobile.selectmenu.prototype.enhanceWithin(t.target,!0)})}(e),function(e,r){var i=function(i){var s=i.select,o=i._destroy,u=i.selectID,a=i.label,f=i.select.closest(".ui-page"),l=i._selectOptions(),c=i.isMultiple=i.select[0].multiple,h=u+"-button",p=u+"-menu",d=e("<div data-"+e.mobile.ns+"role='dialog' data-"+e.mobile.ns+"theme='"+i.options.theme+"' data-"+e.mobile.ns+"overlay-theme='"+i.options.overlayTheme+"'>"+"<div data-"+e.mobile.ns+"role='header'>"+"<div class='ui-title'>"+a.getEncodedText()+"</div>"+"</div>"+"<div data-"+e.mobile.ns+"role='content'></div>"+"</div>"),v=e("<div>",{"class":"ui-selectmenu"}).insertAfter(i.select).popup({theme:i.options.overlayTheme}),m=e("<ul>",{"class":"ui-selectmenu-list",id:p,role:"listbox","aria-labelledby":h}).attr("data-"+e.mobile.ns+"theme",i.options.theme).appendTo(v),g=e("<div>",{"class":"ui-header ui-bar-"+i.options.theme}).prependTo(v),y=e("<h1>",{"class":"ui-title"}).appendTo(g),b,w,E;i.isMultiple&&(E=e("<a>",{text:i.options.closeText,href:"#","class":"ui-btn-left"}).attr("data-"+e.mobile.ns+"iconpos","notext").attr("data-"+e.mobile.ns+"icon","delete").appendTo(g).buttonMarkup()),e.extend(i,{select:i.select,selectID:u,buttonId:h,menuId:p,thisPage:f,menuPage:d,label:a,selectOptions:l,isMultiple:c,theme:i.options.theme,listbox:v,list:m,header:g,headerTitle:y,headerClose:E,menuPageContent:b,menuPageClose:w,placeholder:"",build:function(){var t=this;t.refresh(),t._origTabIndex===r&&(t._origTabIndex=t.select.attr("tabindex"),t._origTabIndex===r&&(t._origTabIndex=!1)),t.select.attr("tabindex","-1").focus(function(){e(this).blur(),t.button.focus()}),t.button.bind("vclick keydown",function(n){if(n.type==="vclick"||n.keyCode&&(n.keyCode===e.mobile.keyCode.ENTER||n.keyCode===e.mobile.keyCode.SPACE))t.open(),n.preventDefault()}),t.list.attr("role","listbox").bind("focusin",function(t){e(t.target).attr("tabindex","0").trigger("vmouseover")}).bind("focusout",function(t){e(t.target).attr("tabindex","-1").trigger("vmouseout")}).delegate("li:not(.ui-disabled, .ui-li-divider)","click",function(n){var r=t.select[0].selectedIndex,s=t.list.find("li:not(.ui-li-divider)").index(this),o=t._selectOptions().eq(s)[0];o.selected=t.isMultiple?!o.selected:!0,t.isMultiple&&e(this).find(".ui-icon").toggleClass("ui-icon-checkbox-on",o.selected).toggleClass("ui-icon-checkbox-off",!o.selected),(t.isMultiple||r!==s)&&t.select.trigger("change"),t.isMultiple?t.list.find("li:not(.ui-li-divider)").eq(s).addClass("ui-btn-down-"+i.options.theme).find("a").first().focus():t.close(),n.preventDefault()}).keydown(function(t){var n=e(t.target),r=n.closest("li"),s,o;switch(t.keyCode){case 38:return s=r.prev().not(".ui-selectmenu-placeholder"),s.is(".ui-li-divider")&&(s=s.prev()),s.length&&(n.blur().attr("tabindex","-1"),s.addClass("ui-btn-down-"+i.options.theme).find("a").first().focus()),!1;case 40:return o=r.next(),o.is(".ui-li-divider")&&(o=o.next()),o.length&&(n.blur().attr("tabindex","-1"),o.addClass("ui-btn-down-"+i.options.theme).find("a").first().focus()),!1;case 13:case 32:return n.trigger("click"),!1}}),t.menuPage.bind("pagehide",function(){t.list.appendTo(t.listbox),t._focusButton(),e.mobile._bindPageRemove.call(t.thisPage)}),t.listbox.bind("popupafterclose",function(e){t.close()}),t.isMultiple&&t.headerClose.click(function(){if(t.menuType==="overlay")return t.close(),!1}),t.thisPage.addDependents(this.menuPage)},_isRebuildRequired:function(){var e=this.list.find("li"),t=this._selectOptions();return t.text()!==e.text()},selected:function(){return this._selectOptions().filter(":selected:not( :jqmData(placeholder='true') )")},refresh:function(t,n){var r=this,i=this.element,s=this.isMultiple,o;(t||this._isRebuildRequired())&&r._buildList(),o=this.selectedIndices(),r.setButtonText(),r.setButtonCount(),r.list.find("li:not(.ui-li-divider)").removeClass(e.mobile.activeBtnClass).attr("aria-selected",!1).each(function(t){if(e.inArray(t,o)>-1){var n=e(this);n.attr("aria-selected",!0),r.isMultiple?n.find(".ui-icon").removeClass("ui-icon-checkbox-off").addClass("ui-icon-checkbox-on"):n.is(".ui-selectmenu-placeholder")?n.next().addClass(e.mobile.activeBtnClass):n.addClass(e.mobile.activeBtnClass)}})},close:function(){if(this.options.disabled||!this.isOpen)return;var t=this;t.menuType==="page"?e.mobile.back():(t.listbox.popup("close"),t.list.appendTo(t.listbox),t._focusButton()),t.isOpen=!1},open:function(){function p(){var t=n.list.find("."+e.mobile.activeBtnClass+" a");t.length===0&&(t=n.list.find("li.ui-btn:not( :jqmData(placeholder='true') ) a")),t.first().focus().closest("li").addClass("ui-btn-down-"+i.options.theme)}if(this.options.disabled)return;var n=this,r=e(t),s=n.list.parent(),o=s.outerHeight(),u=s.outerWidth(),a=e("."+e.mobile.activePageClass),f=r.scrollTop(),l=n.button.offset().top,c=r.height(),h=r.width();n.button.addClass(e.mobile.activeBtnClass),setTimeout(function(){n.button.removeClass(e.mobile.activeBtnClass)},300),o>c-80||!e.support.scrollTop?(n.menuPage.appendTo(e.mobile.pageContainer).page(),n.menuPageContent=d.find(".ui-content"),n.menuPageClose=d.find(".ui-header a"),n.thisPage.unbind("pagehide.remove"),f===0&&l>c&&n.thisPage.one("pagehide",function(){e(this).jqmData("lastScroll",l)}),n.menuPage.one("pageshow",function(){p(),n.isOpen=!0}).one("pagehide",function(){n.isOpen=!1}),n.menuType="page",n.menuPageContent.append(n.list),n.menuPage.find("div .ui-title").text(n.label.text()),e.mobile.changePage(n.menuPage,{transition:e.mobile.defaultDialogTransition})):(n.menuType="overlay",n.listbox.one("popupafteropen",p).popup("open",{x:n.button.offset().left+n.button.outerWidth()/2,y:n.button.offset().top+n.button.outerHeight()/2}),n.isOpen=!0)},_buildList:function(){var t=this,r=this.options,i=this.placeholder,s=!0,o=[],u=[],a=t.isMultiple?"checkbox-off":"false";t.list.empty().filter(".ui-listview").listview("destroy");var f=t.select.find("option"),l=f.length,c=this.select[0],h="data-"+e.mobile.ns,p=h+"option-index",d=h+"icon",v=h+"role",m=h+"placeholder",g=n.createDocumentFragment(),y=!1,b;for(var w=0;w<l;w++,y=!1){var E=f[w],S=e(E),x=E.parentNode,T=S.text(),N=n.createElement("a"),C=[];N.setAttribute("href","#"),N.appendChild(n.createTextNode(T));if(x!==c&&x.nodeName.toLowerCase()==="optgroup"){var k=x.getAttribute("label");if(k!==b){var L=n.createElement("li");L.setAttribute(v,"list-divider"),L.setAttribute("role","option"),L.setAttribute("tabindex","-1"),L.appendChild(n.createTextNode(k)),g.appendChild(L),b=k}}s&&(!E.getAttribute("value")||T.length===0||S.jqmData("placeholder"))&&(s=!1,y=!0,E.hasAttribute(m)||(this._removePlaceholderAttr=!0),E.setAttribute(m,!0),r.hidePlaceholderMenuItems&&C.push("ui-selectmenu-placeholder"),i!==T&&(i=t.placeholder=T));var A=n.createElement("li");E.disabled&&(C.push("ui-disabled"),A.setAttribute("aria-disabled",!0)),A.setAttribute(p,w),A.setAttribute(d,a),y&&A.setAttribute(m,!0),A.className=C.join(" "),A.setAttribute("role","option"),N.setAttribute("tabindex","-1"),A.appendChild(N),g.appendChild(A)}t.list[0].appendChild(g),!this.isMultiple&&!i.length?this.header.hide():this.headerTitle.text(this.placeholder),t.list.listview()},_button:function(){return e("<a>",{href:"#",role:"button",id:this.buttonId,"aria-haspopup":"true","aria-owns":this.menuId})},_destroy:function(){this.close(),this._origTabIndex!==r&&(this._origTabIndex!==!1?this.select.attr("tabindex",this._origTabIndex):this.select.removeAttr("tabindex")),this._removePlaceholderAttr&&this._selectOptions().removeAttr("data-"+e.mobile.ns+"placeholder"),this.listbox.remove(),o.apply(this,arguments)}})};e(n).bind("selectmenubeforecreate",function(t){var n=e(t.target).data("selectmenu");!n.options.nativeMenu&&n.element.parents(":jqmData(role='popup')").length===0&&i(n)})}(e),function(e,r){e.widget("mobile.fixedtoolbar",e.mobile.widget,{options:{visibleOnPageShow:!0,disablePageZoom:!0,transition:"slide",fullscreen:!1,tapToggle:!0,tapToggleBlacklist:"a, button, input, select, textarea, .ui-header-fixed, .ui-footer-fixed, .ui-popup",hideDuringFocus:"input, textarea, select",updatePagePadding:!0,trackPersistentToolbars:!0,supportBlacklist:function(){var e=t,n=navigator.userAgent,r=navigator.platform,i=n.match(/AppleWebKit\/([0-9]+)/),s=!!i&&i[1],o=n.match(/Fennec\/([0-9]+)/),u=!!o&&o[1],a=n.match(/Opera Mobi\/([0-9]+)/),f=!!a&&a[1];return(r.indexOf("iPhone")>-1||r.indexOf("iPad")>-1||r.indexOf("iPod")>-1)&&s&&s<534||e.operamini&&{}.toString.call(e.operamini)==="[object OperaMini]"||a&&f<7458||n.indexOf("Android")>-1&&s&&s<533||u&&u<6||"palmGetResource"in t&&s&&s<534||n.indexOf("MeeGo")>-1&&n.indexOf("NokiaBrowser/8.5.0")>-1?!0:!1},initSelector:":jqmData(position='fixed')"},_create:function(){var e=this,t=e.options,n=e.element,r=n.is(":jqmData(role='header')")?"header":"footer",i=n.closest(".ui-page");if(t.supportBlacklist()){e.destroy();return}n.addClass("ui-"+r+"-fixed"),t.fullscreen?(n.addClass("ui-"+r+"-fullscreen"),i.addClass("ui-page-"+r+"-fullscreen")):i.addClass("ui-page-"+r+"-fixed"),e._addTransitionClass(),e._bindPageEvents(),e._bindToggleHandlers()},_addTransitionClass:function(){var e=this.options.transition;e&&e!=="none"&&(e==="slide"&&(e=this.element.is(".ui-header")?"slidedown":"slideup"),this.element.addClass(e))},_bindPageEvents:function(){var n=this,r=n.options,i=n.element;i.closest(".ui-page").bind("pagebeforeshow",function(){r.disablePageZoom&&e.mobile.zoom.disable(!0),r.visibleOnPageShow||n.hide(!0)}).bind("webkitAnimationStart animationstart updatelayout",function(){var e=this;r.updatePagePadding&&n.updatePagePadding(e)}).bind("pageshow",function(){var i=this;n.updatePagePadding(i),r.updatePagePadding&&e(t).bind("throttledresize."+n.widgetName,function(){n.updatePagePadding(i)})}).bind("pagebeforehide",function(i,s){r.disablePageZoom&&e.mobile.zoom.enable(!0),r.updatePagePadding&&e(t).unbind("throttledresize."+n.widgetName);if(r.trackPersistentToolbars){var u=e(".ui-footer-fixed:jqmData(id)",this),a=e(".ui-header-fixed:jqmData(id)",this),f=u.length&&s.nextPage&&e(".ui-footer-fixed:jqmData(id='"+u.jqmData("id")+"')",s.nextPage)||e(),l=a.length&&s.nextPage&&e(".ui-header-fixed:jqmData(id='"+a.jqmData("id")+"')",s.nextPage)||e();if(f.length||l.length)f.add(l).appendTo(e.mobile.pageContainer),s.nextPage.one("pageshow",function(){f.add(l).appendTo(this)})}})},_visible:!0,updatePagePadding:function(t){var n=this.element,r=n.is(".ui-header");if(this.options.fullscreen)return;t=t||n.closest(".ui-page"),e(t).css("padding-"+(r?"top":"bottom"),n.outerHeight())},_useTransition:function(n){var r=e(t),i=this.element,s=r.scrollTop(),o=i.height(),u=i.closest(".ui-page").height(),a=e.mobile.getScreenHeight(),f=i.is(":jqmData(role='header')")?"header":"footer";return!n&&(this.options.transition&&this.options.transition!=="none"&&(f==="header"&&!this.options.fullscreen&&s>o||f==="footer"&&!this.options.fullscreen&&s+a<u-o)||this.options.fullscreen)},show:function(e){var t="ui-fixed-hidden",n=this.element;this._useTransition(e)?n.removeClass("out "+t).addClass("in"):n.removeClass(t),this._visible=!0},hide:function(e){var t="ui-fixed-hidden",n=this.element,r="out"+(this.options.transition==="slide"?" reverse":"");this._useTransition(e)?n.addClass(r).removeClass("in").animationComplete(function(){n.addClass(t).removeClass(r)}):n.addClass(t).removeClass(r),this._visible=!1},toggle:function(){this[this._visible?"hide":"show"]()},_bindToggleHandlers:function(){var t=this,n=t.options,r=t.element;r.closest(".ui-page").bind("vclick",function(r){n.tapToggle&&!e(r.target).closest(n.tapToggleBlacklist).length&&t.toggle()}).bind("focusin focusout",function(r){screen.width<500&&e(r.target).is(n.hideDuringFocus)&&!e(r.target).closest(".ui-header-fixed, .ui-footer-fixed").length&&t[r.type==="focusin"&&t._visible?"hide":"show"]()})},_destroy:function(){var e=this.element,t=e.is(".ui-header");e.closest(".ui-page").css("padding-"+(t?"top":"bottom"),""),e.removeClass("ui-header-fixed ui-footer-fixed ui-header-fullscreen ui-footer-fullscreen in out fade slidedown slideup ui-fixed-hidden"),e.closest(".ui-page").removeClass("ui-page-header-fixed ui-page-footer-fixed ui-page-header-fullscreen ui-page-footer-fullscreen")}}),e(n).bind("pagecreate create",function(t){e(t.target).jqmData("fullscreen")&&e(e.mobile.fixedtoolbar.prototype.options.initSelector,t.target).not(":jqmData(fullscreen)").jqmData("fullscreen",!0),e.mobile.fixedtoolbar.prototype.enhanceWithin(t.target)})}(e),function(e,t){function a(e){r=e.originalEvent,u=r.accelerationIncludingGravity,i=Math.abs(u.x),s=Math.abs(u.y),o=Math.abs(u.z),!t.orientation&&(i>7||(o>6&&s<8||o<8&&s>6)&&i>5)?n.enabled&&n.disable():n.enabled||n.enable()}if(!(/iPhone|iPad|iPod/.test(navigator.platform)&&navigator.userAgent.indexOf("AppleWebKit")>-1))return;var n=e.mobile.zoom,r,i,s,o,u;e(t).bind("orientationchange.iosorientationfix",n.enable).bind("devicemotion.iosorientationfix",a)}(e,this),function(e,t,r){function u(){i.removeClass("ui-mobile-rendering")}var i=e("html"),s=e("head"),o=e(t);e(t.document).trigger("mobileinit");if(!e.mobile.gradeA())return;e.mobile.ajaxBlacklist&&(e.mobile.ajaxEnabled=!1),i.addClass("ui-mobile ui-mobile-rendering"),setTimeout(u,5e3),e.extend(e.mobile,{initializePage:function(){var t=e(":jqmData(role='page'), :jqmData(role='dialog')"),r=e.mobile.path.parseLocation().hash.replace("#",""),i=n.getElementById(r);t.length||(t=e("body").wrapInner("<div data-"+e.mobile.ns+"role='page'></div>").children(0)),t.each(function(){var t=e(this);t.jqmData("url")||t.attr("data-"+e.mobile.ns+"url",t.attr("id")||location.pathname+location.search)}),e.mobile.firstPage=t.first(),e.mobile.pageContainer=t.first().parent().addClass("ui-mobile-viewport"),o.trigger("pagecontainercreate"),e.mobile.showPageLoadingMsg(),u(),!e.mobile.hashListeningEnabled||!e.mobile.path.isHashValid(location.hash)||!e(i).is(':jqmData(role="page")')&&!e.mobile.path.isPath(r)&&r!==e.mobile.dialogHashKey?(e.mobile.path.isHashValid(location.hash)&&(e.mobile.urlHistory.initialDst=r.replace("#","")),e.mobile.changePage(e.mobile.firstPage,{transition:"none",reverse:!0,changeHash:!1,fromHashChange:!0})):o.trigger("hashchange",[!0])}}),e.mobile.navreadyDeferred.resolve(),e(function(){t.scrollTo(0,1),e.mobile.defaultHomeScroll=!e.support.scrollTop||e(t).scrollTop()===1?0:1,e.fn.controlgroup&&e(n).bind("pagecreate create",function(t){e(":jqmData(role='controlgroup')",t.target).jqmEnhanceable().controlgroup({excludeInvisible:!1})}),e.mobile.autoInitializePage&&e.mobile.initializePage(),o.load(e.mobile.silentScroll),e.support.cssPointerEvents||e(n).delegate(".ui-disabled","vclick",function(e){e.preventDefault(),e.stopImmediatePropagation()})})}(e,this)});
+/*
+* jQuery Mobile v1.4.2
+* http://jquerymobile.com
+*
+* Copyright 2010, 2014 jQuery Foundation, Inc. and other contributors
+* Released under the MIT license.
+* http://jquery.org/license
+*
+*/
+
+(function ( root, doc, factory ) {
+	if ( typeof define === "function" && define.amd ) {
+		// AMD. Register as an anonymous module.
+		define( [ "jquery" ], function ( $ ) {
+			factory( $, root, doc );
+			return $.mobile;
+		});
+	} else {
+		// Browser globals
+		factory( root.jQuery, root, doc );
+	}
+}( this, document, function ( jQuery, window, document, undefined ) {
+// This plugin is an experiment for abstracting away the touch and mouse
+// events so that developers don't have to worry about which method of input
+// the device their document is loaded on supports.
+//
+// The idea here is to allow the developer to register listeners for the
+// basic mouse events, such as mousedown, mousemove, mouseup, and click,
+// and the plugin will take care of registering the correct listeners
+// behind the scenes to invoke the listener at the fastest possible time
+// for that device, while still retaining the order of event firing in
+// the traditional mouse environment, should multiple handlers be registered
+// on the same element for different events.
+//
+// The current version exposes the following virtual events to jQuery bind methods:
+// "vmouseover vmousedown vmousemove vmouseup vclick vmouseout vmousecancel"
+
+(function( $, window, document, undefined ) {
+
+var dataPropertyName = "virtualMouseBindings",
+	touchTargetPropertyName = "virtualTouchID",
+	virtualEventNames = "vmouseover vmousedown vmousemove vmouseup vclick vmouseout vmousecancel".split( " " ),
+	touchEventProps = "clientX clientY pageX pageY screenX screenY".split( " " ),
+	mouseHookProps = $.event.mouseHooks ? $.event.mouseHooks.props : [],
+	mouseEventProps = $.event.props.concat( mouseHookProps ),
+	activeDocHandlers = {},
+	resetTimerID = 0,
+	startX = 0,
+	startY = 0,
+	didScroll = false,
+	clickBlockList = [],
+	blockMouseTriggers = false,
+	blockTouchTriggers = false,
+	eventCaptureSupported = "addEventListener" in document,
+	$document = $( document ),
+	nextTouchID = 1,
+	lastTouchID = 0, threshold,
+	i;
+
+$.vmouse = {
+	moveDistanceThreshold: 10,
+	clickDistanceThreshold: 10,
+	resetTimerDuration: 1500
+};
+
+function getNativeEvent( event ) {
+
+	while ( event && typeof event.originalEvent !== "undefined" ) {
+		event = event.originalEvent;
+	}
+	return event;
+}
+
+function createVirtualEvent( event, eventType ) {
+
+	var t = event.type,
+		oe, props, ne, prop, ct, touch, i, j, len;
+
+	event = $.Event( event );
+	event.type = eventType;
+
+	oe = event.originalEvent;
+	props = $.event.props;
+
+	// addresses separation of $.event.props in to $.event.mouseHook.props and Issue 3280
+	// https://github.com/jquery/jquery-mobile/issues/3280
+	if ( t.search( /^(mouse|click)/ ) > -1 ) {
+		props = mouseEventProps;
+	}
+
+	// copy original event properties over to the new event
+	// this would happen if we could call $.event.fix instead of $.Event
+	// but we don't have a way to force an event to be fixed multiple times
+	if ( oe ) {
+		for ( i = props.length, prop; i; ) {
+			prop = props[ --i ];
+			event[ prop ] = oe[ prop ];
+		}
+	}
+
+	// make sure that if the mouse and click virtual events are generated
+	// without a .which one is defined
+	if ( t.search(/mouse(down|up)|click/) > -1 && !event.which ) {
+		event.which = 1;
+	}
+
+	if ( t.search(/^touch/) !== -1 ) {
+		ne = getNativeEvent( oe );
+		t = ne.touches;
+		ct = ne.changedTouches;
+		touch = ( t && t.length ) ? t[0] : ( ( ct && ct.length ) ? ct[ 0 ] : undefined );
+
+		if ( touch ) {
+			for ( j = 0, len = touchEventProps.length; j < len; j++) {
+				prop = touchEventProps[ j ];
+				event[ prop ] = touch[ prop ];
+			}
+		}
+	}
+
+	return event;
+}
+
+function getVirtualBindingFlags( element ) {
+
+	var flags = {},
+		b, k;
+
+	while ( element ) {
+
+		b = $.data( element, dataPropertyName );
+
+		for (  k in b ) {
+			if ( b[ k ] ) {
+				flags[ k ] = flags.hasVirtualBinding = true;
+			}
+		}
+		element = element.parentNode;
+	}
+	return flags;
+}
+
+function getClosestElementWithVirtualBinding( element, eventType ) {
+	var b;
+	while ( element ) {
+
+		b = $.data( element, dataPropertyName );
+
+		if ( b && ( !eventType || b[ eventType ] ) ) {
+			return element;
+		}
+		element = element.parentNode;
+	}
+	return null;
+}
+
+function enableTouchBindings() {
+	blockTouchTriggers = false;
+}
+
+function disableTouchBindings() {
+	blockTouchTriggers = true;
+}
+
+function enableMouseBindings() {
+	lastTouchID = 0;
+	clickBlockList.length = 0;
+	blockMouseTriggers = false;
+
+	// When mouse bindings are enabled, our
+	// touch bindings are disabled.
+	disableTouchBindings();
+}
+
+function disableMouseBindings() {
+	// When mouse bindings are disabled, our
+	// touch bindings are enabled.
+	enableTouchBindings();
+}
+
+function startResetTimer() {
+	clearResetTimer();
+	resetTimerID = setTimeout( function() {
+		resetTimerID = 0;
+		enableMouseBindings();
+	}, $.vmouse.resetTimerDuration );
+}
+
+function clearResetTimer() {
+	if ( resetTimerID ) {
+		clearTimeout( resetTimerID );
+		resetTimerID = 0;
+	}
+}
+
+function triggerVirtualEvent( eventType, event, flags ) {
+	var ve;
+
+	if ( ( flags && flags[ eventType ] ) ||
+				( !flags && getClosestElementWithVirtualBinding( event.target, eventType ) ) ) {
+
+		ve = createVirtualEvent( event, eventType );
+
+		$( event.target).trigger( ve );
+	}
+
+	return ve;
+}
+
+function mouseEventCallback( event ) {
+	var touchID = $.data( event.target, touchTargetPropertyName ),
+		ve;
+
+	if ( !blockMouseTriggers && ( !lastTouchID || lastTouchID !== touchID ) ) {
+		ve = triggerVirtualEvent( "v" + event.type, event );
+		if ( ve ) {
+			if ( ve.isDefaultPrevented() ) {
+				event.preventDefault();
+			}
+			if ( ve.isPropagationStopped() ) {
+				event.stopPropagation();
+			}
+			if ( ve.isImmediatePropagationStopped() ) {
+				event.stopImmediatePropagation();
+			}
+		}
+	}
+}
+
+function handleTouchStart( event ) {
+
+	var touches = getNativeEvent( event ).touches,
+		target, flags, t;
+
+	if ( touches && touches.length === 1 ) {
+
+		target = event.target;
+		flags = getVirtualBindingFlags( target );
+
+		if ( flags.hasVirtualBinding ) {
+
+			lastTouchID = nextTouchID++;
+			$.data( target, touchTargetPropertyName, lastTouchID );
+
+			clearResetTimer();
+
+			disableMouseBindings();
+			didScroll = false;
+
+			t = getNativeEvent( event ).touches[ 0 ];
+			startX = t.pageX;
+			startY = t.pageY;
+
+			triggerVirtualEvent( "vmouseover", event, flags );
+			triggerVirtualEvent( "vmousedown", event, flags );
+		}
+	}
+}
+
+function handleScroll( event ) {
+	if ( blockTouchTriggers ) {
+		return;
+	}
+
+	if ( !didScroll ) {
+		triggerVirtualEvent( "vmousecancel", event, getVirtualBindingFlags( event.target ) );
+	}
+
+	didScroll = true;
+	startResetTimer();
+}
+
+function handleTouchMove( event ) {
+	if ( blockTouchTriggers ) {
+		return;
+	}
+
+	var t = getNativeEvent( event ).touches[ 0 ],
+		didCancel = didScroll,
+		moveThreshold = $.vmouse.moveDistanceThreshold,
+		flags = getVirtualBindingFlags( event.target );
+
+		didScroll = didScroll ||
+			( Math.abs( t.pageX - startX ) > moveThreshold ||
+				Math.abs( t.pageY - startY ) > moveThreshold );
+
+	if ( didScroll && !didCancel ) {
+		triggerVirtualEvent( "vmousecancel", event, flags );
+	}
+
+	triggerVirtualEvent( "vmousemove", event, flags );
+	startResetTimer();
+}
+
+function handleTouchEnd( event ) {
+	if ( blockTouchTriggers ) {
+		return;
+	}
+
+	disableTouchBindings();
+
+	var flags = getVirtualBindingFlags( event.target ),
+		ve, t;
+	triggerVirtualEvent( "vmouseup", event, flags );
+
+	if ( !didScroll ) {
+		ve = triggerVirtualEvent( "vclick", event, flags );
+		if ( ve && ve.isDefaultPrevented() ) {
+			// The target of the mouse events that follow the touchend
+			// event don't necessarily match the target used during the
+			// touch. This means we need to rely on coordinates for blocking
+			// any click that is generated.
+			t = getNativeEvent( event ).changedTouches[ 0 ];
+			clickBlockList.push({
+				touchID: lastTouchID,
+				x: t.clientX,
+				y: t.clientY
+			});
+
+			// Prevent any mouse events that follow from triggering
+			// virtual event notifications.
+			blockMouseTriggers = true;
+		}
+	}
+	triggerVirtualEvent( "vmouseout", event, flags);
+	didScroll = false;
+
+	startResetTimer();
+}
+
+function hasVirtualBindings( ele ) {
+	var bindings = $.data( ele, dataPropertyName ),
+		k;
+
+	if ( bindings ) {
+		for ( k in bindings ) {
+			if ( bindings[ k ] ) {
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+function dummyMouseHandler() {}
+
+function getSpecialEventObject( eventType ) {
+	var realType = eventType.substr( 1 );
+
+	return {
+		setup: function(/* data, namespace */) {
+			// If this is the first virtual mouse binding for this element,
+			// add a bindings object to its data.
+
+			if ( !hasVirtualBindings( this ) ) {
+				$.data( this, dataPropertyName, {} );
+			}
+
+			// If setup is called, we know it is the first binding for this
+			// eventType, so initialize the count for the eventType to zero.
+			var bindings = $.data( this, dataPropertyName );
+			bindings[ eventType ] = true;
+
+			// If this is the first virtual mouse event for this type,
+			// register a global handler on the document.
+
+			activeDocHandlers[ eventType ] = ( activeDocHandlers[ eventType ] || 0 ) + 1;
+
+			if ( activeDocHandlers[ eventType ] === 1 ) {
+				$document.bind( realType, mouseEventCallback );
+			}
+
+			// Some browsers, like Opera Mini, won't dispatch mouse/click events
+			// for elements unless they actually have handlers registered on them.
+			// To get around this, we register dummy handlers on the elements.
+
+			$( this ).bind( realType, dummyMouseHandler );
+
+			// For now, if event capture is not supported, we rely on mouse handlers.
+			if ( eventCaptureSupported ) {
+				// If this is the first virtual mouse binding for the document,
+				// register our touchstart handler on the document.
+
+				activeDocHandlers[ "touchstart" ] = ( activeDocHandlers[ "touchstart" ] || 0) + 1;
+
+				if ( activeDocHandlers[ "touchstart" ] === 1 ) {
+					$document.bind( "touchstart", handleTouchStart )
+						.bind( "touchend", handleTouchEnd )
+
+						// On touch platforms, touching the screen and then dragging your finger
+						// causes the window content to scroll after some distance threshold is
+						// exceeded. On these platforms, a scroll prevents a click event from being
+						// dispatched, and on some platforms, even the touchend is suppressed. To
+						// mimic the suppression of the click event, we need to watch for a scroll
+						// event. Unfortunately, some platforms like iOS don't dispatch scroll
+						// events until *AFTER* the user lifts their finger (touchend). This means
+						// we need to watch both scroll and touchmove events to figure out whether
+						// or not a scroll happenens before the touchend event is fired.
+
+						.bind( "touchmove", handleTouchMove )
+						.bind( "scroll", handleScroll );
+				}
+			}
+		},
+
+		teardown: function(/* data, namespace */) {
+			// If this is the last virtual binding for this eventType,
+			// remove its global handler from the document.
+
+			--activeDocHandlers[ eventType ];
+
+			if ( !activeDocHandlers[ eventType ] ) {
+				$document.unbind( realType, mouseEventCallback );
+			}
+
+			if ( eventCaptureSupported ) {
+				// If this is the last virtual mouse binding in existence,
+				// remove our document touchstart listener.
+
+				--activeDocHandlers[ "touchstart" ];
+
+				if ( !activeDocHandlers[ "touchstart" ] ) {
+					$document.unbind( "touchstart", handleTouchStart )
+						.unbind( "touchmove", handleTouchMove )
+						.unbind( "touchend", handleTouchEnd )
+						.unbind( "scroll", handleScroll );
+				}
+			}
+
+			var $this = $( this ),
+				bindings = $.data( this, dataPropertyName );
+
+			// teardown may be called when an element was
+			// removed from the DOM. If this is the case,
+			// jQuery core may have already stripped the element
+			// of any data bindings so we need to check it before
+			// using it.
+			if ( bindings ) {
+				bindings[ eventType ] = false;
+			}
+
+			// Unregister the dummy event handler.
+
+			$this.unbind( realType, dummyMouseHandler );
+
+			// If this is the last virtual mouse binding on the
+			// element, remove the binding data from the element.
+
+			if ( !hasVirtualBindings( this ) ) {
+				$this.removeData( dataPropertyName );
+			}
+		}
+	};
+}
+
+// Expose our custom events to the jQuery bind/unbind mechanism.
+
+for ( i = 0; i < virtualEventNames.length; i++ ) {
+	$.event.special[ virtualEventNames[ i ] ] = getSpecialEventObject( virtualEventNames[ i ] );
+}
+
+// Add a capture click handler to block clicks.
+// Note that we require event capture support for this so if the device
+// doesn't support it, we punt for now and rely solely on mouse events.
+if ( eventCaptureSupported ) {
+	document.addEventListener( "click", function( e ) {
+		var cnt = clickBlockList.length,
+			target = e.target,
+			x, y, ele, i, o, touchID;
+
+		if ( cnt ) {
+			x = e.clientX;
+			y = e.clientY;
+			threshold = $.vmouse.clickDistanceThreshold;
+
+			// The idea here is to run through the clickBlockList to see if
+			// the current click event is in the proximity of one of our
+			// vclick events that had preventDefault() called on it. If we find
+			// one, then we block the click.
+			//
+			// Why do we have to rely on proximity?
+			//
+			// Because the target of the touch event that triggered the vclick
+			// can be different from the target of the click event synthesized
+			// by the browser. The target of a mouse/click event that is synthesized
+			// from a touch event seems to be implementation specific. For example,
+			// some browsers will fire mouse/click events for a link that is near
+			// a touch event, even though the target of the touchstart/touchend event
+			// says the user touched outside the link. Also, it seems that with most
+			// browsers, the target of the mouse/click event is not calculated until the
+			// time it is dispatched, so if you replace an element that you touched
+			// with another element, the target of the mouse/click will be the new
+			// element underneath that point.
+			//
+			// Aside from proximity, we also check to see if the target and any
+			// of its ancestors were the ones that blocked a click. This is necessary
+			// because of the strange mouse/click target calculation done in the
+			// Android 2.1 browser, where if you click on an element, and there is a
+			// mouse/click handler on one of its ancestors, the target will be the
+			// innermost child of the touched element, even if that child is no where
+			// near the point of touch.
+
+			ele = target;
+
+			while ( ele ) {
+				for ( i = 0; i < cnt; i++ ) {
+					o = clickBlockList[ i ];
+					touchID = 0;
+
+					if ( ( ele === target && Math.abs( o.x - x ) < threshold && Math.abs( o.y - y ) < threshold ) ||
+								$.data( ele, touchTargetPropertyName ) === o.touchID ) {
+						// XXX: We may want to consider removing matches from the block list
+						//      instead of waiting for the reset timer to fire.
+						e.preventDefault();
+						e.stopPropagation();
+						return;
+					}
+				}
+				ele = ele.parentNode;
+			}
+		}
+	}, true);
+}
+})( jQuery, window, document );
+
+(function( $ ) {
+	$.mobile = {};
+}( jQuery ));
+
+	(function( $, undefined ) {
+		var support = {
+			touch: "ontouchend" in document
+		};
+
+		$.mobile.support = $.mobile.support || {};
+		$.extend( $.support, support );
+		$.extend( $.mobile.support, support );
+	}( jQuery ));
+
+
+(function( $, window, undefined ) {
+	var $document = $( document ),
+		supportTouch = $.mobile.support.touch,
+		scrollEvent = "touchmove scroll",
+		touchStartEvent = supportTouch ? "touchstart" : "mousedown",
+		touchStopEvent = supportTouch ? "touchend" : "mouseup",
+		touchMoveEvent = supportTouch ? "touchmove" : "mousemove";
+
+	// setup new event shortcuts
+	$.each( ( "touchstart touchmove touchend " +
+		"tap taphold " +
+		"swipe swipeleft swiperight " +
+		"scrollstart scrollstop" ).split( " " ), function( i, name ) {
+
+		$.fn[ name ] = function( fn ) {
+			return fn ? this.bind( name, fn ) : this.trigger( name );
+		};
+
+		// jQuery < 1.8
+		if ( $.attrFn ) {
+			$.attrFn[ name ] = true;
+		}
+	});
+
+	function triggerCustomEvent( obj, eventType, event, bubble ) {
+		var originalType = event.type;
+		event.type = eventType;
+		if ( bubble ) {
+			$.event.trigger( event, undefined, obj );
+		} else {
+			$.event.dispatch.call( obj, event );
+		}
+		event.type = originalType;
+	}
+
+	// also handles scrollstop
+	$.event.special.scrollstart = {
+
+		enabled: true,
+		setup: function() {
+
+			var thisObject = this,
+				$this = $( thisObject ),
+				scrolling,
+				timer;
+
+			function trigger( event, state ) {
+				scrolling = state;
+				triggerCustomEvent( thisObject, scrolling ? "scrollstart" : "scrollstop", event );
+			}
+
+			// iPhone triggers scroll after a small delay; use touchmove instead
+			$this.bind( scrollEvent, function( event ) {
+
+				if ( !$.event.special.scrollstart.enabled ) {
+					return;
+				}
+
+				if ( !scrolling ) {
+					trigger( event, true );
+				}
+
+				clearTimeout( timer );
+				timer = setTimeout( function() {
+					trigger( event, false );
+				}, 50 );
+			});
+		},
+		teardown: function() {
+			$( this ).unbind( scrollEvent );
+		}
+	};
+
+	// also handles taphold
+	$.event.special.tap = {
+		tapholdThreshold: 750,
+		emitTapOnTaphold: true,
+		setup: function() {
+			var thisObject = this,
+				$this = $( thisObject ),
+				isTaphold = false;
+
+			$this.bind( "vmousedown", function( event ) {
+				isTaphold = false;
+				if ( event.which && event.which !== 1 ) {
+					return false;
+				}
+
+				var origTarget = event.target,
+					timer;
+
+				function clearTapTimer() {
+					clearTimeout( timer );
+				}
+
+				function clearTapHandlers() {
+					clearTapTimer();
+
+					$this.unbind( "vclick", clickHandler )
+						.unbind( "vmouseup", clearTapTimer );
+					$document.unbind( "vmousecancel", clearTapHandlers );
+				}
+
+				function clickHandler( event ) {
+					clearTapHandlers();
+
+					// ONLY trigger a 'tap' event if the start target is
+					// the same as the stop target.
+					if ( !isTaphold && origTarget === event.target ) {
+						triggerCustomEvent( thisObject, "tap", event );
+					} else if ( isTaphold ) {
+						event.stopPropagation();
+					}
+				}
+
+				$this.bind( "vmouseup", clearTapTimer )
+					.bind( "vclick", clickHandler );
+				$document.bind( "vmousecancel", clearTapHandlers );
+
+				timer = setTimeout( function() {
+					if ( !$.event.special.tap.emitTapOnTaphold ) {
+						isTaphold = true;
+					}
+					triggerCustomEvent( thisObject, "taphold", $.Event( "taphold", { target: origTarget } ) );
+				}, $.event.special.tap.tapholdThreshold );
+			});
+		},
+		teardown: function() {
+			$( this ).unbind( "vmousedown" ).unbind( "vclick" ).unbind( "vmouseup" );
+			$document.unbind( "vmousecancel" );
+		}
+	};
+
+	// Also handles swipeleft, swiperight
+	$.event.special.swipe = {
+
+		// More than this horizontal displacement, and we will suppress scrolling.
+		scrollSupressionThreshold: 30,
+
+		// More time than this, and it isn't a swipe.
+		durationThreshold: 1000,
+
+		// Swipe horizontal displacement must be more than this.
+		horizontalDistanceThreshold: 30,
+
+		// Swipe vertical displacement must be less than this.
+		verticalDistanceThreshold: 30,
+
+		getLocation: function ( event ) {
+			var winPageX = window.pageXOffset,
+				winPageY = window.pageYOffset,
+				x = event.clientX,
+				y = event.clientY;
+
+			if ( event.pageY === 0 && Math.floor( y ) > Math.floor( event.pageY ) ||
+				event.pageX === 0 && Math.floor( x ) > Math.floor( event.pageX ) ) {
+
+				// iOS4 clientX/clientY have the value that should have been
+				// in pageX/pageY. While pageX/page/ have the value 0
+				x = x - winPageX;
+				y = y - winPageY;
+			} else if ( y < ( event.pageY - winPageY) || x < ( event.pageX - winPageX ) ) {
+
+				// Some Android browsers have totally bogus values for clientX/Y
+				// when scrolling/zooming a page. Detectable since clientX/clientY
+				// should never be smaller than pageX/pageY minus page scroll
+				x = event.pageX - winPageX;
+				y = event.pageY - winPageY;
+			}
+
+			return {
+				x: x,
+				y: y
+			};
+		},
+
+		start: function( event ) {
+			var data = event.originalEvent.touches ?
+					event.originalEvent.touches[ 0 ] : event,
+				location = $.event.special.swipe.getLocation( data );
+			return {
+						time: ( new Date() ).getTime(),
+						coords: [ location.x, location.y ],
+						origin: $( event.target )
+					};
+		},
+
+		stop: function( event ) {
+			var data = event.originalEvent.touches ?
+					event.originalEvent.touches[ 0 ] : event,
+				location = $.event.special.swipe.getLocation( data );
+			return {
+						time: ( new Date() ).getTime(),
+						coords: [ location.x, location.y ]
+					};
+		},
+
+		handleSwipe: function( start, stop, thisObject, origTarget ) {
+			if ( stop.time - start.time < $.event.special.swipe.durationThreshold &&
+				Math.abs( start.coords[ 0 ] - stop.coords[ 0 ] ) > $.event.special.swipe.horizontalDistanceThreshold &&
+				Math.abs( start.coords[ 1 ] - stop.coords[ 1 ] ) < $.event.special.swipe.verticalDistanceThreshold ) {
+				var direction = start.coords[0] > stop.coords[ 0 ] ? "swipeleft" : "swiperight";
+
+				triggerCustomEvent( thisObject, "swipe", $.Event( "swipe", { target: origTarget, swipestart: start, swipestop: stop }), true );
+				triggerCustomEvent( thisObject, direction,$.Event( direction, { target: origTarget, swipestart: start, swipestop: stop } ), true );
+				return true;
+			}
+			return false;
+
+		},
+
+		// This serves as a flag to ensure that at most one swipe event event is
+		// in work at any given time
+		eventInProgress: false,
+
+		setup: function() {
+			var events,
+				thisObject = this,
+				$this = $( thisObject ),
+				context = {};
+
+			// Retrieve the events data for this element and add the swipe context
+			events = $.data( this, "mobile-events" );
+			if ( !events ) {
+				events = { length: 0 };
+				$.data( this, "mobile-events", events );
+			}
+			events.length++;
+			events.swipe = context;
+
+			context.start = function( event ) {
+
+				// Bail if we're already working on a swipe event
+				if ( $.event.special.swipe.eventInProgress ) {
+					return;
+				}
+				$.event.special.swipe.eventInProgress = true;
+
+				var stop,
+					start = $.event.special.swipe.start( event ),
+					origTarget = event.target,
+					emitted = false;
+
+				context.move = function( event ) {
+					if ( !start ) {
+						return;
+					}
+
+					stop = $.event.special.swipe.stop( event );
+					if ( !emitted ) {
+						emitted = $.event.special.swipe.handleSwipe( start, stop, thisObject, origTarget );
+						if ( emitted ) {
+
+							// Reset the context to make way for the next swipe event
+							$.event.special.swipe.eventInProgress = false;
+						}
+					}
+					// prevent scrolling
+					if ( Math.abs( start.coords[ 0 ] - stop.coords[ 0 ] ) > $.event.special.swipe.scrollSupressionThreshold ) {
+						event.preventDefault();
+					}
+				};
+
+				context.stop = function() {
+						emitted = true;
+
+						// Reset the context to make way for the next swipe event
+						$.event.special.swipe.eventInProgress = false;
+						$document.off( touchMoveEvent, context.move );
+						context.move = null;
+				};
+
+				$document.on( touchMoveEvent, context.move )
+					.one( touchStopEvent, context.stop );
+			};
+			$this.on( touchStartEvent, context.start );
+		},
+
+		teardown: function() {
+			var events, context;
+
+			events = $.data( this, "mobile-events" );
+			if ( events ) {
+				context = events.swipe;
+				delete events.swipe;
+				events.length--;
+				if ( events.length === 0 ) {
+					$.removeData( this, "mobile-events" );
+				}
+			}
+
+			if ( context ) {
+				if ( context.start ) {
+					$( this ).off( touchStartEvent, context.start );
+				}
+				if ( context.move ) {
+					$document.off( touchMoveEvent, context.move );
+				}
+				if ( context.stop ) {
+					$document.off( touchStopEvent, context.stop );
+				}
+			}
+		}
+	};
+	$.each({
+		scrollstop: "scrollstart",
+		taphold: "tap",
+		swipeleft: "swipe",
+		swiperight: "swipe"
+	}, function( event, sourceEvent ) {
+
+		$.event.special[ event ] = {
+			setup: function() {
+				$( this ).bind( sourceEvent, $.noop );
+			},
+			teardown: function() {
+				$( this ).unbind( sourceEvent );
+			}
+		};
+	});
+
+})( jQuery, this );
+
+(function( $, window, undefined ) {
+	$.extend( $.mobile, {
+
+		// Version of the jQuery Mobile Framework
+		version: "1.4.2",
+
+		// Deprecated and no longer used in 1.4 remove in 1.5
+		// Define the url parameter used for referencing widget-generated sub-pages.
+		// Translates to example.html&ui-page=subpageIdentifier
+		// hash segment before &ui-page= is used to make Ajax request
+		subPageUrlKey: "ui-page",
+
+		hideUrlBar: true,
+
+		// Keepnative Selector
+		keepNative: ":jqmData(role='none'), :jqmData(role='nojs')",
+
+		// Deprecated in 1.4 remove in 1.5
+		// Class assigned to page currently in view, and during transitions
+		activePageClass: "ui-page-active",
+
+		// Deprecated in 1.4 remove in 1.5
+		// Class used for "active" button state, from CSS framework
+		activeBtnClass: "ui-btn-active",
+
+		// Deprecated in 1.4 remove in 1.5
+		// Class used for "focus" form element state, from CSS framework
+		focusClass: "ui-focus",
+
+		// Automatically handle clicks and form submissions through Ajax, when same-domain
+		ajaxEnabled: true,
+
+		// Automatically load and show pages based on location.hash
+		hashListeningEnabled: true,
+
+		// disable to prevent jquery from bothering with links
+		linkBindingEnabled: true,
+
+		// Set default page transition - 'none' for no transitions
+		defaultPageTransition: "fade",
+
+		// Set maximum window width for transitions to apply - 'false' for no limit
+		maxTransitionWidth: false,
+
+		// Minimum scroll distance that will be remembered when returning to a page
+		// Deprecated remove in 1.5
+		minScrollBack: 0,
+
+		// Set default dialog transition - 'none' for no transitions
+		defaultDialogTransition: "pop",
+
+		// Error response message - appears when an Ajax page request fails
+		pageLoadErrorMessage: "Error Loading Page",
+
+		// For error messages, which theme does the box uses?
+		pageLoadErrorMessageTheme: "a",
+
+		// replace calls to window.history.back with phonegaps navigation helper
+		// where it is provided on the window object
+		phonegapNavigationEnabled: false,
+
+		//automatically initialize the DOM when it's ready
+		autoInitializePage: true,
+
+		pushStateEnabled: true,
+
+		// allows users to opt in to ignoring content by marking a parent element as
+		// data-ignored
+		ignoreContentEnabled: false,
+
+		buttonMarkup: {
+			hoverDelay: 200
+		},
+
+		// disable the alteration of the dynamic base tag or links in the case
+		// that a dynamic base tag isn't supported
+		dynamicBaseEnabled: true,
+
+		// default the property to remove dependency on assignment in init module
+		pageContainer: $(),
+
+		//enable cross-domain page support
+		allowCrossDomainPages: false,
+
+		dialogHashKey: "&ui-state=dialog"
+	});
+})( jQuery, this );
+
+(function( $, window, undefined ) {
+	var nsNormalizeDict = {},
+		oldFind = $.find,
+		rbrace = /(?:\{[\s\S]*\}|\[[\s\S]*\])$/,
+		jqmDataRE = /:jqmData\(([^)]*)\)/g;
+
+	$.extend( $.mobile, {
+
+		// Namespace used framework-wide for data-attrs. Default is no namespace
+
+		ns: "",
+
+		// Retrieve an attribute from an element and perform some massaging of the value
+
+		getAttribute: function( element, key ) {
+			var data;
+
+			element = element.jquery ? element[0] : element;
+
+			if ( element && element.getAttribute ) {
+				data = element.getAttribute( "data-" + $.mobile.ns + key );
+			}
+
+			// Copied from core's src/data.js:dataAttr()
+			// Convert from a string to a proper data type
+			try {
+				data = data === "true" ? true :
+					data === "false" ? false :
+					data === "null" ? null :
+					// Only convert to a number if it doesn't change the string
+					+data + "" === data ? +data :
+					rbrace.test( data ) ? JSON.parse( data ) :
+					data;
+			} catch( err ) {}
+
+			return data;
+		},
+
+		// Expose our cache for testing purposes.
+		nsNormalizeDict: nsNormalizeDict,
+
+		// Take a data attribute property, prepend the namespace
+		// and then camel case the attribute string. Add the result
+		// to our nsNormalizeDict so we don't have to do this again.
+		nsNormalize: function( prop ) {
+			return nsNormalizeDict[ prop ] ||
+				( nsNormalizeDict[ prop ] = $.camelCase( $.mobile.ns + prop ) );
+		},
+
+		// Find the closest javascript page element to gather settings data jsperf test
+		// http://jsperf.com/single-complex-selector-vs-many-complex-selectors/edit
+		// possibly naive, but it shows that the parsing overhead for *just* the page selector vs
+		// the page and dialog selector is negligable. This could probably be speed up by
+		// doing a similar parent node traversal to the one found in the inherited theme code above
+		closestPageData: function( $target ) {
+			return $target
+				.closest( ":jqmData(role='page'), :jqmData(role='dialog')" )
+				.data( "mobile-page" );
+		}
+
+	});
+
+	// Mobile version of data and removeData and hasData methods
+	// ensures all data is set and retrieved using jQuery Mobile's data namespace
+	$.fn.jqmData = function( prop, value ) {
+		var result;
+		if ( typeof prop !== "undefined" ) {
+			if ( prop ) {
+				prop = $.mobile.nsNormalize( prop );
+			}
+
+			// undefined is permitted as an explicit input for the second param
+			// in this case it returns the value and does not set it to undefined
+			if ( arguments.length < 2 || value === undefined ) {
+				result = this.data( prop );
+			} else {
+				result = this.data( prop, value );
+			}
+		}
+		return result;
+	};
+
+	$.jqmData = function( elem, prop, value ) {
+		var result;
+		if ( typeof prop !== "undefined" ) {
+			result = $.data( elem, prop ? $.mobile.nsNormalize( prop ) : prop, value );
+		}
+		return result;
+	};
+
+	$.fn.jqmRemoveData = function( prop ) {
+		return this.removeData( $.mobile.nsNormalize( prop ) );
+	};
+
+	$.jqmRemoveData = function( elem, prop ) {
+		return $.removeData( elem, $.mobile.nsNormalize( prop ) );
+	};
+
+	$.find = function( selector, context, ret, extra ) {
+		if ( selector.indexOf( ":jqmData" ) > -1 ) {
+			selector = selector.replace( jqmDataRE, "[data-" + ( $.mobile.ns || "" ) + "$1]" );
+		}
+
+		return oldFind.call( this, selector, context, ret, extra );
+	};
+
+	$.extend( $.find, oldFind );
+
+})( jQuery, this );
+
+/*!
+ * jQuery UI Core c0ab71056b936627e8a7821f03c044aec6280a40
+ * http://jqueryui.com
+ *
+ * Copyright 2013 jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ *
+ * http://api.jqueryui.com/category/ui-core/
+ */
+(function( $, undefined ) {
+
+var uuid = 0,
+	runiqueId = /^ui-id-\d+$/;
+
+// $.ui might exist from components with no dependencies, e.g., $.ui.position
+$.ui = $.ui || {};
+
+$.extend( $.ui, {
+	version: "c0ab71056b936627e8a7821f03c044aec6280a40",
+
+	keyCode: {
+		BACKSPACE: 8,
+		COMMA: 188,
+		DELETE: 46,
+		DOWN: 40,
+		END: 35,
+		ENTER: 13,
+		ESCAPE: 27,
+		HOME: 36,
+		LEFT: 37,
+		PAGE_DOWN: 34,
+		PAGE_UP: 33,
+		PERIOD: 190,
+		RIGHT: 39,
+		SPACE: 32,
+		TAB: 9,
+		UP: 38
+	}
+});
+
+// plugins
+$.fn.extend({
+	focus: (function( orig ) {
+		return function( delay, fn ) {
+			return typeof delay === "number" ?
+				this.each(function() {
+					var elem = this;
+					setTimeout(function() {
+						$( elem ).focus();
+						if ( fn ) {
+							fn.call( elem );
+						}
+					}, delay );
+				}) :
+				orig.apply( this, arguments );
+		};
+	})( $.fn.focus ),
+
+	scrollParent: function() {
+		var scrollParent;
+		if (($.ui.ie && (/(static|relative)/).test(this.css("position"))) || (/absolute/).test(this.css("position"))) {
+			scrollParent = this.parents().filter(function() {
+				return (/(relative|absolute|fixed)/).test($.css(this,"position")) && (/(auto|scroll)/).test($.css(this,"overflow")+$.css(this,"overflow-y")+$.css(this,"overflow-x"));
+			}).eq(0);
+		} else {
+			scrollParent = this.parents().filter(function() {
+				return (/(auto|scroll)/).test($.css(this,"overflow")+$.css(this,"overflow-y")+$.css(this,"overflow-x"));
+			}).eq(0);
+		}
+
+		return ( /fixed/ ).test( this.css( "position") ) || !scrollParent.length ? $( this[ 0 ].ownerDocument || document ) : scrollParent;
+	},
+
+	uniqueId: function() {
+		return this.each(function() {
+			if ( !this.id ) {
+				this.id = "ui-id-" + (++uuid);
+			}
+		});
+	},
+
+	removeUniqueId: function() {
+		return this.each(function() {
+			if ( runiqueId.test( this.id ) ) {
+				$( this ).removeAttr( "id" );
+			}
+		});
+	}
+});
+
+// selectors
+function focusable( element, isTabIndexNotNaN ) {
+	var map, mapName, img,
+		nodeName = element.nodeName.toLowerCase();
+	if ( "area" === nodeName ) {
+		map = element.parentNode;
+		mapName = map.name;
+		if ( !element.href || !mapName || map.nodeName.toLowerCase() !== "map" ) {
+			return false;
+		}
+		img = $( "img[usemap=#" + mapName + "]" )[0];
+		return !!img && visible( img );
+	}
+	return ( /input|select|textarea|button|object/.test( nodeName ) ?
+		!element.disabled :
+		"a" === nodeName ?
+			element.href || isTabIndexNotNaN :
+			isTabIndexNotNaN) &&
+		// the element and all of its ancestors must be visible
+		visible( element );
+}
+
+function visible( element ) {
+	return $.expr.filters.visible( element ) &&
+		!$( element ).parents().addBack().filter(function() {
+			return $.css( this, "visibility" ) === "hidden";
+		}).length;
+}
+
+$.extend( $.expr[ ":" ], {
+	data: $.expr.createPseudo ?
+		$.expr.createPseudo(function( dataName ) {
+			return function( elem ) {
+				return !!$.data( elem, dataName );
+			};
+		}) :
+		// support: jQuery <1.8
+		function( elem, i, match ) {
+			return !!$.data( elem, match[ 3 ] );
+		},
+
+	focusable: function( element ) {
+		return focusable( element, !isNaN( $.attr( element, "tabindex" ) ) );
+	},
+
+	tabbable: function( element ) {
+		var tabIndex = $.attr( element, "tabindex" ),
+			isTabIndexNaN = isNaN( tabIndex );
+		return ( isTabIndexNaN || tabIndex >= 0 ) && focusable( element, !isTabIndexNaN );
+	}
+});
+
+// support: jQuery <1.8
+if ( !$( "<a>" ).outerWidth( 1 ).jquery ) {
+	$.each( [ "Width", "Height" ], function( i, name ) {
+		var side = name === "Width" ? [ "Left", "Right" ] : [ "Top", "Bottom" ],
+			type = name.toLowerCase(),
+			orig = {
+				innerWidth: $.fn.innerWidth,
+				innerHeight: $.fn.innerHeight,
+				outerWidth: $.fn.outerWidth,
+				outerHeight: $.fn.outerHeight
+			};
+
+		function reduce( elem, size, border, margin ) {
+			$.each( side, function() {
+				size -= parseFloat( $.css( elem, "padding" + this ) ) || 0;
+				if ( border ) {
+					size -= parseFloat( $.css( elem, "border" + this + "Width" ) ) || 0;
+				}
+				if ( margin ) {
+					size -= parseFloat( $.css( elem, "margin" + this ) ) || 0;
+				}
+			});
+			return size;
+		}
+
+		$.fn[ "inner" + name ] = function( size ) {
+			if ( size === undefined ) {
+				return orig[ "inner" + name ].call( this );
+			}
+
+			return this.each(function() {
+				$( this ).css( type, reduce( this, size ) + "px" );
+			});
+		};
+
+		$.fn[ "outer" + name] = function( size, margin ) {
+			if ( typeof size !== "number" ) {
+				return orig[ "outer" + name ].call( this, size );
+			}
+
+			return this.each(function() {
+				$( this).css( type, reduce( this, size, true, margin ) + "px" );
+			});
+		};
+	});
+}
+
+// support: jQuery <1.8
+if ( !$.fn.addBack ) {
+	$.fn.addBack = function( selector ) {
+		return this.add( selector == null ?
+			this.prevObject : this.prevObject.filter( selector )
+		);
+	};
+}
+
+// support: jQuery 1.6.1, 1.6.2 (http://bugs.jquery.com/ticket/9413)
+if ( $( "<a>" ).data( "a-b", "a" ).removeData( "a-b" ).data( "a-b" ) ) {
+	$.fn.removeData = (function( removeData ) {
+		return function( key ) {
+			if ( arguments.length ) {
+				return removeData.call( this, $.camelCase( key ) );
+			} else {
+				return removeData.call( this );
+			}
+		};
+	})( $.fn.removeData );
+}
+
+
+
+
+
+// deprecated
+$.ui.ie = !!/msie [\w.]+/.exec( navigator.userAgent.toLowerCase() );
+
+$.support.selectstart = "onselectstart" in document.createElement( "div" );
+$.fn.extend({
+	disableSelection: function() {
+		return this.bind( ( $.support.selectstart ? "selectstart" : "mousedown" ) +
+			".ui-disableSelection", function( event ) {
+				event.preventDefault();
+			});
+	},
+
+	enableSelection: function() {
+		return this.unbind( ".ui-disableSelection" );
+	},
+
+	zIndex: function( zIndex ) {
+		if ( zIndex !== undefined ) {
+			return this.css( "zIndex", zIndex );
+		}
+
+		if ( this.length ) {
+			var elem = $( this[ 0 ] ), position, value;
+			while ( elem.length && elem[ 0 ] !== document ) {
+				// Ignore z-index if position is set to a value where z-index is ignored by the browser
+				// This makes behavior of this function consistent across browsers
+				// WebKit always returns auto if the element is positioned
+				position = elem.css( "position" );
+				if ( position === "absolute" || position === "relative" || position === "fixed" ) {
+					// IE returns 0 when zIndex is not specified
+					// other browsers return a string
+					// we ignore the case of nested elements with an explicit value of 0
+					// <div style="z-index: -10;"><div style="z-index: 0;"></div></div>
+					value = parseInt( elem.css( "zIndex" ), 10 );
+					if ( !isNaN( value ) && value !== 0 ) {
+						return value;
+					}
+				}
+				elem = elem.parent();
+			}
+		}
+
+		return 0;
+	}
+});
+
+// $.ui.plugin is deprecated. Use $.widget() extensions instead.
+$.ui.plugin = {
+	add: function( module, option, set ) {
+		var i,
+			proto = $.ui[ module ].prototype;
+		for ( i in set ) {
+			proto.plugins[ i ] = proto.plugins[ i ] || [];
+			proto.plugins[ i ].push( [ option, set[ i ] ] );
+		}
+	},
+	call: function( instance, name, args, allowDisconnected ) {
+		var i,
+			set = instance.plugins[ name ];
+
+		if ( !set ) {
+			return;
+		}
+
+		if ( !allowDisconnected && ( !instance.element[ 0 ].parentNode || instance.element[ 0 ].parentNode.nodeType === 11 ) ) {
+			return;
+		}
+
+		for ( i = 0; i < set.length; i++ ) {
+			if ( instance.options[ set[ i ][ 0 ] ] ) {
+				set[ i ][ 1 ].apply( instance.element, args );
+			}
+		}
+	}
+};
+
+})( jQuery );
+
+(function( $, window, undefined ) {
+
+	// Subtract the height of external toolbars from the page height, if the page does not have
+	// internal toolbars of the same type
+	var compensateToolbars = function( page, desiredHeight ) {
+		var pageParent = page.parent(),
+			toolbarsAffectingHeight = [],
+			externalHeaders = pageParent.children( ":jqmData(role='header')" ),
+			internalHeaders = page.children( ":jqmData(role='header')" ),
+			externalFooters = pageParent.children( ":jqmData(role='footer')" ),
+			internalFooters = page.children( ":jqmData(role='footer')" );
+
+		// If we have no internal headers, but we do have external headers, then their height
+		// reduces the page height
+		if ( internalHeaders.length === 0 && externalHeaders.length > 0 ) {
+			toolbarsAffectingHeight = toolbarsAffectingHeight.concat( externalHeaders.toArray() );
+		}
+
+		// If we have no internal footers, but we do have external footers, then their height
+		// reduces the page height
+		if ( internalFooters.length === 0 && externalFooters.length > 0 ) {
+			toolbarsAffectingHeight = toolbarsAffectingHeight.concat( externalFooters.toArray() );
+		}
+
+		$.each( toolbarsAffectingHeight, function( index, value ) {
+			desiredHeight -= $( value ).outerHeight();
+		});
+
+		// Height must be at least zero
+		return Math.max( 0, desiredHeight );
+	};
+
+	$.extend( $.mobile, {
+		// define the window and the document objects
+		window: $( window ),
+		document: $( document ),
+
+		// TODO: Remove and use $.ui.keyCode directly
+		keyCode: $.ui.keyCode,
+
+		// Place to store various widget extensions
+		behaviors: {},
+
+		// Scroll page vertically: scroll to 0 to hide iOS address bar, or pass a Y value
+		silentScroll: function( ypos ) {
+			if ( $.type( ypos ) !== "number" ) {
+				ypos = $.mobile.defaultHomeScroll;
+			}
+
+			// prevent scrollstart and scrollstop events
+			$.event.special.scrollstart.enabled = false;
+
+			setTimeout(function() {
+				window.scrollTo( 0, ypos );
+				$.mobile.document.trigger( "silentscroll", { x: 0, y: ypos });
+			}, 20 );
+
+			setTimeout(function() {
+				$.event.special.scrollstart.enabled = true;
+			}, 150 );
+		},
+
+		getClosestBaseUrl: function( ele )	{
+			// Find the closest page and extract out its url.
+			var url = $( ele ).closest( ".ui-page" ).jqmData( "url" ),
+				base = $.mobile.path.documentBase.hrefNoHash;
+
+			if ( !$.mobile.dynamicBaseEnabled || !url || !$.mobile.path.isPath( url ) ) {
+				url = base;
+			}
+
+			return $.mobile.path.makeUrlAbsolute( url, base );
+		},
+		removeActiveLinkClass: function( forceRemoval ) {
+			if ( !!$.mobile.activeClickedLink &&
+				( !$.mobile.activeClickedLink.closest( "." + $.mobile.activePageClass ).length ||
+					forceRemoval ) ) {
+
+				$.mobile.activeClickedLink.removeClass( $.mobile.activeBtnClass );
+			}
+			$.mobile.activeClickedLink = null;
+		},
+
+		// DEPRECATED in 1.4
+		// Find the closest parent with a theme class on it. Note that
+		// we are not using $.fn.closest() on purpose here because this
+		// method gets called quite a bit and we need it to be as fast
+		// as possible.
+		getInheritedTheme: function( el, defaultTheme ) {
+			var e = el[ 0 ],
+				ltr = "",
+				re = /ui-(bar|body|overlay)-([a-z])\b/,
+				c, m;
+			while ( e ) {
+				c = e.className || "";
+				if ( c && ( m = re.exec( c ) ) && ( ltr = m[ 2 ] ) ) {
+					// We found a parent with a theme class
+					// on it so bail from this loop.
+					break;
+				}
+
+				e = e.parentNode;
+			}
+			// Return the theme letter we found, if none, return the
+			// specified default.
+			return ltr || defaultTheme || "a";
+		},
+
+		enhanceable: function( elements ) {
+			return this.haveParents( elements, "enhance" );
+		},
+
+		hijackable: function( elements ) {
+			return this.haveParents( elements, "ajax" );
+		},
+
+		haveParents: function( elements, attr ) {
+			if ( !$.mobile.ignoreContentEnabled ) {
+				return elements;
+			}
+
+			var count = elements.length,
+				$newSet = $(),
+				e, $element, excluded,
+				i, c;
+
+			for ( i = 0; i < count; i++ ) {
+				$element = elements.eq( i );
+				excluded = false;
+				e = elements[ i ];
+
+				while ( e ) {
+					c = e.getAttribute ? e.getAttribute( "data-" + $.mobile.ns + attr ) : "";
+
+					if ( c === "false" ) {
+						excluded = true;
+						break;
+					}
+
+					e = e.parentNode;
+				}
+
+				if ( !excluded ) {
+					$newSet = $newSet.add( $element );
+				}
+			}
+
+			return $newSet;
+		},
+
+		getScreenHeight: function() {
+			// Native innerHeight returns more accurate value for this across platforms,
+			// jQuery version is here as a normalized fallback for platforms like Symbian
+			return window.innerHeight || $.mobile.window.height();
+		},
+
+		//simply set the active page's minimum height to screen height, depending on orientation
+		resetActivePageHeight: function( height ) {
+			var page = $( "." + $.mobile.activePageClass ),
+				pageHeight = page.height(),
+				pageOuterHeight = page.outerHeight( true );
+
+			height = compensateToolbars( page,
+				( typeof height === "number" ) ? height : $.mobile.getScreenHeight() );
+
+			page.css( "min-height", height - ( pageOuterHeight - pageHeight ) );
+		},
+
+		loading: function() {
+			// If this is the first call to this function, instantiate a loader widget
+			var loader = this.loading._widget || $( $.mobile.loader.prototype.defaultHtml ).loader(),
+
+				// Call the appropriate method on the loader
+				returnValue = loader.loader.apply( loader, arguments );
+
+			// Make sure the loader is retained for future calls to this function.
+			this.loading._widget = loader;
+
+			return returnValue;
+		}
+	});
+
+	$.addDependents = function( elem, newDependents ) {
+		var $elem = $( elem ),
+			dependents = $elem.jqmData( "dependents" ) || $();
+
+		$elem.jqmData( "dependents", $( dependents ).add( newDependents ) );
+	};
+
+	// plugins
+	$.fn.extend({
+		removeWithDependents: function() {
+			$.removeWithDependents( this );
+		},
+
+		// Enhance child elements
+		enhanceWithin: function() {
+			var index,
+				widgetElements = {},
+				keepNative = $.mobile.page.prototype.keepNativeSelector(),
+				that = this;
+
+			// Add no js class to elements
+			if ( $.mobile.nojs ) {
+				$.mobile.nojs( this );
+			}
+
+			// Bind links for ajax nav
+			if ( $.mobile.links ) {
+				$.mobile.links( this );
+			}
+
+			// Degrade inputs for styleing
+			if ( $.mobile.degradeInputsWithin ) {
+				$.mobile.degradeInputsWithin( this );
+			}
+
+			// Run buttonmarkup
+			if ( $.fn.buttonMarkup ) {
+				this.find( $.fn.buttonMarkup.initSelector ).not( keepNative )
+				.jqmEnhanceable().buttonMarkup();
+			}
+
+			// Add classes for fieldContain
+			if ( $.fn.fieldcontain ) {
+				this.find( ":jqmData(role='fieldcontain')" ).not( keepNative )
+				.jqmEnhanceable().fieldcontain();
+			}
+
+			// Enhance widgets
+			$.each( $.mobile.widgets, function( name, constructor ) {
+
+				// If initSelector not false find elements
+				if ( constructor.initSelector ) {
+
+					// Filter elements that should not be enhanced based on parents
+					var elements = $.mobile.enhanceable( that.find( constructor.initSelector ) );
+
+					// If any matching elements remain filter ones with keepNativeSelector
+					if ( elements.length > 0 ) {
+
+						// $.mobile.page.prototype.keepNativeSelector is deprecated this is just for backcompat
+						// Switch to $.mobile.keepNative in 1.5 which is just a value not a function
+						elements = elements.not( keepNative );
+					}
+
+					// Enhance whatever is left
+					if ( elements.length > 0 ) {
+						widgetElements[ constructor.prototype.widgetName ] = elements;
+					}
+				}
+			});
+
+			for ( index in widgetElements ) {
+				widgetElements[ index ][ index ]();
+			}
+
+			return this;
+		},
+
+		addDependents: function( newDependents ) {
+			$.addDependents( this, newDependents );
+		},
+
+		// note that this helper doesn't attempt to handle the callback
+		// or setting of an html element's text, its only purpose is
+		// to return the html encoded version of the text in all cases. (thus the name)
+		getEncodedText: function() {
+			return $( "<a>" ).text( this.text() ).html();
+		},
+
+		// fluent helper function for the mobile namespaced equivalent
+		jqmEnhanceable: function() {
+			return $.mobile.enhanceable( this );
+		},
+
+		jqmHijackable: function() {
+			return $.mobile.hijackable( this );
+		}
+	});
+
+	$.removeWithDependents = function( nativeElement ) {
+		var element = $( nativeElement );
+
+		( element.jqmData( "dependents" ) || $() ).remove();
+		element.remove();
+	};
+	$.addDependents = function( nativeElement, newDependents ) {
+		var element = $( nativeElement ),
+			dependents = element.jqmData( "dependents" ) || $();
+
+		element.jqmData( "dependents", $( dependents ).add( newDependents ) );
+	};
+
+	$.find.matches = function( expr, set ) {
+		return $.find( expr, null, null, set );
+	};
+
+	$.find.matchesSelector = function( node, expr ) {
+		return $.find( expr, null, null, [ node ] ).length > 0;
+	};
+
+})( jQuery, this );
+
+
+(function( $, undefined ) {
+
+	/*! matchMedia() polyfill - Test a CSS media type/query in JS. Authors & copyright (c) 2012: Scott Jehl, Paul Irish, Nicholas Zakas. Dual MIT/BSD license */
+	window.matchMedia = window.matchMedia || (function( doc, undefined ) {
+
+		var bool,
+			docElem = doc.documentElement,
+			refNode = docElem.firstElementChild || docElem.firstChild,
+			// fakeBody required for <FF4 when executed in <head>
+			fakeBody = doc.createElement( "body" ),
+			div = doc.createElement( "div" );
+
+		div.id = "mq-test-1";
+		div.style.cssText = "position:absolute;top:-100em";
+		fakeBody.style.background = "none";
+		fakeBody.appendChild(div);
+
+		return function(q){
+
+			div.innerHTML = "&shy;<style media=\"" + q + "\"> #mq-test-1 { width: 42px; }</style>";
+
+			docElem.insertBefore( fakeBody, refNode );
+			bool = div.offsetWidth === 42;
+			docElem.removeChild( fakeBody );
+
+			return {
+				matches: bool,
+				media: q
+			};
+
+		};
+
+	}( document ));
+
+	// $.mobile.media uses matchMedia to return a boolean.
+	$.mobile.media = function( q ) {
+		return window.matchMedia( q ).matches;
+	};
+
+})(jQuery);
+
+	(function( $, undefined ) {
+		$.extend( $.support, {
+			orientation: "orientation" in window && "onorientationchange" in window
+		});
+	}( jQuery ));
+
+(function( $, undefined ) {
+
+// thx Modernizr
+function propExists( prop ) {
+	var uc_prop = prop.charAt( 0 ).toUpperCase() + prop.substr( 1 ),
+		props = ( prop + " " + vendors.join( uc_prop + " " ) + uc_prop ).split( " " ),
+		v;
+
+	for ( v in props ) {
+		if ( fbCSS[ props[ v ] ] !== undefined ) {
+			return true;
+		}
+	}
+}
+
+var fakeBody = $( "<body>" ).prependTo( "html" ),
+	fbCSS = fakeBody[ 0 ].style,
+	vendors = [ "Webkit", "Moz", "O" ],
+	webos = "palmGetResource" in window, //only used to rule out scrollTop
+	operamini = window.operamini && ({}).toString.call( window.operamini ) === "[object OperaMini]",
+	bb = window.blackberry && !propExists( "-webkit-transform" ), //only used to rule out box shadow, as it's filled opaque on BB 5 and lower
+	nokiaLTE7_3;
+
+// inline SVG support test
+function inlineSVG() {
+	// Thanks Modernizr & Erik Dahlstrom
+	var w = window,
+		svg = !!w.document.createElementNS && !!w.document.createElementNS( "http://www.w3.org/2000/svg", "svg" ).createSVGRect && !( w.opera && navigator.userAgent.indexOf( "Chrome" ) === -1 ),
+		support = function( data ) {
+			if ( !( data && svg ) ) {
+				$( "html" ).addClass( "ui-nosvg" );
+			}
+		},
+		img = new w.Image();
+
+	img.onerror = function() {
+		support( false );
+	};
+	img.onload = function() {
+		support( img.width === 1 && img.height === 1 );
+	};
+	img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+}
+
+function transform3dTest() {
+	var mqProp = "transform-3d",
+		// Because the `translate3d` test below throws false positives in Android:
+		ret = $.mobile.media( "(-" + vendors.join( "-" + mqProp + "),(-" ) + "-" + mqProp + "),(" + mqProp + ")" ),
+		el, transforms, t;
+
+	if ( ret ) {
+		return !!ret;
+	}
+
+	el = document.createElement( "div" );
+	transforms = {
+		// We’re omitting Opera for the time being; MS uses unprefixed.
+		"MozTransform": "-moz-transform",
+		"transform": "transform"
+	};
+
+	fakeBody.append( el );
+
+	for ( t in transforms ) {
+		if ( el.style[ t ] !== undefined ) {
+			el.style[ t ] = "translate3d( 100px, 1px, 1px )";
+			ret = window.getComputedStyle( el ).getPropertyValue( transforms[ t ] );
+		}
+	}
+	return ( !!ret && ret !== "none" );
+}
+
+// Test for dynamic-updating base tag support ( allows us to avoid href,src attr rewriting )
+function baseTagTest() {
+	var fauxBase = location.protocol + "//" + location.host + location.pathname + "ui-dir/",
+		base = $( "head base" ),
+		fauxEle = null,
+		href = "",
+		link, rebase;
+
+	if ( !base.length ) {
+		base = fauxEle = $( "<base>", { "href": fauxBase }).appendTo( "head" );
+	} else {
+		href = base.attr( "href" );
+	}
+
+	link = $( "<a href='testurl' />" ).prependTo( fakeBody );
+	rebase = link[ 0 ].href;
+	base[ 0 ].href = href || location.pathname;
+
+	if ( fauxEle ) {
+		fauxEle.remove();
+	}
+	return rebase.indexOf( fauxBase ) === 0;
+}
+
+// Thanks Modernizr
+function cssPointerEventsTest() {
+	var element = document.createElement( "x" ),
+		documentElement = document.documentElement,
+		getComputedStyle = window.getComputedStyle,
+		supports;
+
+	if ( !( "pointerEvents" in element.style ) ) {
+		return false;
+	}
+
+	element.style.pointerEvents = "auto";
+	element.style.pointerEvents = "x";
+	documentElement.appendChild( element );
+	supports = getComputedStyle &&
+	getComputedStyle( element, "" ).pointerEvents === "auto";
+	documentElement.removeChild( element );
+	return !!supports;
+}
+
+function boundingRect() {
+	var div = document.createElement( "div" );
+	return typeof div.getBoundingClientRect !== "undefined";
+}
+
+// non-UA-based IE version check by James Padolsey, modified by jdalton - from http://gist.github.com/527683
+// allows for inclusion of IE 6+, including Windows Mobile 7
+$.extend( $.mobile, { browser: {} } );
+$.mobile.browser.oldIE = (function() {
+	var v = 3,
+		div = document.createElement( "div" ),
+		a = div.all || [];
+
+	do {
+		div.innerHTML = "<!--[if gt IE " + ( ++v ) + "]><br><![endif]-->";
+	} while( a[0] );
+
+	return v > 4 ? v : !v;
+})();
+
+function fixedPosition() {
+	var w = window,
+		ua = navigator.userAgent,
+		platform = navigator.platform,
+		// Rendering engine is Webkit, and capture major version
+		wkmatch = ua.match( /AppleWebKit\/([0-9]+)/ ),
+		wkversion = !!wkmatch && wkmatch[ 1 ],
+		ffmatch = ua.match( /Fennec\/([0-9]+)/ ),
+		ffversion = !!ffmatch && ffmatch[ 1 ],
+		operammobilematch = ua.match( /Opera Mobi\/([0-9]+)/ ),
+		omversion = !!operammobilematch && operammobilematch[ 1 ];
+
+	if (
+		// iOS 4.3 and older : Platform is iPhone/Pad/Touch and Webkit version is less than 534 (ios5)
+		( ( platform.indexOf( "iPhone" ) > -1 || platform.indexOf( "iPad" ) > -1  || platform.indexOf( "iPod" ) > -1 ) && wkversion && wkversion < 534 ) ||
+		// Opera Mini
+		( w.operamini && ({}).toString.call( w.operamini ) === "[object OperaMini]" ) ||
+		( operammobilematch && omversion < 7458 )	||
+		//Android lte 2.1: Platform is Android and Webkit version is less than 533 (Android 2.2)
+		( ua.indexOf( "Android" ) > -1 && wkversion && wkversion < 533 ) ||
+		// Firefox Mobile before 6.0 -
+		( ffversion && ffversion < 6 ) ||
+		// WebOS less than 3
+		( "palmGetResource" in window && wkversion && wkversion < 534 )	||
+		// MeeGo
+		( ua.indexOf( "MeeGo" ) > -1 && ua.indexOf( "NokiaBrowser/8.5.0" ) > -1 ) ) {
+		return false;
+	}
+
+	return true;
+}
+
+$.extend( $.support, {
+	// Note, Chrome for iOS has an extremely quirky implementation of popstate.
+	// We've chosen to take the shortest path to a bug fix here for issue #5426
+	// See the following link for information about the regex chosen
+	// https://developers.google.com/chrome/mobile/docs/user-agent#chrome_for_ios_user-agent
+	pushState: "pushState" in history &&
+		"replaceState" in history &&
+		// When running inside a FF iframe, calling replaceState causes an error
+		!( window.navigator.userAgent.indexOf( "Firefox" ) >= 0 && window.top !== window ) &&
+		( window.navigator.userAgent.search(/CriOS/) === -1 ),
+
+	mediaquery: $.mobile.media( "only all" ),
+	cssPseudoElement: !!propExists( "content" ),
+	touchOverflow: !!propExists( "overflowScrolling" ),
+	cssTransform3d: transform3dTest(),
+	boxShadow: !!propExists( "boxShadow" ) && !bb,
+	fixedPosition: fixedPosition(),
+	scrollTop: ("pageXOffset" in window ||
+		"scrollTop" in document.documentElement ||
+		"scrollTop" in fakeBody[ 0 ]) && !webos && !operamini,
+
+	dynamicBaseTag: baseTagTest(),
+	cssPointerEvents: cssPointerEventsTest(),
+	boundingRect: boundingRect(),
+	inlineSVG: inlineSVG
+});
+
+fakeBody.remove();
+
+// $.mobile.ajaxBlacklist is used to override ajaxEnabled on platforms that have known conflicts with hash history updates (BB5, Symbian)
+// or that generally work better browsing in regular http for full page refreshes (Opera Mini)
+// Note: This detection below is used as a last resort.
+// We recommend only using these detection methods when all other more reliable/forward-looking approaches are not possible
+nokiaLTE7_3 = (function() {
+
+	var ua = window.navigator.userAgent;
+
+	//The following is an attempt to match Nokia browsers that are running Symbian/s60, with webkit, version 7.3 or older
+	return ua.indexOf( "Nokia" ) > -1 &&
+			( ua.indexOf( "Symbian/3" ) > -1 || ua.indexOf( "Series60/5" ) > -1 ) &&
+			ua.indexOf( "AppleWebKit" ) > -1 &&
+			ua.match( /(BrowserNG|NokiaBrowser)\/7\.[0-3]/ );
+})();
+
+// Support conditions that must be met in order to proceed
+// default enhanced qualifications are media query support OR IE 7+
+
+$.mobile.gradeA = function() {
+	return ( ( $.support.mediaquery && $.support.cssPseudoElement ) || $.mobile.browser.oldIE && $.mobile.browser.oldIE >= 8 ) && ( $.support.boundingRect || $.fn.jquery.match(/1\.[0-7+]\.[0-9+]?/) !== null );
+};
+
+$.mobile.ajaxBlacklist =
+			// BlackBerry browsers, pre-webkit
+			window.blackberry && !window.WebKitPoint ||
+			// Opera Mini
+			operamini ||
+			// Symbian webkits pre 7.3
+			nokiaLTE7_3;
+
+// Lastly, this workaround is the only way we've found so far to get pre 7.3 Symbian webkit devices
+// to render the stylesheets when they're referenced before this script, as we'd recommend doing.
+// This simply reappends the CSS in place, which for some reason makes it apply
+if ( nokiaLTE7_3 ) {
+	$(function() {
+		$( "head link[rel='stylesheet']" ).attr( "rel", "alternate stylesheet" ).attr( "rel", "stylesheet" );
+	});
+}
+
+// For ruling out shadows via css
+if ( !$.support.boxShadow ) {
+	$( "html" ).addClass( "ui-noboxshadow" );
+}
+
+})( jQuery );
+
+}));

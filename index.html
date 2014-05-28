@@ -5,6 +5,8 @@
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 	<script src="js/jquery.js"></script>
+	<script src="js/jquery.mobile.js"></script>
+
 	<style>
 	body{
 		text-align: center;
@@ -27,69 +29,27 @@
   min-width: 50%;
   min-height: 50%;
 }
-	.classname {
-	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
-	box-shadow:inset 0px 1px 0px 0px #ffffff;
-
-
-	-moz-box-shadow: 1px 10px 0px #434144;
-	-webkit-box-shadow: 1px 10px 0px #434144;
-	box-shadow: 1px 10px 0px #434144;
-
-	background-color:#f51813;
-	/* borders*/
-	-webkit-border-top-left-radius:50px;
-	-moz-border-radius-topleft:50px;
-	border-top-left-radius:50px;
-	-webkit-border-top-right-radius:50px;
-	-moz-border-radius-topright:50px;
-	border-top-right-radius:50px;
-	-webkit-border-bottom-right-radius:50px;
-	-moz-border-radius-bottomright:50px;
-	border-bottom-right-radius:50px;
-	-webkit-border-bottom-left-radius:50px;
-	-moz-border-radius-bottomleft:50px;
-	border-bottom-left-radius:50px;
-
-	/*otros estilos */
-	
-	border:1px solid #f51813;
-	display:inline-block;
-
-	color:white;
-
-	font-family:arial;
-
-	font-size:15px;
-	font-weight:bold;
-	font-style:normal;
-	height:50px;
-	line-height:50px;
-	width:70%;
-	text-decoration:none;
-	text-align:center;
-	text-shadow:1px 1px 0px #f51813;
-	margin-bottom: 20px;
-}
-.classname:active {
-	position:relative;
-	top:1px;
-}
 #logo{
 	text-align: center;
 }
-
+/**/
 button.launch {
-background-color: #F9A300;
+background-color: #f51712;
 border: none;
-height: 40px;
+height:  50px;
 padding: 5px 15px;
 color: #ffffff;
 font-size: 16px;
 font-weight: 300;
 margin-top: 10px;
 margin-right: 10px;
+width: 70%;
+border-radius: 50px;
+margin-bottom: 20px;
+/* Shadow*/
+-moz-box-shadow:     1px 10px 0px #434144;
+  -webkit-box-shadow:  1px 10px 0px #434144;
+  box-shadow:         	1px 10px 0px #434144;
 }
 
 button.launch:hover {
@@ -97,46 +57,15 @@ cursor: pointer;
 background-color: #FABD44;
 }
 
-button.launch {
-background-color: #F9A300;
-border: none;
-height: 40px;
-padding: 5px 15px;
-color: #ffffff;
-font-size: 16px;
-font-weight: 300;
-margin-top: 10px;
-margin-right: 10px;
-}
 
-button.launch:hover {
-cursor: pointer;
-background-color: #FABD44;
-}
 
-button.change {
-background-color: #F88F00;
-border: none;
-height: 40px;
-padding: 5px 15px;
-color: #ffffff;
-font-size: 16px;
-font-weight: 300;
-margin-top: 10px;
-margin-right: 10px;
-}
 
-button.change:hover {
-cursor: pointer;
-background-color: #F89900;
-}
-
-button:active, .classname:active{
+button:active{
 outline: none;
 border: none;
 }
 
-button:focus, .classname:focus{outline:0;}
+button:focus{outline:0;}
 
 *{
 	  -webkit-user-select: none;
@@ -155,17 +84,17 @@ button:focus, .classname:focus{outline:0;}
 <div id="logo">
 <img src="img/logo.png">
 </div>
-<div class="classname">Play</div>
-<a class="classname">Competi</a>
-<a class="classname">Score</a>
-<a class="classname">Help</a>
 
-<button class="launch">Launch with these ads</button> 
-<button class="change">Change</button>
+
+<button class="launch">Play</button> 
+<button class="launch">Competite</button> 
+<button class="launch">Score</button> 
+<button class="launch">About</button> 
+
 
 	<script>
-	$(".classname").click(function() {
-		alert('hol');
+	$(".launch").bind('tap',function() {
+		alert('jj');
 	});
 	</script>
 </body>
