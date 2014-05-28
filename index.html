@@ -6,20 +6,33 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 	<script src="js/jquery.js"></script>
 	<style>
-	/*button{
-		width: 100%;
-		background: lightblue;
-		border: 1px solid lightblue;
-		height: 40px;
-		font-size: 20px;
-	}
-	button:active{
-	 background: blue;
-	}*/
+	#bg {
+  position: fixed; 
+  top: -50%; 
+  left: -50%; 
+  width: 200%; 
+  height: 200%;
+  z-index: -1;
+}
+#bg img {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  margin: auto; 
+  min-width: 50%;
+  min-height: 50%;
+}
 	.classname {
-	-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
-	box-shadow:inset 0px 1px 0px 0px #ffffff;
+	-moz-box-shadow:inset 0px 1px 0px 0px blue;
+	-webkit-box-shadow:inset 0px 1px 0px 0px blue;
+	box-shadow:inset 0px 1px 0px 0px blue;
+
+	-moz-box-shadow: 1px 10px 0px blue;
+	-webkit-box-shadow: 1px 10px 0px blue;
+	box-shadow: 1px 10px 0px blue;
+
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
 	background:-moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
@@ -60,9 +73,20 @@
 	position:relative;
 	top:1px;
 }
+#logo{
+	text-align: center;
+}
+
+
 	</style>
 </head>
 <body>
+<div id="bg">
+  <img src="img/bg.png" alt="">
+</div>
+<div id="logo">
+<img src="img/logo.png">
+</div>
 <a class="classname">Holla</a>
 
 	<script>
