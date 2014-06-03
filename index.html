@@ -9,7 +9,7 @@
 	<script src="js/jquery.js"></script>
 	<script src="js/jquery.mobile-1.4.2.js"></script>
 
-	<style>
+<style>
 	#bg {
   position: fixed; 
   top: -50%; 
@@ -43,41 +43,49 @@
   border-radius: 50%;
   margin: 0 auto;
   margin-bottom: 30px;
+  border: 1px solid #f51712;
+  top: 10px;
 }
-/*
-.btn-menu:active{
-  -moz-box-shadow:     1px 5px 0px #434144;
-  -webkit-box-shadow:  1px 5px 0px #434144;
-  box-shadow:         	1px 5px 0px #434144;
-  top: 3px;
-}*/
+body{
+  background: url(img/bg.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.btn-return{
+ 	max-width: 10px;
+ 	width: 10%;
+ 	/*float: left;*/
+ 	margin-right: 10px;
+ 	height: 10px;
+ 	/*position: relative;*/
+ 	/*bottom: -50px;*/
+ }
+
+ .btn-level{
+ 	width: 95%;
+ }
+ #cont-btn{
+		position: fixed;
+		top: 50px;
+	}
+	#title-header{
+		font-size: 25px;
+		color: white;
+	}
+
 	</style>
 
 
 
 
 
+
 </head> 
-
-<body> 
-
-<!-- Start of first page -->
-<div data-role="page" id="foo" id="menu">
-	<div id="bg">
-  		<img src="img/bg.png" alt="">
-	</div>
-	<div id="logo">
-<img src="img/logo.png">
-</div>
-	<div data-role="content">	
-		 <a  data-role="button" class="btn-menu">Play</a></p>	
-		 <a   data-role="button" class="btn-menu">Competite</a></p>	
-		 <a  data-role="button" class="btn-menu">Score</a></p>	
-		 <a   data-role="button" class="btn-menu">About</a></p>	
-	</div><!-- /content -->
-
-	
-	<script>
+<script>
+$(function() {
 	$(".btn-menu").bind('tap',function() {
 		//alert('jj');
 		$(this).css('box-shadow', '1px 5px 0px #434144');
@@ -90,25 +98,99 @@
 		
 
 	});
+
+	$("#btn-help").bind('tap',function() {
+		$('#contenido').load("views/help.html");
+	});
+
+	/*$(window).bind("orientationchange", function(event){		
+  if (event.orientation=="landscape"){	
+    $("#contenido").html("Me han reorientado a " + event.orientation);
+	}
+});*/
+});
 	</script>
-</div><!-- /page -->
 
+<body> 
 
-<!-- Start of second page -->
-<div data-role="page" id="bar">
+<!-- Start of first page -->
+<div data-role="page"  id="menu">
+	
 
-	<div data-role="header">
-		<h1>Bar</h1>
-	</div><!-- /header -->
-
-	<div data-role="content">	
-		<p>Esta es la pagina No 2</p>		
-		<p><a href="#foo" data-role="button">Back to foo</a></p>	
+	
+	<div data-role="content" id="contenido">
+		 <div id="logo">
+			<img src="img/logo.png">
+		 </div>	
+		 <a  data-role="button"  class="btn-menu" href="#game1">Play</a></p>	
+		 <a   data-role="button" class="btn-menu">Competition</a></p>	
+		 <a  data-role="button"  class="btn-menu" href="#menu-level">Score</a></p>	
+		 <a   data-role="button"  href="#menu-help"class="btn-menu">Help</a>	
 	</div><!-- /content -->
 
-	<div data-role="footer">
-		<h4>Page Footer</h4>
-	</div><!-- /footer -->
+	
+	
 </div><!-- /page -->
+
+<!-- Start of second page -->
+<div data-role="page" id="menu-help">
+	
+	<div data-role="content" id="help">	
+
+				<script>
+				$(function() {
+					$("#help").load("views/help.html");
+
+				});
+				</script>
+	
+	</div><!-- /content -->
+
+	
+</div><!-- /page -->
+
+<!-- Start of third page -->
+<div data-role="page" id="menu-level">
+	
+	<div data-role="content" id="level">	
+
+				<script>
+				$(function() {
+					$("#level").load("views/level.html");
+
+				});
+				</script>
+	
+	</div><!-- /content -->
+
+	
+</div><!-- /page -->
+<div data-role="page" id="menu-score">
+
+ 	<div data-role="content" id="score">	
+
+				<script>
+				$(function() {
+					$("#score").load("views/score.html");
+
+				});
+				</script>
+	
+	</div><!-- /content -->
+ </div>
+
+ <div data-role="page" id="game1">
+
+ 	<div data-role="content" id="gamealone">	
+
+				<script>
+				$(function() {
+					$("#gamealone").load("views/game1.html");
+
+				});
+				</script>
+	
+	</div><!-- /content -->
+ </div>
 </body>
 </html>

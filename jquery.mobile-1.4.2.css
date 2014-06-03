@@ -858,8 +858,8 @@ label.ui-btn {
 .ui-btn-icon-top:after,
 .ui-btn-icon-bottom:after,
 .ui-btn-icon-notext:after {
-	background-color: 					#666 /*{global-icon-color}*/;
-	background-color: 					rgba(0,0,0,.3) /*{global-icon-disc}*/;
+	/*background-color: 					#666 /*{global-icon-color}*/
+	/*background-color: 					rgba(0,0,0,.3) /*{global-icon-disc}*/
 	background-position: center center;
 	background-repeat: no-repeat;
 	-webkit-border-radius: 1em;
@@ -1006,8 +1006,8 @@ html .ui-bar-a .ui-btn:visited,
 html .ui-body-a .ui-btn:visited,
 html body .ui-group-theme-a .ui-btn:visited,
 html head + body .ui-btn.ui-btn-a:visited {
-	background-color: 			#f51712 /*{a-bup-background-color}*/;
-	border-color:	 		#f51712 /*{a-bup-border}*/;
+	/*background-color: 			#f51712 /*{a-bup-background-color}*/
+	/*border-color:	 		#f51712 /*{a-bup-border}*/
 	color: 					white /*{a-bup-color}*/;
 	text-shadow: 0 /*{a-bup-shadow-x}*/ 1px /*{a-bup-shadow-y}*/ 0 /*{a-bup-shadow-radius}*/ #f51712 /*{a-bup-shadow-color}*/;
 }
@@ -1028,6 +1028,7 @@ html .ui-bar-a .ui-btn:active,
 html .ui-body-a .ui-btn:active,
 html body .ui-group-theme-a .ui-btn:active,
 html head + body .ui-btn.ui-btn-a:active {
+	   
 	background-color: 			#f51712 /*{a-bdown-background-color}*/;
 	border-color:	 		#f51712 /*{a-bdown-border}*/;
 	color: 					white /*{a-bdown-color}*/;
@@ -1594,7 +1595,7 @@ div.ui-mobile-viewport {
 	margin-top: -11px;
 }
 .ui-btn-icon-left:after {
-	left: .5625em;
+	left: 23px;
 }
 .ui-btn-icon-right:after {
 	right: .5625em;

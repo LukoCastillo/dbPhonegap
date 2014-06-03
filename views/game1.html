@@ -1,0 +1,49 @@
+<style>
+	#tbl-points{
+		width: 50%;
+		height: 50px;
+		background: brown;
+		color: white;
+		padding: 5px;
+	}
+	#wrapper-btn{
+		width: 70px;
+		margin-top: 10px;
+	
+	}
+	#big-button{
+		height: 70px;
+	}
+	
+
+</style>
+
+<div id="tbl-points">
+	B=10 <br/>
+	Taps=2/10
+</div>
+<script>
+	
+  $(function() {      
+$('#big-button').on("vmousedown",function() {
+
+ $(this).css('box-shadow', '1px 5px 0px #434144');
+		$(this).css('top', '3px');
+		console.log('p');
+
+}).on("vmouseup",function() {
+$(".btn-menu").css('box-shadow', '1px 10px 0px #434144');
+			$(".btn-menu").css('top', '0px');
+
+});
+    });
+  
+    
+</script>
+<div id="wrapper-btn">
+		
+		<a  data-role="button" href="#menu"  class="btn-menu btn-return" data-icon="back"></a>
+</div>
+<div id="wrapper-big-button">
+	 <a  data-role="button"  class="btn-menu" id="big-button">jj</a>	
+</div>
