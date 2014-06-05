@@ -858,8 +858,8 @@ label.ui-btn {
 .ui-btn-icon-top:after,
 .ui-btn-icon-bottom:after,
 .ui-btn-icon-notext:after {
-	/*background-color: 					#666 /*{global-icon-color}*/
-	/*background-color: 					rgba(0,0,0,.3) /*{global-icon-disc}*/
+	background-color: 					#666 /*{global-icon-color}*/;
+	background-color: 					rgba(0,0,0,.3) /*{global-icon-disc}*/;
 	background-position: center center;
 	background-repeat: no-repeat;
 	-webkit-border-radius: 1em;
@@ -921,7 +921,7 @@ html .ui-alt-icon .ui-radio-off:after {
 }
 /* Loader */
 .ui-icon-loading {
-	background: url(http://istudiogame.com/images/ajax-document-loader.gif);
+	background: url(images/ajax-loader.gif);
 	background-size: 2.875em 2.875em;
 }
 /* Swatches */
@@ -1006,8 +1006,8 @@ html .ui-bar-a .ui-btn:visited,
 html .ui-body-a .ui-btn:visited,
 html body .ui-group-theme-a .ui-btn:visited,
 html head + body .ui-btn.ui-btn-a:visited {
-	/*background-color: 			#f51712 /*{a-bup-background-color}*/
-	/*border-color:	 		#f51712 /*{a-bup-border}*/
+	background-color: 			#f51712 /*{a-bup-background-color}*/;
+	border-color:	 		#f51712 /*{a-bup-border}*/;
 	color: 					white /*{a-bup-color}*/;
 	text-shadow: 0 /*{a-bup-shadow-x}*/ 1px /*{a-bup-shadow-y}*/ 0 /*{a-bup-shadow-radius}*/ #f51712 /*{a-bup-shadow-color}*/;
 }
@@ -1028,7 +1028,6 @@ html .ui-bar-a .ui-btn:active,
 html .ui-body-a .ui-btn:active,
 html body .ui-group-theme-a .ui-btn:active,
 html head + body .ui-btn.ui-btn-a:active {
-	   
 	background-color: 			#f51712 /*{a-bdown-background-color}*/;
 	border-color:	 		#f51712 /*{a-bdown-border}*/;
 	color: 					white /*{a-bdown-color}*/;
@@ -1058,8 +1057,8 @@ html .ui-bar-a .ui-slider-track .ui-btn-active,
 html .ui-body-a .ui-slider-track .ui-btn-active,
 html body .ui-group-theme-a .ui-slider-track .ui-btn-active,
 html body div.ui-slider-track.ui-body-a .ui-btn-active {
-	background-color: 		red /*{a-active-background-color}*/;
-	border-color:	 		red /*{a-active-border}*/;
+	background-color: 		#3388cc /*{a-active-background-color}*/;
+	border-color:	 		#3388cc /*{a-active-border}*/;
 	color: 					#fff /*{a-active-color}*/;
 	text-shadow: 0 /*{a-active-shadow-x}*/ 1px /*{a-active-shadow-y}*/ 0 /*{a-active-shadow-radius}*/ #005599 /*{a-active-shadow-color}*/;
 }
@@ -1595,7 +1594,7 @@ div.ui-mobile-viewport {
 	margin-top: -11px;
 }
 .ui-btn-icon-left:after {
-	left: 23px;
+	left: .5625em;
 }
 .ui-btn-icon-right:after {
 	right: .5625em;

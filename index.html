@@ -3,95 +3,112 @@
 <head> 
 	<title>Page Title</title> 
 	
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/> <!--320-->
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 
 	<link rel="stylesheet" href="jquery.mobile-1.4.2.css"/>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script src="js/jquery.js"></script>
 	<script src="js/jquery.mobile-1.4.2.js"></script>
 
+	<style>
+	#bg {
+  position: fixed; 
+  top: -50%; 
+  left: -50%; 
+  width: 200%; 
+  height: 200%;
+  z-index: -1;
+}
+#bg img {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0; 
+  margin: auto; 
+  min-width: 50%;
+  min-height: 50%;
+}
+#logo{
+	text-align: center;
+}
+	
+.btn-menu{
+	background: #f51712;
+	/* Shadow*/
+-moz-box-shadow:     1px 10px 0px #434144;
+  -webkit-box-shadow:  1px 10px 0px #434144;
+  box-shadow:         	1px 10px 0px #434144;
+  width: 62%;
+
+  border-radius: 50%;
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
+/*
+.btn-menu:active{
+  -moz-box-shadow:     1px 5px 0px #434144;
+  -webkit-box-shadow:  1px 5px 0px #434144;
+  box-shadow:         	1px 5px 0px #434144;
+  top: 3px;
+}*/
+	</style>
+
+
+
+
 
 </head> 
-<script>
-
-$('#menu').live('pageshow',function() {
-
-	var btn="";
-
-	$(".btn-principal").bind('tap',function() {
-		 btn=$(this).html();
-
-		$(this).css('box-shadow', '1px 5px 0px #434144');
-		$(this).css('top', '3px');
-	  setTimeout(function(){
-
-		var page="";
-
-			switch(btn){
-				case "Play": page="#game1";
-				break;
-				case "Help": page="#menu-help";
-					
-				break;
-				case "Score": page="#menu-level";
-					
-				break;
-				
-			}
-			$(".btn-menu").css('box-shadow', '1px 10px 0px #434144');
-			$(".btn-menu").css('top', '0px');
-
-			
-			
-		}, 100);
-		
-
-	});
-
-	
-});
-
-	</script>
 
 <body> 
 
 <!-- Start of first page -->
-<div data-role="page"  id="menu">
-	
-
-	
-	<div data-role="content" id="contenido">
-		 <div id="logo">
-			<img src="img/logo.png">
-		 </div>	
-		 <a  data-role="button"  class="btn-menu btn-principal"  >Play</a></p>	
-		 <a   data-role="button" class="btn-menu btn-principal" >Competition</a></p>	
-		 <a  data-role="button"  class="btn-menu btn-principal" >Score</a></p>	
-		 <a   data-role="button" class="btn-menu btn-principal" href="views/help.html" rel="external">Help</a>	
+<div data-role="page" id="foo" id="menu">
+	<div id="bg">
+  		<img src="img/bg.png" alt="">
+	</div>
+	<div id="logo">
+<img src="img/logo.png">
+</div>
+	<div data-role="content">	
+		 <a  data-role="button" class="btn-menu">Play</a></p>	
+		 <a   data-role="button" class="btn-menu">Competite</a></p>	
+		 <a  data-role="button" class="btn-menu">Score</a></p>	
+		 <a   data-role="button" class="btn-menu">About</a></p>	
 	</div><!-- /content -->
 
 	
-	
+	<script>
+	$(".btn-menu").bind('tap',function() {
+		//alert('jj');
+		$(this).css('box-shadow', '1px 5px 0px #434144');
+		$(this).css('top', '3px');
+		setTimeout(function(){
+			//alert('j');
+			$(".btn-menu").css('box-shadow', '1px 10px 0px #434144');
+			$(".btn-menu").css('top', '0px');
+		}, 100);
+		
+
+	});
+	</script>
 </div><!-- /page -->
 
 
+<!-- Start of second page -->
+<div data-role="page" id="bar">
 
-<!-- Start of third page>
-<div data-role="page" id="menu-level">
-	
-	<div data-role="content" id="level">	
+	<div data-role="header">
+		<h1>Bar</h1>
+	</div><!-- /header -->
 
-				<script>
-				
-					$("#level").load("views/level.html");
+	<div data-role="content">	
+		<p>Esta es la pagina No 2</p>		
+		<p><a href="#foo" data-role="button">Back to foo</a></p>	
+	</div><!-- /content -->
 
-				</script>
-	
-	</div>< /content>
-
-	
-</div></page -->
-
-				
+	<div data-role="footer">
+		<h4>Page Footer</h4>
+	</div><!-- /footer -->
+</div><!-- /page -->
 </body>
 </html>
