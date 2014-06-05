@@ -17,12 +17,14 @@
 </head> 
 
 <body> 
-
-<!-- Start of first page -->
-<div data-role="page" id="foo" id="menu">
-	<div id="bg">
+<div id="bg">
   		<img src="img/bg.png" alt="">
-	</div>
+</div>
+
+
+<!-- Start of Home page -->
+<div data-role="page" id="foo" id="menu">
+	
 	<div id="logo">
 <img src="img/logo.png">
 </div>
@@ -30,7 +32,7 @@
 		 <a  data-role="button" class="btn-menu" href="#game1">Play</a></p>	
 		 <a   data-role="button" class="btn-menu">Competite</a></p>	
 		 <a  data-role="button" class="btn-menu" href="#score">Score</a></p>	
-		 <a   data-role="button" class="btn-menu" href="#help">Help</a></p>	
+		 <a   data-role="button" class="btn-menu" href="view/help.html" >Help</a></p>	
 	</div><!-- /content -->
 
 	
@@ -50,34 +52,40 @@
 	</script>
 </div><!-- /page -->
 
-<!-- Start help page -->
-<div data-role="page" id="help">
 
-	<div data-role="content">	
-		
-		<p><a href="#foo" data-role="button">Back to foo</a></p>	
-	</div><!-- /content -->
+	<!-- Start help page -->
+	<div data-role="page" id="help">
 
-</div><!-- /page -->
+		<div data-role="content" id="help-cont">	
+			
+			<script>
+			$('#help').live("pageshow",function() {
+				$("#help-cont").load("view/help.html")
+			})
+			</script>
 
-<!-- Start of score page -->
-<div data-role="page" id="score">
+		</div><!-- /content -->
 
-	<div data-role="content">	
-		
-		<p><a href="#foo" data-role="button">Back to foo</a></p>	
-	</div><!-- /content -->
+	</div><!-- /page -->
 
-</div><!-- /page -->
+	<!-- Start of score page -->
+	<div data-role="page" id="score">
 
-<!-- Start of play page -->
-<div data-role="page" id="game1">
+		<div data-role="content">	
+			
+			<p><a href="#foo" data-role="button">Back to foo</a></p>	
+		</div><!-- /content -->
 
-	<div data-role="content">	
-		
-		<p><a href="#foo" data-role="button">Back to foo</a></p>	
-	</div><!-- /content -->
+	</div><!-- /page -->
 
-</div><!-- /page -->
+	<!-- Start of play page -->
+	<div data-role="page" id="game1">
+
+		<div data-role="content">	
+			
+			<p><a href="#foo" data-role="button">Back to foo</a></p>	
+		</div><!-- /content -->
+
+	</div><!-- /page -->
 </body>
 </html>
