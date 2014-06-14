@@ -1,10 +1,10 @@
-<!-- Inicio game1 -->
+<!-- Inicio game1 juego solo-->
 
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 
 
 <div data-role="page" id="help">
-		
+	
 		<style>
 		.ui-content{
 		    margin-bottom:75px; /* Set this to whatever your footer size is... */
@@ -17,30 +17,20 @@
 			<div id="cont-btn" ><a href="../index.html" data-role="button" data-icon="back" class="btn-back"></a></div>
 			
  				<div id="tbl-points">
- 						<div class="point">Ballo <br>1</div>
- 						<div class="point">Taps <br> 1/10</div>
+ 						<div class="point">Ballon<br><span id="ballones"> </span></div>
+ 						<div class="point">Taps <br> <span id="ClicksButton"> </span>/10</div>
  				</div>
 				
 				
 			 	
 		
-		<div><!-- /content -->
+		</div><!-- /content -->
+		
 		<div data-role="footer" data-position="fixed">
 		<a  data-role="button"  class="btn-menu btn-level" id="big-btn"></a>
 
 		</div>
-		<script>
-			$('#big-btn').on("vmousedown",function() {
-
-			 $(this).css('box-shadow', '1px 5px 0px #434144');
-					$(this).css('top', '3px');
-					
-
-			}).on("vmouseup",function() {
-			$(".btn-menu").css('box-shadow', '1px 10px 0px #434144');
-						$(".btn-menu").css('top', '0px');
-
-			});
-		</script>
+	
+		<script src="../js/game1.js"></script>
 		
 </div>

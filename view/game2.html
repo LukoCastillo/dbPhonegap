@@ -1,0 +1,62 @@
+<!-- Inicio game1 juego solo-->
+
+<link rel="stylesheet" type="text/css" href="../css/style.css">
+
+
+<div data-role="page" id="help">
+	
+		<style>
+		.ui-content{
+		    margin-bottom:75px; /* Set this to whatever your footer size is... */
+		}
+
+	#contador{
+	display: none;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	background: white;
+	position: fixed;
+	left:40%;
+	text-align: center;
+	padding: 20px;
+			
+		}
+		#numerosContador{
+			top:-10px;
+			position: relative;
+		}
+		</style>
+		<div id="contador">
+			<h1 id="numerosContador"></h1>
+		</div>
+
+		
+
+		<div data-role="content" id="help-cont">
+
+			<div id="cont-btn" ><a href="../index.html" data-role="button" data-icon="back" class="btn-back" id="return-game"></a></div>
+			
+ 				<div id="tbl-points">
+ 						<!--div class="point">Taps <br> <span id="ClicksButton"> </span>/10</div-->
+
+ 				</div>
+				
+		
+		</div><!-- /content -->
+		
+		<div data-role="footer" data-position="fixed">
+		<a  data-role="button"  class="btn-menu btn-level" id="big-btn"></a>
+
+		</div>
+	
+		<script src="../js/gameC.js"></script>
+		
+</div>
+
+
+
+
+
+
+

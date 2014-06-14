@@ -104,3 +104,53 @@
     width: 100%;
     text-align: center;
 }
+
+/* Estilo mensaje y juego competicion */
+
+#wrapper-msg{
+position: absolute;  
+width: 100%; 
+height: 100%;
+z-index: 2000;
+background-color: rgba(250,250,250,0.5);
+}
+#mensaje{
+position: absolute;
+left: 10%;
+top: 30%;
+width: 100%;
+min-height: 100px;
+margin-top: -10%;
+margin-left: -10%;
+overflow: auto;
+padding: 5px;
+}
+.submsj{
+background: #5bbbff;
+border: 3px solid #31a9f9;
+padding: 5px;
+width: 80%;
+margin: 0 auto;
+}
+.msj-btn{
+width: 20%;
+display: inline-block;
+margin: 5px;
+text-align: center;
+}
+#next-btn{
+width: 35%;
+}
+.botonera{
+text-align: center;
+}
+
+
+/* Msj error*/
+
+.error{
+  background: #e74c3c;
+  text-align: left;
+  padding: 5px;
+  color: white;
+}
